@@ -18,7 +18,8 @@ public class Person2 {
 	 * name
 	 * @param pname the person's real name
 	 */
-	 public Person2(String pname) {
+	 public Person2(String pname) 
+	 {
 	   name = pname;
 	 }
 	/**
@@ -31,9 +32,11 @@ public class Person2 {
 	 * @param input the string to be modified
 	 * @return the modified string
 	 */
-	public static String calc(String input) {
-		if(input == null) throw new NullPointerException();
-	  String temp = "";
+	public static String calc(String input) 
+	{
+	if(input == null) throw new NullPointerException();
+	  		String temp = "";
+	  		
 	  String finalString = "";
 	  Random r = new Random();
 	  int loc;
@@ -54,11 +57,9 @@ public class Person2 {
 	 * @return the string representing the 
 	 *         object
 	 */
-	public String toString(String input) {
+	public String toString(String input) 
+	{
 	  return name + calc(input);
 	}
-	public static void main(String[] args)
-	{
-		System.out.println(calc("samarth"));
-	}
+	
 }
