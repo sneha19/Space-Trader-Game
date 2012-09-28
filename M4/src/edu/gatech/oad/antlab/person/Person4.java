@@ -31,7 +31,14 @@ public class Person4 {
      */
     private String calc(String input) {
       //Person 4 put your implementation here
-      return null;
+    	int k=0;
+    	String copy="";
+    	while(k<input.length()-1){
+    		copy=copy+input.charAt(k+1);
+    	}
+    	copy=copy+input.charAt(0);
+    	
+    	return copy;
     }
     
     /**
