@@ -34,9 +34,10 @@ public class Person2 {
 	 */
 	public static String calc(String input) 
 	{
-	if(input == null) throw new NullPointerException();
-	  		String temp = "";
+	if(input == null) 
+		throw new NullPointerException();
 	  		
+	  String temp = "";		
 	  String finalString = "";
 	  Random r = new Random();
 	  int loc;
