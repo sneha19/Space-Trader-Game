@@ -35,6 +35,7 @@ public class Person4 {
     	String copy="";
     	while(k<input.length()-1){
     		copy=copy+input.charAt(k+1);
+    		k++;
     	}
     	copy=copy+input.charAt(0);
     	

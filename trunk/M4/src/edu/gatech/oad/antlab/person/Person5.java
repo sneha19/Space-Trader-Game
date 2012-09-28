@@ -30,8 +30,17 @@ public class Person5 {
 	 * @return the modified string
 	 */
 	private String calc(String input) {
-	  //Person 5 put your implementation here
-	  return null;
+		int k=0;
+    	String copy="";
+    	while(k<input.length()-3){
+    		copy=copy+input.charAt(k+3);
+    		k++;
+    	}
+    	copy=copy+input.charAt(0);
+    	copy=copy+input.charAt(1);
+    	copy=copy+input.charAt(2);
+    	
+    	return copy;
 	}
 	
 	/**
