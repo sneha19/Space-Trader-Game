@@ -1,0 +1,33 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+	
+  <project name="Sneha Ganesh's AntBuilderCode" default= "initial" basedir=".">
+  <!-- Sneha Ganesh's ant-->
+	
+	<!-- init code -->
+        <target name ="init">
+                
+                <property name ="src" location ="src"/>
+                                <property name ="build" location ="build"/>
+                <property name ="library" location = "lib"/>
+                <property name ="apidoc" location = "apidoc"/>
+
+                <path id="classpath">
+                        <fileset dir="${library}" includes="resources.jar"/>
+                </path>
+                
+
+    <!-- prepare code -->
+        </target>
+        <target name ="prepare" depends="init">           
+                <delete dir = "build"/>
+                <delete dir = "apidoc"/>
+                <mkdir dir ="${build}"/>
+                <mkdir dir ="${apidoc}"/>
+                
+    <!-- compile code -->
+        </target>
+        <target name ="compile" depends="prepare">
+                <javac srcdir = "${src}" destdir="${build}" classpathref = "classpath" includeAntRuntime = "false"/>
+
+</project>
