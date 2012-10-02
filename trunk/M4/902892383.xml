@@ -1,0 +1,58 @@
+	<!-- Ant build file -->
+	<!-- build.xml -->
+
+	<project name="M4" basedir="." default="all">
+	        
+	        <target name="init">
+	                <property name="src.dir"         value="src"/>
+	                <property name="build.dir"       value="build"/>
+	                <property name="classes.dir" value="${build.dir}/classes"/>
+	                <property name="lib.dir"         value="lib"/>
+	                <property name="jar.dir"         value="lib"/>
+	                <property name="main-class"      value="src/edu.gatech.oad.antlab.pkg1"/>
+	        </target>
+	                
+	        <target name="prepare" depends="init">
+	                <mkdir dir="${classes.dir}"/>
+	                <mkdir dir="${build.dir}/apidoc"/>
+	        </target>
+	        
+	        <target name="compile" depends="prepare">
+	                <javac srcdir="${src.dir}" destdir="${classes.dir}" includeantruntime ="false" classpath="${lib.dir}/resources.jar"/>
+	        </target>
+	        
+	        <target name="jar" depends="compile">
+	                <jar destfile="${jar.dir}/AntLabRun.jar" basedir="${classes.dir}">
+	                        
+	                        <manifest>
+	                                <attribute name="Main-Class" value="edu.gatech.oad.antlab.pkg1.AntLabMain"/>
+	                                <attribute name="Class-Path" value="resources.jar"/>
+	                        </manifest>
+	                </jar>
+	                
+	        </target>
+	        
+	        <target name="javadoc" depends="compile">
+	                <javadoc 
+	                        sourcepath="${src.dir}" 
+	                        destdir="${build.dir}/apidoc"
+	                	classpath="${lib.dir}/resources.jar"
+	                />
+	        </target>
+	        
+	        <target name="run" depends="jar">
+	                <java jar="${jar.dir}/AntLabRun.jar" fork="true">
+	                      
+	                </java>
+	        </target>
+	        
+	        <target name="all" depends="run, javadoc"/>
+		
+		<target name="clean" depends="init">
+		<delete dir="${build.dir}" />
+			<delete file="${jar.dir}/AntLabRun.jar" />
+		</target>
+	     
+	        
+	        
+	</project>
