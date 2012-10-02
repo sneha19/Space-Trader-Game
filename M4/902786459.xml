@@ -7,6 +7,7 @@
 	    <property name="build.dir"       value="build"/>
 		<property name="apidoc.dir" 	 value="apidoc"/>
 	    <property name="lib.dir"         value="lib"/>
+		<property name="jar.dir"		 value="lib"	/>
 	 </target>
 	
 	<target name="prepare" depends="init">			
@@ -32,16 +33,17 @@
 	
 	
 	<target name="jar" depends="compile">
-    		<jar basedir="${build.dir}" destfile="${build.dir}/AntLabRun.jar"/>
-        			<manifest>
-                		<attribute name="main" value="edu.gatech.oad.antlab.pkg1.AntLabMain"/>
-               			<attribute name="class" value="resources.jar"/>
-        			</manifest>
+    	<jar destfile="${jar.dir}/AntLabRun.jar"  basedir="${build.dir}" >
+        	<manifest>
+                <attribute name="Main-Class" value="edu.gatech.oad.antlab.pkg1.AntLabMain"/>
+                <attribute name="Class-Path" value="resources.jar"/>
+        	</manifest>
+    	</jar>
 	</target>	
 	
 	
-	<target name="run" depends="compile,jar">
-		<java jar="${build.dir}/AntLabRun.jar" fork="true"/>
+	<target name="run" depends="jar">
+		<java jar="${jar.dir}/AntLabRun.jar" fork="true"/>
 	 </target>
 	
 	<target name="all" depends="run, javadoc"/>
