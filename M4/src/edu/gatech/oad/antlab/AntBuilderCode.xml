@@ -1,7 +1,5 @@
-
 <?xml version="1.0" encoding="UTF-8"?>
-	
-  <project name="Sneha Ganesh's AntBuilderCode" default= "initial" basedir=".">
+<project name="M4 Sneha Ganesh" basedir="." default="all">
   <!-- Sneha Ganesh's ant-->
 	
 	<!-- init code -->
@@ -29,5 +27,39 @@
         </target>
         <target name ="compile" depends="prepare">
                 <javac srcdir = "${src}" destdir="${build}" classpathref = "classpath" includeAntRuntime = "false"/>
+
+    <!-- jar file code -->
+         <target name = "jar" depends = "compile">
+                <jar basedir = "${build}" destfile="${build}/AntLabRun.jar"/>
+         </target>
+    <!-- run code -->
+         <target name ="run" depends="compile, jar">
+                  <java fork = "true" classname = "edu.gatech.oad.antlab.pkg1.AntLabMain">
+                	        	 <classpath>
+                	        	              <path refid="classpath"/>
+                	        	              <path location="${build}/AntLabRun.jar"/>
+                	        	   </classpath>
+                  </java>
+         </target>
+     
+    <!-- all code -->
+        <target name ="all" depends = "run, javadoc" description="Performs all build tasks and runs">
+        </target>
+                	        
+     <!-- javadoc code -->
+            <target name ="javadoc">
+                	  <javadoc sourcepath = "${src}" destdir = "${apidoc}" additionalparam = "-quiet" >
+                	           <classpath>
+                	                   <path refid="classpath"/>
+                	           </classpath>
+                	   </javadoc>
+            </target>
+
+     <!-- clean up code -->
+             </target>
+                	 <target name ="clean">
+                	         <delete dir = "build"/>
+                	          <delete dir = "apidoc"/>
+             </target>
 
 </project>
