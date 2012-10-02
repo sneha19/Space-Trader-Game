@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="M4 Sneha Ganesh" basedir="." default="all">
+	
+	
+  <project name="M4 Sneha Ganesh" basedir="." default="all">
   <!-- Sneha Ganesh's ant-->
 	
 	<!-- init code -->
@@ -13,21 +15,21 @@
                 <path id="classpath">
                         <fileset dir="${library}" includes="resources.jar"/>
                 </path>
-                
+         </target>     
 
     <!-- prepare code -->
-        </target>
+        
         <target name ="prepare" depends="init">           
                 <delete dir = "build"/>
                 <delete dir = "apidoc"/>
                 <mkdir dir ="${build}"/>
                 <mkdir dir ="${apidoc}"/>
-                
+       	</target>      
     <!-- compile code -->
-        </target>
+        
         <target name ="compile" depends="prepare">
                 <javac srcdir = "${src}" destdir="${build}" classpathref = "classpath" includeAntRuntime = "false"/>
-
+        </target>
     <!-- jar file code -->
          <target name = "jar" depends = "compile">
                 <jar basedir = "${build}" destfile="${build}/AntLabRun.jar"/>
@@ -43,8 +45,8 @@
          </target>
      
     <!-- all code -->
-        <target name ="all" depends = "run, javadoc" description="Performs all build tasks and runs">
-        </target>
+    	<target name ="all" depends = "run, javadoc" description="Performs all build tasks and runs"/>
+    	        
                 	        
      <!-- javadoc code -->
             <target name ="javadoc">
@@ -56,7 +58,7 @@
             </target>
 
      <!-- clean up code -->
-             </target>
+            
                 	 <target name ="clean">
                 	         <delete dir = "build"/>
                 	          <delete dir = "apidoc"/>
