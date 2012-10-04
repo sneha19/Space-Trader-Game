@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." default="build">
+	<path id="build.classpath">
+		<pathelement location="classes"/>
+	</path>
+	<target name="init">
+		<mkdir dir="classes"/>
+	</target>
+	<target name="clean">
+		<delete dir="classes"/>
+	</target>
+	<target depends="init" name="build">
+		<javac srcdir="." destdir="classes" source="1.5" target="1.5" fork="yes">
+			<classpath refid="build.classpath"/>
+			<include name="Skills.java"/>
+			<include name="Ship.java"/>
+			<include name="PlanetScreen.java"/>
+			<include name="Equipment.java"/>
+			<include name="StarDock.java"/>
+			<include name="Zone.java"/>
+			<include name="Goods.java"/>
+			<include name="Trade.java"/>
+			<include name="BattleOptions.java"/>
+			<include name="Police.java"/>
+			<include name="InteractionScreen.java"/>
+			<include name="Pirate.java"/>
+			<include name="UIMain.java"/>
+			<include name="Merchant.java"/>
+			<include name="Goverments.java"/>
+			<include name="Stats.java"/>
+			<include name="Planet.java"/>
+			<include name="Player_.java"/>
+			<include name="Start.java"/>
+			<include name="PlanetType.java"/>
+			<include name="GovernmentType.java"/>
+			<include name="ZoneType.java"/>
+			<include name="ShipType.java"/>
+		</javac>
+	</target>
+</project>
