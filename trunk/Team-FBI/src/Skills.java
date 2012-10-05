@@ -1,16 +1,21 @@
 import java.util.Vector;
 import javax.swing.JPanel;
 
+
 public class Skills{
  private int pilotPoints;
  private int fighterPoints;
  private int traderPoints;
  private int engineerPoints;
  private int playerPoints = 16;
- Player player;
+ private Player player;
  public Skills(Player currPlayer)
  {
   player = currPlayer;
+  this.pilotPoints=player.getPilot();
+  this.fighterPoints=player.getFighter();
+  this.traderPoints=player.getTrader();
+  this.engineerPoints=player.getEngineer();
  }
  
  //public Vector<Player_> unnamed_Player = new Vector<Player_>();
@@ -53,6 +58,10 @@ public class Skills{
  public int getCurrPoints()
  {
   return playerPoints;
+ }
+ 
+ public Player getPlayer(){
+	 return player;
  }
  public void setSkill() {
   throw new UnsupportedOperationException();
