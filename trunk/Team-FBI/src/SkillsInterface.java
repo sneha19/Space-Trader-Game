@@ -1,3 +1,4 @@
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -104,6 +105,45 @@ public class SkillsInterface extends JPanel {
 									.addComponent(lblSkillsPointsRemaning, GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
 									.addGap(44))))))
 		);
+		btnFighter.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(currSkills.getCurrPoints() > 0)
+				{
+					currSkills.setFighterPoints(1);
+					currSkills.setCurrPoints(-1);
+					
+
+				}
+				lblSkillsPointsRemaning.setText(Integer.toString(currSkills.getCurrPoints()));
+				lblEngineeringPoints.setText(Integer.toString(currSkills.getFighterPoints()));
+			}
+		});
+		btnPilot.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(currSkills.getCurrPoints() > 0)
+				{
+					currSkills.setPilotPoints(1);
+					currSkills.setCurrPoints(-1);
+					
+
+				}
+				lblSkillsPointsRemaning.setText(Integer.toString(currSkills.getCurrPoints()));
+				lblEngineeringPoints.setText(Integer.toString(currSkills.getPilotPoints()));
+			}
+		});
+		btnTrader.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(currSkills.getCurrPoints() > 0)
+				{
+					currSkills.setTraderPoints(1);
+					currSkills.setCurrPoints(-1);
+					
+
+				}
+				lblSkillsPointsRemaning.setText(Integer.toString(currSkills.getCurrPoints()));
+				lblEngineeringPoints.setText(Integer.toString(currSkills.getTraderPoints()));
+			}
+		});
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
