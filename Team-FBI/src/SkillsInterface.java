@@ -13,9 +13,9 @@ import java.awt.event.ActionEvent;
 
 
 public class SkillsInterface extends JPanel {
-	Player myCurrentPlayer;
-	Skills currSkills = new Skills(myCurrentPlayer);
-	int currentPoints = currSkills.getCurrPoints();
+	Player currPlayer;
+	Skills currSkills;
+	int currentPoints=16;
 	JLabel lblEngineering = new JLabel("Engineering: ");
 	
 	JLabel lblSkillsMenu = new JLabel("SKILLS MENU");
@@ -28,15 +28,15 @@ public class SkillsInterface extends JPanel {
 	
 	JLabel lblPointsRemaning = new JLabel("Points remaning: ");
 	
-	JLabel lblSkillsPointsRemaning = new JLabel(Integer.toString(currSkills.getCurrPoints()));
+	JLabel lblSkillsPointsRemaning;
 	
-    JLabel lblEngineeringPoints = new JLabel(Integer.toString(currSkills.getEngineerPoints()));
+    JLabel lblEngineeringPoints; 
 	
-	JLabel lblFighterPoints = new JLabel(Integer.toString(currSkills.getFighterPoints()));
+	JLabel lblFighterPoints; 
 	
-	JLabel lblPilotPoints = new JLabel(Integer.toString(currSkills.getPilotPoints()));
+	JLabel lblPilotPoints; 
 	
-	JLabel lblTraderPoints = new JLabel(Integer.toString(currSkills.getTraderPoints()));
+	JLabel lblTraderPoints;
 	
 	JButton btnNext = new JButton("Next!");
 	
@@ -49,11 +49,40 @@ public class SkillsInterface extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public SkillsInterface(Player player) {
+	public SkillsInterface(Skills skills) {
+		
+		currSkills=skills;
+		currPlayer=skills.getPlayer();
+		currentPoints = currSkills.getCurrPoints();
+		
+		lblSkillsPointsRemaning = new JLabel(Integer.toString(currSkills.getCurrPoints()));
+		
+	    lblEngineeringPoints = new JLabel(Integer.toString(currSkills.getEngineerPoints()));
+		
+		lblFighterPoints = new JLabel(Integer.toString(currSkills.getFighterPoints()));
+		
+		lblPilotPoints = new JLabel(Integer.toString(currSkills.getPilotPoints()));
+		
+		lblTraderPoints = new JLabel(Integer.toString(currSkills.getTraderPoints()));
 		
 		
+		
+
+		btnFighter.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(currSkills.getCurrPoints() > 0)
+				{
+					currSkills.setFighterPoints(1);
+					currSkills.setCurrPoints(-1);
+					
+
+				}
+				lblSkillsPointsRemaning.setText(Integer.toString(currSkills.getCurrPoints()));
+				lblFighterPoints.setText(Integer.toString(currSkills.getFighterPoints()));
+			}
+		});
 		btnEngineering.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+			public void actionPerformed(ActionEvent e) {
 				if(currSkills.getCurrPoints() > 0)
 				{
 					currSkills.setEngineerPoints(1);
@@ -64,10 +93,34 @@ public class SkillsInterface extends JPanel {
 				lblSkillsPointsRemaning.setText(Integer.toString(currSkills.getCurrPoints()));
 				lblEngineeringPoints.setText(Integer.toString(currSkills.getEngineerPoints()));
 			}
-			
 		});
 		
-		
+		btnPilot.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(currSkills.getCurrPoints() > 0)
+				{
+					currSkills.setPilotPoints(1);
+					currSkills.setCurrPoints(-1);
+					
+
+				}
+				lblSkillsPointsRemaning.setText(Integer.toString(currSkills.getCurrPoints()));
+				lblPilotPoints.setText(Integer.toString(currSkills.getPilotPoints()));
+			}
+		});
+		btnTrader.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(currSkills.getCurrPoints() > 0)
+				{
+					currSkills.setTraderPoints(1);
+					currSkills.setCurrPoints(-1);
+					
+
+				}
+				lblSkillsPointsRemaning.setText(Integer.toString(currSkills.getCurrPoints()));
+				lblTraderPoints.setText(Integer.toString(currSkills.getTraderPoints()));
+			}
+		});
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -105,45 +158,6 @@ public class SkillsInterface extends JPanel {
 									.addComponent(lblSkillsPointsRemaning, GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
 									.addGap(44))))))
 		);
-		btnFighter.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(currSkills.getCurrPoints() > 0)
-				{
-					currSkills.setFighterPoints(1);
-					currSkills.setCurrPoints(-1);
-					
-
-				}
-				lblSkillsPointsRemaning.setText(Integer.toString(currSkills.getCurrPoints()));
-				lblEngineeringPoints.setText(Integer.toString(currSkills.getFighterPoints()));
-			}
-		});
-		btnPilot.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(currSkills.getCurrPoints() > 0)
-				{
-					currSkills.setPilotPoints(1);
-					currSkills.setCurrPoints(-1);
-					
-
-				}
-				lblSkillsPointsRemaning.setText(Integer.toString(currSkills.getCurrPoints()));
-				lblEngineeringPoints.setText(Integer.toString(currSkills.getPilotPoints()));
-			}
-		});
-		btnTrader.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(currSkills.getCurrPoints() > 0)
-				{
-					currSkills.setTraderPoints(1);
-					currSkills.setCurrPoints(-1);
-					
-
-				}
-				lblSkillsPointsRemaning.setText(Integer.toString(currSkills.getCurrPoints()));
-				lblEngineeringPoints.setText(Integer.toString(currSkills.getTraderPoints()));
-			}
-		});
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
@@ -180,6 +194,18 @@ public class SkillsInterface extends JPanel {
 					.addGap(35))
 		);
 		setLayout(groupLayout);
-		myCurrentPlayer = player;
+	}
+	
+	public static void main(String[] args){
+		JFrame fm = new JFrame();
+		Player p = new Player("dd");
+		Skills skills = new Skills(p);
+		SkillsInterface si = new SkillsInterface(skills);
+		fm.add(si);
+		fm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		fm.setVisible(true);
+		
+		
+		
 	}
 }
