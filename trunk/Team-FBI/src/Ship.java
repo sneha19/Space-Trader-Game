@@ -41,5 +41,17 @@ public abstract class Ship {
 		return cost;
 	}
 	
+	public boolean isDead(){
+		if (hull <= 0)
+			return true;
+		else
+			return false;
+	}
+	
+	public void setInitialShip(){
+		player.Ship = ShipType.fighter;
+	}
+	
+	
 	
 }
