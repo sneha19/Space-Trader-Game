@@ -12,6 +12,8 @@ public class Player {
 	private int fighter;
 	private int trader;
 	private int engineer;
+	private Ship ship;
+	private int difficulty;
 	
 	
 	
@@ -30,6 +32,8 @@ public class Player {
 		fighter=0;
 		trader=0;
 		engineer=0;
+		difficulty=0;
+		//Ship = new Ship();
 	}
 	
 	public boolean setHealth(int health){
@@ -107,7 +111,14 @@ public class Player {
 	public int getPilot(){
 		return pilot;
 	}
+	public boolean setDifficulty(int value){
+		difficulty = value;
+		return true;
+	}
 	
+	public int getDifficulty(){
+		return difficulty;
+	}
 	public void ChangeShip(Ship aS) {
 		throw new UnsupportedOperationException();
 	}
