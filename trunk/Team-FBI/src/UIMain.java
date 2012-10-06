@@ -87,7 +87,7 @@ public class UIMain {
 			mapGUI = new MapPanel(skills.getPlayer());
 			tabPane.add(mapGUI,"Map");
 			tabPane.setSelectedIndex(1);
-			
+			skillsGUI.disablebtnNext();
 		}
 	}
 	

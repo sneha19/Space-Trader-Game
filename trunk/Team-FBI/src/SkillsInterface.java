@@ -233,6 +233,10 @@ public class SkillsInterface extends JPanel {
 		btnNext.addActionListener(al);
 	}
 	
+	public void disablebtnNext(){
+		btnNext.setVisible(false);
+	}
+	
 	/*public static void main(String[] args){
 		JFrame fm = new JFrame();
 		Player p = new Player("dd");
