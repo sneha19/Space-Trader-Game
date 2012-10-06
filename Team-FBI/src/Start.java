@@ -25,15 +25,15 @@ public class Start extends JPanel {
 		textField = new JTextField();
 		textField.setColumns(10);
 		JLabel lblDifficulty = new JLabel("Difficulty");
-		JButton btnBeginner = new JButton("Beginner-1  ");
+		JButton btnBeginner = new JButton("Beginner");
 		btnBeginner.addActionListener(new DiffListener());
-		JButton btnEasy = new JButton("Easy-2        ");
+		JButton btnEasy = new JButton("Easy");
 		btnEasy.addActionListener(new DiffListener());
-		JButton btnNormal = new JButton("Normal-3    ");
+		JButton btnNormal = new JButton("Normal");
 		btnNormal.addActionListener(new DiffListener());
-		JButton btnHard = new JButton("Hard-4       ");
+		JButton btnHard = new JButton("Hard");
 		btnHard.addActionListener(new DiffListener());
-		JButton btnImpossib = new JButton("Impossible-5");
+		JButton btnImpossib = new JButton("Impossible");
 		btnImpossib.addActionListener(new DiffListener());
 		btnStart = new JButton("START");
 		
@@ -123,16 +123,17 @@ public class Start extends JPanel {
 		   private String diffString;
 		   public void actionPerformed(ActionEvent e){
 			   diffString=e.getActionCommand();
+			   System.out.println(diffString);
 			   
-			   if(diffString=="Beginner"){
+			   if(diffString.equals("Beginner")){
 				   difficulty =1;
-			   }else if(diffString=="Easy"){
+			   }else if(diffString.equals("Easy")){
 				   difficulty=2;
-			   }else if(diffString=="Normal"){
+			   }else if(diffString.equals("Normal")){
 				   difficulty=3;
-			   }else if(diffString=="Hard"){
+			   }else if(diffString.equals("Hard")){
 				   difficulty=4;
-			   }else{
+			   }else if(diffString.equals("Impossible")){
 				   difficulty=5;
 			   }
 		   }

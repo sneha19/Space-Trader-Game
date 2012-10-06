@@ -17,6 +17,7 @@ public class Player {
 	private int availableSkillPoints;
 	
 	
+	
 	//public Skills skills_;
 	//public Planet _unnamed_Planet_;
 	public UIMain _unnamed_UIMain_;
@@ -32,8 +33,10 @@ public class Player {
 		fighter=0;
 		trader=0;
 		engineer=0;
-		difficulty=0;
 		availableSkillPoints=16;
+		Start s = new Start();
+		difficulty=s.getDifficulty();
+
 		//Ship = new Ship();
 	}
 	
