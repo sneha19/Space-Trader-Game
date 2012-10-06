@@ -1,4 +1,5 @@
 import javax.swing.*;
+
 import java.awt.*;
 import java.awt.event.*;
 
@@ -12,28 +13,85 @@ public class UIMain {
 	private Player player;
 	private Start start;
 	private Skills skills;
-	private SkillsInterface skillGUI;
-	
-	
-	//GUI stuff
+	private SkillsInterface skillsGUI;
 	private JFrame frame;
+	private JTabbedPane tabPane;
+	private MapPanel mapGUI;
+	private JButton btnStart;
+	
+	
 	public UIMain(){
+		
 		start = new Start();
+		start.setbtnStartActionListener(new StartListener());
+		tabPane = new JTabbedPane();
+		tabPane.addTab("Welcome",start);
+		
 		frame = new JFrame("Star Trader");
-		start = new Start();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.add(start);
+		frame.setPreferredSize(new Dimension(500,500));
+		frame.setContentPane(tabPane);
+		frame.pack();
 		frame.setVisible(true);
+		
+		
+		
+		
+		
+		
 		
 	}
 	
-	public static void main(String[] args){
-		UIMain uiMain = new UIMain();
+	public void getGoing(){
+		
 	}
 	
 	
 	
 	
+	/*public void switchScreen(JPanel off,JPanel on){
+		off.setVisible(false);
+		on.setVisible(true);
+		curPanel=on;
+		
+	}*/
+	
+	
+	
+	public static void main(String[] args){
+		UIMain uiMain = new UIMain();
+		
+	}
+	
+	
+	private class StartListener implements ActionListener{  
+		  public void actionPerformed (ActionEvent event){		 
+			  
+			  player = new Player("default");
+			  player.setName(start.getName());
+			  player.setDifficulty(start.getDifficulty());
+			  
+			  
+			  tabPane.remove(0);
+			  skills = new Skills(player);
+			  skillsGUI= new SkillsInterface(skills);
+			  skillsGUI.setbtnNextListener(new NextListener());
+			  tabPane.addTab("Skills",skillsGUI);
+			  
+			  
+	     }
+	  }
+	
+	private class NextListener implements ActionListener{
+		public void actionPerformed (ActionEvent e){
+			mapGUI = new MapPanel(skills.getPlayer());
+			tabPane.add(mapGUI,"Map");
+			tabPane.setSelectedIndex(1);
+			
+		}
+	}
+	
+	//every class need a setCurPlayer and getPlayer method!!
 	
 	
 	/*

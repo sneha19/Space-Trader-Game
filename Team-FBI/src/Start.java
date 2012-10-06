@@ -1,120 +1,140 @@
-import java.awt.*;
-import java.awt.event.*;
-import java.util.*;
-import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-  public class Start extends JPanel {
-	//private Point startPosition;
-	private int level;
-	private int goCount;
-	private Player player;
-	private JTextField name;
-	private JButton go;
-	private JLabel welcomeMsg;
-	private JLabel enterName;
-	private JButton beginner;
-	private JButton easy;
-	private JButton normal;
-	private JButton hard;
-	private JButton impossible;
+import javax.swing.JPanel;
+import javax.swing.JLabel;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JTextField;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JButton;
+
+
+
+
+public class Start extends JPanel {
+	private JTextField textField;
+	private String playerName;
+	private int difficulty;
+	private JButton btnStart;
 	
-	public Start(){
-		setPreferredSize(new Dimension(300,300));
-		goCount = 0;
-		//startPosition.x=0;
-		//startPosition.y=0;
-		name = new JTextField(10);
-		go = new JButton("Go");
-		go.addActionListener(new GoListener());
-		welcomeMsg= new JLabel("Star Trader");
-		enterName = new JLabel("Enter Name");
-		easy = new JButton("Easy");
-		beginner = new JButton("Beginner");
-		normal= new JButton("Normal");
-		hard = new JButton("Hard");
-		impossible = new JButton("Impossible");
+	public Start() {
 		
-		easy.addActionListener(new DiffListener());
-		beginner.addActionListener(new DiffListener());
-		normal.addActionListener(new DiffListener());
-		hard.addActionListener(new DiffListener());
-		impossible.addActionListener(new DiffListener());
+		JLabel lblYoungSailorStart = new JLabel("Young sailor, start your journey here!");
+		JLabel lblEnterName = new JLabel("Enter Name");
+		textField = new JTextField();
+		textField.setColumns(10);
+		JLabel lblDifficulty = new JLabel("Difficulty");
+		JButton btnBeginner = new JButton("Beginner-1  ");
+		btnBeginner.addActionListener(new DiffListener());
+		JButton btnEasy = new JButton("Easy-2        ");
+		btnEasy.addActionListener(new DiffListener());
+		JButton btnNormal = new JButton("Normal-3    ");
+		btnNormal.addActionListener(new DiffListener());
+		JButton btnHard = new JButton("Hard-4       ");
+		btnHard.addActionListener(new DiffListener());
+		JButton btnImpossib = new JButton("Impossible-5");
+		btnImpossib.addActionListener(new DiffListener());
+		btnStart = new JButton("START");
 		
-		
-		
-		add(welcomeMsg);
-		add(enterName);
-		add(name);
-		add(beginner);
-		add(easy);
-		add(normal);
-		add(hard);
-		add(impossible);
-		add(go);
-
+		//Chunk of groupLayout codes
+		GroupLayout groupLayout = new GroupLayout(this);
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(95)
+							.addComponent(lblYoungSailorStart))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addGap(60)
+									.addComponent(lblEnterName))
+								.addGroup(groupLayout.createSequentialGroup()
+									.addGap(28)
+									.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+								.addGroup(groupLayout.createSequentialGroup()
+									.addGap(49)
+									.addComponent(btnStart)))
+							.addGap(112)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+								.addComponent(btnEasy, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(btnBeginner, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(btnNormal, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(btnHard, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(btnImpossib))))
+					.addGap(53))
+				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+					.addContainerGap(293, Short.MAX_VALUE)
+					.addComponent(lblDifficulty)
+					.addGap(96))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(23)
+					.addComponent(lblYoungSailorStart)
+					.addGap(18)
+					.addComponent(lblDifficulty)
+					.addGap(11)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(lblEnterName)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(btnBeginner)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(btnEasy)))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnNormal)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnHard)
+						.addComponent(btnStart))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnImpossib)
+					.addContainerGap(47, Short.MAX_VALUE))
+		);
+		setLayout(groupLayout);
+		//groupLayout codes end
 	}
-    
-   public void setPlayerName(){
-	   String text = name.getText();
-	   player = new Player(text);
+	
+	public int getDifficulty(){
+	   return difficulty;
 	}
-   
-  /* public void setPlayerLocation(){
-	   Player.setPosition(startPosition);
-   } */
-   
-   public boolean setDifficulty(int diff){
-	   player.setDifficulty(diff);
-	   return true;
-   }
-   
-   
-   public Player getPlayer(){
-	   return player;
-   }
-   
-   public boolean goIsPressed()
-   {
-	  if (goCount > 0)
-		   return true;
-	  else
-		  return false;
-   }
-   
- /** GoListener class
-  * Listenes for the go button to be pressed, increaments a goCount when it is pressed
-  * @param event it is activated when go is pressed
-  */
-   private class GoListener implements ActionListener{  
-	  public void actionPerformed (ActionEvent event){
-		 if (go == event.getSource()) {
-			 goCount += 1;
-			 setPlayerName();
-			 setVisible(false);
-		 }
-     }
-  }
-  
-   private class DiffListener implements ActionListener{
-	   private String diffString;
-	   private int diff;
-	   public void actionPerformed(ActionEvent e){
-		   diffString=e.getActionCommand();
-		   
-		   if(diffString=="Beginner"){
-			   player.setDifficulty(1);
-		   }else if(diffString=="Easy"){
-			   player.setDifficulty(2);
-		   }else if(diffString=="Normal"){
-			   player.setDifficulty(3);
-		   }else if(diffString=="Hard"){
-			   player.setDifficulty(4);
-		   }else{
-			   player.setDifficulty(5);
+	   
+	  
+	   
+	public String getPlayerName(){
+		return playerName;
+	}
+	   
+	public void setbtnStartActionListener(ActionListener al){
+		btnStart.addActionListener(al);
+	}
+	   
+	public String getName(){
+		return textField.getText();
+	}
+	   
+	private class DiffListener implements ActionListener{
+		   private String diffString;
+		   public void actionPerformed(ActionEvent e){
+			   diffString=e.getActionCommand();
+			   
+			   if(diffString=="Beginner"){
+				   difficulty =1;
+			   }else if(diffString=="Easy"){
+				   difficulty=2;
+			   }else if(diffString=="Normal"){
+				   difficulty=3;
+			   }else if(diffString=="Hard"){
+				   difficulty=4;
+			   }else{
+				   difficulty=5;
+			   }
 		   }
 	   }
-   }
-  
-   
-	
 }

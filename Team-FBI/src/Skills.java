@@ -1,55 +1,63 @@
-import java.util.Vector;
-import javax.swing.JPanel;
 
 
 public class Skills{
- private int pilotPoints;
- private int fighterPoints;
- private int traderPoints;
- private int engineerPoints;
- private int playerPoints = 16;
+ //private int pilotPoints;
+ //private int fighterPoints;
+ //private int traderPoints;
+ //private int engineerPoints;
+ private int playerPoints;
  private Player player;
- public Skills(Player currPlayer)
+ 
+ public Skills(Player player)
  {
-  player = currPlayer;
-  this.pilotPoints=player.getPilot();
-  this.fighterPoints=player.getFighter();
-  this.traderPoints=player.getTrader();
-  this.engineerPoints=player.getEngineer();
+  this.player = player;
+  //this.pilotPoints=player.getPilot();
+  //this.fighterPoints=player.getFighter();
+  //this.traderPoints=player.getTrader();
+  //this.engineerPoints=player.getEngineer();
+  playerPoints=player.getAvailableSkillPoints();
  }
  
- //public Vector<Player_> unnamed_Player = new Vector<Player_>();
+ 
  public void setPilotPoints(int points)
  {
-  pilotPoints += points;
+  //pilotPoints += points;
+	 player.setPilot(points);
  }
  public void setFighterPoints(int points)
  {
-  fighterPoints += points;
+  //fighterPoints += points;
+	 player.setFighter(points);
  }
  public void setTraderPoints(int points)
  {
-  traderPoints += points;
+  //traderPoints += points;
+	 player.setTrader(points);
  }
  public void setEngineerPoints(int points)
  {
-  engineerPoints += points;
+  //engineerPoints += points;
+	 player.setEngineer(points);
  }
  public int getPilotPoints()
  {
-  return pilotPoints;
+  //return pilotPoints;
+	 return player.getPilot();
  }
  public int getFighterPoints()
  {
-  return fighterPoints;
+  //return fighterPoints;
+	 return player.getFighter();
  }
  public int getTraderPoints()
  {
-  return traderPoints;
+  //return traderPoints;
+	 return player.getTrader();
  }
  public int getEngineerPoints()
  {
-  return engineerPoints;
+ // return engineerPoints;
+	 return player.getEngineer();
  }
  public void setCurrPoints(int points)
  {
@@ -63,7 +71,8 @@ public class Skills{
  public Player getPlayer(){
 	 return player;
  }
+ /*
  public void setSkill() {
   throw new UnsupportedOperationException();
- }
+ }*/
 }
