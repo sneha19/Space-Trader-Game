@@ -15,10 +15,12 @@ import java.awt.event.ActionEvent;
 public class SkillsInterface extends JPanel {
 	Player currPlayer;
 	Skills currSkills;
-	int currentPoints=16;
+	int currentPoints;
+	JLabel name111;
+	
 	JLabel lblEngineering = new JLabel("Engineering: ");
 	
-	JLabel lblSkillsMenu = new JLabel("SKILLS MENU");
+	JLabel lblSkillsMenu =new JLabel("SKILLS MENU");
 	
 	JLabel lblFighter = new JLabel("Fighter:");
 	
@@ -38,7 +40,7 @@ public class SkillsInterface extends JPanel {
 	
 	JLabel lblTraderPoints;
 	
-	JButton btnNext = new JButton("Next!");
+	JButton btnNext = new JButton("Next");
 	
 	JButton btnEngineering = new JButton("Increase");
 	JButton btnFighter = new JButton("Increase");
@@ -50,10 +52,11 @@ public class SkillsInterface extends JPanel {
 	 * Create the panel.
 	 */
 	public SkillsInterface(Skills skills) {
-		
+		btnNext.setVisible(false);
 		currSkills=skills;
 		currPlayer=skills.getPlayer();
 		currentPoints = currSkills.getCurrPoints();
+		
 		
 		lblSkillsPointsRemaning = new JLabel(Integer.toString(currSkills.getCurrPoints()));
 		
@@ -70,12 +73,16 @@ public class SkillsInterface extends JPanel {
 
 		btnFighter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(currSkills.getCurrPoints() > 0)
+				if(currSkills.getCurrPoints() >= 1)
 				{
 					currSkills.setFighterPoints(1);
 					currSkills.setCurrPoints(-1);
+					currPlayer.setAvailableSkillPoints(-1);
+					if(currSkills.getCurrPoints() == 0)
+					{
+						btnNext.setVisible(true);
+					}
 					
-
 				}
 				lblSkillsPointsRemaning.setText(Integer.toString(currSkills.getCurrPoints()));
 				lblFighterPoints.setText(Integer.toString(currSkills.getFighterPoints()));
@@ -83,12 +90,17 @@ public class SkillsInterface extends JPanel {
 		});
 		btnEngineering.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(currSkills.getCurrPoints() > 0)
+				if(currSkills.getCurrPoints() >= 1)
 				{
 					currSkills.setEngineerPoints(1);
 					currSkills.setCurrPoints(-1);
+					currPlayer.setAvailableSkillPoints(-1);
 					
-
+					if(currSkills.getCurrPoints() == 0)
+					{
+						btnNext.setVisible(true);
+					}
+					
 				}
 				lblSkillsPointsRemaning.setText(Integer.toString(currSkills.getCurrPoints()));
 				lblEngineeringPoints.setText(Integer.toString(currSkills.getEngineerPoints()));
@@ -97,12 +109,18 @@ public class SkillsInterface extends JPanel {
 		
 		btnPilot.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(currSkills.getCurrPoints() > 0)
+				if(currSkills.getCurrPoints() >= 1)
 				{
 					currSkills.setPilotPoints(1);
 					currSkills.setCurrPoints(-1);
-					
+					currPlayer.setAvailableSkillPoints(-1);
 
+					btnNext.setVisible(false);
+					if(currSkills.getCurrPoints() == 0)
+					{
+						btnNext.setVisible(true);
+					}
+					
 				}
 				lblSkillsPointsRemaning.setText(Integer.toString(currSkills.getCurrPoints()));
 				lblPilotPoints.setText(Integer.toString(currSkills.getPilotPoints()));
@@ -110,17 +128,32 @@ public class SkillsInterface extends JPanel {
 		});
 		btnTrader.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(currSkills.getCurrPoints() > 0)
+				if(currSkills.getCurrPoints() >= 1)
 				{
 					currSkills.setTraderPoints(1);
 					currSkills.setCurrPoints(-1);
+					currPlayer.setAvailableSkillPoints(-1);
 					
-
+					if(currSkills.getCurrPoints() == 0)
+					{
+						btnNext.setVisible(true);
+					}
+					
 				}
 				lblSkillsPointsRemaning.setText(Integer.toString(currSkills.getCurrPoints()));
 				lblTraderPoints.setText(Integer.toString(currSkills.getTraderPoints()));
 			}
 		});
+		
+		/*
+		btnNext.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+			}
+		});
+		*/
+		
+		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -196,7 +229,11 @@ public class SkillsInterface extends JPanel {
 		setLayout(groupLayout);
 	}
 	
-	public static void main(String[] args){
+	public void setbtnNextListener(ActionListener al){
+		btnNext.addActionListener(al);
+	}
+	
+	/*public static void main(String[] args){
 		JFrame fm = new JFrame();
 		Player p = new Player("dd");
 		Skills skills = new Skills(p);
@@ -207,5 +244,5 @@ public class SkillsInterface extends JPanel {
 		
 		
 		
-	}
+	}*/
 }

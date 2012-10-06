@@ -12,9 +12,9 @@ public class Player {
 	private int fighter;
 	private int trader;
 	private int engineer;
-	private Ship ship;
+	//private Ship ship;
 	private int difficulty;
-	
+	private int availableSkillPoints;
 	
 	
 	//public Skills skills_;
@@ -22,7 +22,7 @@ public class Player {
 	public UIMain _unnamed_UIMain_;
 	public Ship _unnamed_Ship_;
 	
-	public Player(String Name){
+	public Player(String name){
 		this.name=name;
 		cash=1000;
 		position= new Point(0,0);
@@ -33,7 +33,19 @@ public class Player {
 		trader=0;
 		engineer=0;
 		difficulty=0;
+		availableSkillPoints=16;
 		//Ship = new Ship();
+	}
+	
+	//public void computeAvaSkillPoints()
+	
+	public int getAvailableSkillPoints(){
+		return availableSkillPoints;
+	}
+	
+	public boolean setAvailableSkillPoints(int change){
+		availableSkillPoints+=change;
+		return true;
 	}
 	
 	public boolean setHealth(int health){
@@ -121,5 +133,10 @@ public class Player {
 	}
 	public void ChangeShip(Ship aS) {
 		throw new UnsupportedOperationException();
+	}
+	
+	public boolean setName(String newName){
+		name=newName;
+		return true;
 	}
 }
