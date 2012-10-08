@@ -11,7 +11,11 @@ import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-
+/**
+ * GUI for skills
+ * @author Haytham Abutair
+ *
+ */
 public class SkillsInterface extends JPanel {
 	Player currPlayer;
 	Skills currSkills;
@@ -72,6 +76,9 @@ public class SkillsInterface extends JPanel {
 		
 
 		btnFighter.addActionListener(new ActionListener() {
+			/**
+			 * actionPerformed for the fighter button
+			 */
 			public void actionPerformed(ActionEvent e) {
 				if(currSkills.getCurrPoints() >= 1)
 				{
@@ -89,6 +96,9 @@ public class SkillsInterface extends JPanel {
 			}
 		});
 		btnEngineering.addActionListener(new ActionListener() {
+			/**
+			 * actionPerformed for the Engineer button
+			 */
 			public void actionPerformed(ActionEvent e) {
 				if(currSkills.getCurrPoints() >= 1)
 				{
@@ -108,6 +118,9 @@ public class SkillsInterface extends JPanel {
 		});
 		
 		btnPilot.addActionListener(new ActionListener() {
+			/**
+			 * actionPerformed for the Pilot button
+			 */
 			public void actionPerformed(ActionEvent e) {
 				if(currSkills.getCurrPoints() >= 1)
 				{
@@ -127,6 +140,9 @@ public class SkillsInterface extends JPanel {
 			}
 		});
 		btnTrader.addActionListener(new ActionListener() {
+			/**
+			 * actionPerformed for the Trader button
+			 */
 			public void actionPerformed(ActionEvent e) {
 				if(currSkills.getCurrPoints() >= 1)
 				{
@@ -145,15 +161,7 @@ public class SkillsInterface extends JPanel {
 			}
 		});
 		
-		/*
-		btnNext.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-			}
-		});
-		*/
-		
-		
+	
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -228,25 +236,16 @@ public class SkillsInterface extends JPanel {
 		);
 		setLayout(groupLayout);
 	}
-	
+	/**
+	 * actionPerformed for the next button
+	 */
 	public void setbtnNextListener(ActionListener al){
 		btnNext.addActionListener(al);
 	}
-	
+	/**
+	 * disables the next button
+	 */
 	public void disablebtnNext(){
 		btnNext.setVisible(false);
 	}
-	
-	/*public static void main(String[] args){
-		JFrame fm = new JFrame();
-		Player p = new Player("dd");
-		Skills skills = new Skills(p);
-		SkillsInterface si = new SkillsInterface(skills);
-		fm.add(si);
-		fm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		fm.setVisible(true);
-		
-		
-		
-	}*/
 }
