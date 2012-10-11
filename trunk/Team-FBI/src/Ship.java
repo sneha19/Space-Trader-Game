@@ -1,89 +1,87 @@
-/** Ship class that makes a default ship
- * Also maes a fighter, hauler... shipss
+/**
+ * This is a ship class that holds the critical information of a ship
  * 
- * @author Sneha Ganesh
- * @version 1.0 
+ * @author Sneha, Guang
  */
 public class Ship {
 	private int hull;
 	private int cargoCapacity;
 	private int fuelCapacity;
 	private int cost;
-	public Player player;
-
-	/** Increaments the fuel for a ship
-	 * 
-	 */
-	public void setFuelAfterMove() {
-		throw new UnsupportedOperationException();
-	}
+	private String name;
+	private ShipType st;
 	
-	/** Sets the hull for the ship
-	 * @param hull inout variable that hold hull strength
+	/**
+	 * A constructor that takes a shiptype
+	 * @param st Ship type that specify which ship to create
+	 */
+	public Ship(ShipType st){
+		this.st=st;
+		name=st.getName();
+		hull=st.getHull();
+		cargoCapacity=st.getCarco();
+		cost=st.getCost();
+		fuelCapacity=st.getFuel();
+	}
+	/**
+	 * Setter, set the hull strength
+	 * @param hull hull strength
 	 */
 	public void setHull(int hull){
 		this.hull = hull;
 	}
-	
-	/** Getter method for hull
-	 * 
-	 * @return hull hull strength of ship
+	/**
+	 * Getter, get the hull strength
+	 * @return hull hull strength
 	 */
-	public int gethull(){
+	public int getHull(){
 		return hull;
 	}
-	
-	/** Setter method for cargo capacity
-	 * 
-	 * @param cargo stores cargo capacity of ship
+	/**
+	 * Setter, set the cargo capacity
+	 * @param cargo new cargo capacity
 	 */
 	public void setCargoCapacity(int cargo){
 		cargoCapacity = cargo;
 	}
-	
-	/** Getter method for cargo capacity
-	 * 
-	 * @return cargoCapacity holds cargo capacity of ship
+	/**
+	 * Getter, get the cargo capacity
+	 * @return cargoCapacity
 	 */
 	public int getCargoCapacity(){
 		return(cargoCapacity);
 	}
-	
 	/**
-	 * Sets fuel capcity
-	 * @param fuel stores fuel capacity of ship
+	 * Setter, set the fuel capacity
+	 * @param fuel the new fuel capacity
 	 */
 	public void setFuelCapacity(int fuel){
 		fuelCapacity = fuel;
 	}
-	
-	/** Getter for fuel capacity
-	 * 
-	 * @return fuelCapacity holds fuel capcity for ship
+	/**
+	 * Getter, get the fuel capacity 
+	 * @return fuelCapacity the current fuel capacity
 	 */
 	public int getFuelCapacity(){
 		return(fuelCapacity);
 	}
-	
-	/** Setter for cost
-	 * 
-	 * @param cost holds cost for ship
+	/**
+	 * setter, set the cost of the ship
+	 * @param cost the new cost of the ship
 	 */
 	public void setCost(int cost){
-		this.cost = cot;
+		this.cost = cost;
 	}
-	
-	/** Getter for cost
-	 * 
-	 * @return cost holds cost of ship
+	/**
+	 * Getter, get the cost of the ship
+	 * @return
 	 */
 	public int getCost(){
 		return cost;
 	}
-	
-	/** Checks if the ship is alive or dead i.e. checks hull strength
-	 * 
-	 * @return hull holds hull strength
+	/**
+	 * Determine if the player is dead, meaning the hull stength of the ship is 0
+	 * @return boolean true if dead, false if alive
 	 */
 	public boolean isDead(){
 		if (hull <= 0)
@@ -91,38 +89,24 @@ public class Ship {
 		else
 			return false;
 	}
-	
-	/** Sets intial ship type as fighter
-	 * 
+	/**
+	 * Getter, get the name of the ship
+	 * @return name the name of the ship
 	 */
-	public void setInitialShip(){
-		player.Ship = ShipType.fighter;
-		
+	public String getName(){
+		return name;
 	}
 	
-	/** Enum class for ShipType
-	 * Enumerates the different types of ships
-	 * @author Sneha
-	 * @version 1.0
-	 */
-	public enum ShipType {
+	/*
+	public void setInitialShip(){
+		player.ship = ShipType.fighter;
 		
-		fighter(100,20,100,100),hauler(120,100,80,700),bullDog(200,50,50,300),carrier(60,150,80,350),yellowJacket(140,30,150,300),destroyer(500,50,100,700),heat(100,100,100,400);
-		
-		/** Constructor for ShipType
-		 * Sets initial values for hull,cargo,fuel and cost
-		 * @param hull stores value for hull
-		 * @param cargo stores value for cargo Capacity
-		 * @param fuel stores value for fuel Capacity
-		 * @param cost stores cost of ship
-		 */
-		private ShipType(int hull,int cargo,int fuel, int cost){
-			this.hull = hull;
-	        cargoCapacity = cargo;
-	        fuelCapacity = fuel;
-	        this.cost = cost;
-		}
-		
-		
+	}*/
 	
+	/*
+	public void setFuelAfterMove() {
+		throw new UnsupportedOperationException();
+	}*/
+
+
 }

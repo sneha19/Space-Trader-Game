@@ -2,7 +2,13 @@ import javax.swing.*;
 
 import java.awt.*;
 import java.awt.event.*;
-
+/**
+ * This is the class that controls everything and has the main method. 
+ * It forms a frame and holds all the necessary panels from other classes.
+ * It is the main controller class for the program
+ * @author Guang Lu
+ *
+ */
 public class UIMain {
 	//private Random _rand;
 	//public Player_ _unnamed_Player__;
@@ -19,7 +25,9 @@ public class UIMain {
 	private MapPanel mapGUI;
 	private JButton btnStart;
 	
-	
+	/**
+	 * Constructor
+	 */
 	public UIMain(){
 		
 		start = new Start();
@@ -29,22 +37,12 @@ public class UIMain {
 		
 		frame = new JFrame("Star Trader");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setPreferredSize(new Dimension(500,500));
+		frame.setPreferredSize(new Dimension(600,700));
 		frame.setContentPane(tabPane);
 		frame.pack();
 		frame.setVisible(true);
-		
-		
-		
-		
-		
-		
-		
 	}
 	
-	public void getGoing(){
-		
-	}
 	
 	
 	
@@ -57,15 +55,25 @@ public class UIMain {
 	}*/
 	
 	
-	
+	/**
+	 * Main method that will run the program
+	 * @param args input command
+	 */
 	public static void main(String[] args){
 		UIMain uiMain = new UIMain();
 		
 	}
 	
-	
+	/**
+	 * This is the action listener class for start screen to get the whole game started
+	 * @author Guang Lu
+	 *
+	 */
 	private class StartListener implements ActionListener{  
-		  public void actionPerformed (ActionEvent event){		 
+		/**
+		 * Method must be implemented from ActionListener interface  
+		 */
+		public void actionPerformed (ActionEvent event){		 
 			  
 			  player = new Player("default");
 			  player.setName(start.getName());
@@ -81,8 +89,15 @@ public class UIMain {
 			  
 	     }
 	  }
-	
+	/**
+	 * This is the action listener class for initial skill setting screen
+	 * @author Guang Lu
+	 *
+	 */
 	private class NextListener implements ActionListener{
+		/**
+		 * Method must be implemented from ActionListener interface  
+		 */
 		public void actionPerformed (ActionEvent e){
 			mapGUI = new MapPanel(skills.getPlayer());
 			tabPane.add(mapGUI,"Map");
