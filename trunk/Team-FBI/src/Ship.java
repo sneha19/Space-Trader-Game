@@ -50,8 +50,20 @@ public abstract class Ship {
 	
 	public void setInitialShip(){
 		player.Ship = ShipType.fighter;
+		
 	}
 	
-	
+	public enum ShipType {
+		
+		fighter(100,20,100,100),hauler(120,100,80,700),bullDog(200,50,50,300),carrier(60,150,80,350),yellowJacket(140,30,150,300),destroyer(500,50,100,700),heat(100,100,100,400);
+		
+		private ShipType(int hull,int cargo,int fuel, int cost){
+			this.hull = hull;
+	        cargoCapacity = cargo;
+	        fuelCapacity = fuel;
+	        this.cost = cost;
+		}
+		
+		
 	
 }
