@@ -52,10 +52,12 @@ public class Universe {
 		}	
 	}
 	
+	int n=500;
 	for(int i=0;i<122;i++){
-	int m = rand.nextInt(500);	
+	int m = rand.nextInt(n);	
 	Point tempPosition = positionList[m];	
-	planet[i].setLocation(tempPosition);	
+	planet[i].setLocation(tempPosition);
+	n--;
 	}
 	
 	
