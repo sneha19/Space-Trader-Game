@@ -2,6 +2,11 @@ import javax.swing.*;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 /**
  * This is the class that controls everything and has the main method. 
  * It forms a frame and holds all the necessary panels from other classes.
@@ -24,12 +29,18 @@ public class UIMain {
 	private JTabbedPane tabPane;
 	private MapPanel mapGUI;
 	private JButton btnStart;
+	private String[] planetNames;
 	
 	/**
 	 * Constructor
 	 */
 	public UIMain(){
-		
+		try {
+			writeFile();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		start = new Start();
 		start.setbtnStartActionListener(new StartListener());
 		tabPane = new JTabbedPane();
@@ -104,6 +115,27 @@ public class UIMain {
 			tabPane.setSelectedIndex(1);
 			skillsGUI.disablebtnNext();
 		}
+	}
+	
+	public void writeFile() throws IOException
+	{
+		File file = new File("src/planets.txt");
+		  FileReader fr = new FileReader(file);
+		try {
+			fr = new FileReader(file);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		  BufferedReader in = new BufferedReader(fr);
+		  String line;
+		  String[] record = new String[200];
+		  int i = 0;
+		  while ((line = in.readLine()) != null){
+			  record[i] = line.trim();
+			  i++;
+		  }
+		  planetNames = record;
 	}
 	
 	//every class need a setCurPlayer and getPlayer method!!
