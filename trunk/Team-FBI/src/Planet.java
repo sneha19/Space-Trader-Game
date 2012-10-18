@@ -9,6 +9,7 @@ private int techLevel;
 private int resources;
 private Random rand;
 private Color color;
+private Zone zone;
 public Planet(String planetName)
 {	
 this.planetName = planetName;
@@ -18,6 +19,7 @@ resources = rand.nextInt(13);
 governments = new Governments(rand.nextInt(5));
 location= new Point(0,0);
 color = new Color(rand.nextInt(256),rand.nextInt(256),rand.nextInt(256));
+zone = new Zone(rand.nextInt(5));
 }
 
 public String getPlanetName()
