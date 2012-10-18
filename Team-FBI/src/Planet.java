@@ -19,7 +19,7 @@ resources = rand.nextInt(13);
 governments = new Governments(rand.nextInt(5));
 location= new Point(0,0);
 color = new Color(rand.nextInt(256),rand.nextInt(256),rand.nextInt(256));
-zone = new Zone(rand.nextInt(5));
+
 }
 
 public String getPlanetName()
@@ -55,5 +55,12 @@ g.setColor(color);
 g.fillOval(p.x, p.y,15,15);
 }
 
+public void setZone(Zone z){
+	zone=z;
+}
+
+public Color getColor(){
+	return color;
+}
 
 }
