@@ -45,7 +45,7 @@ public void setGoverment(Governments goverments)
 this.governments = goverments;	
 }
 
-public void setLocation(Point locaction)
+public void setLocation(Point location)
 {	
 this.location = location;
 }
