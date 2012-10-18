@@ -37,13 +37,12 @@ public class Universe {
 	for(int i=0;i<122;i++){
 		int index = rand.nextInt(counter);
 		p[i]=planet[index];
-		i++;
 		counter--;
 	}
 	
 	planet = p;
 	positionList = new Point[500];
-	
+	//creat all the positions
 	int index =0;
 	for(int x=0;x<25;x++){
 		for(int y=0;y<20;y++){
