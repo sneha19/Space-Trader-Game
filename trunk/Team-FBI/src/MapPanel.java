@@ -12,7 +12,7 @@ public class MapPanel extends JPanel {
 	 private int xValue;
 	 private int yValue;
 	 private Color color;
-	 protected Planet[][][] planetGrid = new Planet[HEIGHT][WIDTH][ZONE];
+	 protected Planet[][] planetGrid = new Planet[HEIGHT][WIDTH];
 	 Universe universe = new Universe();
 
 	/**
