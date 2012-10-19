@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Random;
 
 
@@ -11,7 +12,7 @@ public class Universe {
 	private String[] planetNames;
 	private Planet[] planet;
 	private Random rand;
-	private Point[] positionList;
+	private ArrayList<Point> positionList;
 	
 	
 	
@@ -41,22 +42,24 @@ public class Universe {
 	}
 	
 	planet = p;
-	positionList = new Point[500];
-	//creat all the positions
-	int index =0;
+	
+	
+	
+	positionList = new ArrayList<Point>();
+	//create all the positions
 	for(int x=0;x<25;x++){
 		for(int y=0;y<20;y++){
-			positionList[index]=new Point(x,y);
-			index++;
+			positionList.add(new Point(x,y));
 		}	
 	}
 	
-	int n=500;
+	//assign locations
+	int m=500;
 	for(int i=0;i<122;i++){
-	int m = rand.nextInt(n);	
-	Point tempPosition = positionList[m];	
-	planet[i].setLocation(tempPosition);
-	n--;
+	int index = rand.nextInt(m);
+	planet[index].setLocation(positionList.get(index));
+	positionList.remove(index);
+	index--;
 	}
 	
 	
@@ -73,6 +76,7 @@ public class Universe {
 			}
 		}
 		i++;
+		System.out.println("FGGFG");
 	}
 	
 	}
