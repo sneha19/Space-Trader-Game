@@ -14,7 +14,11 @@ public class Universe {
 	private Random rand;
 	private ArrayList<Point> positionList;
 	
-	
+	public static void main(String[] args)
+	{
+		Universe univ = new Universe();
+		System.out.println("GHGHG");
+	}
 	
 	
 	public Universe(){
@@ -25,7 +29,7 @@ public class Universe {
 			e.printStackTrace();
 		}
 
-	planet = new Planet[122];
+	planet = new Planet[123];
 	
 	for(int i=0;i<122;i++){
 		String name = planetNames[i];
@@ -57,9 +61,9 @@ public class Universe {
 	int m=500;
 	for(int i=0;i<122;i++){
 	int index = rand.nextInt(m);
-	planet[index].setLocation(positionList.get(index));
+	planet[i].setLocation(positionList.get(index));
 	positionList.remove(index);
-	index--;
+	m--;
 	}
 	
 	
@@ -76,7 +80,6 @@ public class Universe {
 			}
 		}
 		i++;
-		System.out.println("FGGFG");
 	}
 	
 	}
@@ -103,6 +106,12 @@ public class Universe {
 			  i++;
 		  }
 		  planetNames = record;
+	}
+
+
+	public Planet[] getPlanet() {
+		// TODO Auto-generated method stub
+		return planet;
 	}
 	
 }
