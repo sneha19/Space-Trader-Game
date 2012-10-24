@@ -4,6 +4,8 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Trade extends JPanel{
 	private int _price;
@@ -539,6 +541,10 @@ public class Trade extends JPanel{
 		JLabel lblSellPrice = new JLabel("Sell Price:");
 		
 		waterBuy = new JButton("Buy");
+		waterBuy.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		
 		waterSell = new JButton("Sell");
 		
