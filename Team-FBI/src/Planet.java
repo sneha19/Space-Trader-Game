@@ -33,6 +33,10 @@ public Governments getGoverment()
 public Point getLocation()
 {	return location;}
 
+public int getTechLevel()
+{
+	return techLevel;
+}
 
 
 public void setPlanetName(String planetName)
@@ -49,10 +53,15 @@ public void setLocation(Point location)
 {	
 this.location = location;
 }
-
+public void emptyDraw(Graphics g, Point p)
+{
+	g.setColor(color.gray);
+	g.drawRect(location.x, location.y,15,15	);
+}
 public void draw(Graphics g,Point p){
 g.setColor(color);
-g.fillOval(p.x, p.y,15,15);
+g.drawRect(location.x, location.y,15,15);
+g.fillOval(location.x, location.y,15,15);
 }
 
 public void setZone(Zone z){

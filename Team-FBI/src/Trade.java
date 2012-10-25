@@ -14,7 +14,8 @@ public class Trade extends JPanel{
 	public Merchant _unnamed_Merchant_;
 	public Goods _unnamed_Goods_;
 	public Player currPlayer;
-	public Planet currPlanet;
+	public  Planet currPlanet;
+	public  Ship currShip;
 	private int level;
 	JButton fursBuy;
 	JButton fursSell;
@@ -36,9 +37,9 @@ public class Trade extends JPanel{
 	JButton narcoticesSell;
 	JButton robotsBuy;
 	JButton robotsSell;
-	public Trade(Player p, Planet planet)
+	public Trade(Ship s, Planet planet)
 	{
-		currPlayer = p;
+		currShip = s;
 		
 		currPlanet = planet;
 		
@@ -65,10 +66,16 @@ public class Trade extends JPanel{
 		
 		JLabel label_3 = new JLabel("Sell Price:");
 		
-		 fursBuy = new JButton("Buy");
-		
-		 fursSell = new JButton("Sell");
-		
+				setWater();
+				setFurs();
+				setFood();
+				setOre();
+				setGames();
+				setFirearms();
+				setMedicines();
+				setMachines();
+				setNarcotices();
+				setRobot();
 		JLabel label_4 = new JLabel(".");
 		
 		//Chunck
@@ -112,10 +119,7 @@ public class Trade extends JPanel{
 		
 		JLabel label_7 = new JLabel("Sell Price:");
 		
-		 foodBuy = new JButton("Buy");
-		
-		 foodSell = new JButton("Sell");
-		
+				
 		JLabel label_8 = new JLabel(".");
 		GroupLayout gl_FoodPanel = new GroupLayout(FoodPanel);
 		gl_FoodPanel.setHorizontalGroup(
@@ -157,10 +161,7 @@ public class Trade extends JPanel{
 		
 		JLabel label_11 = new JLabel("Sell Price:");
 		
-	    oreBuy = new JButton("Buy");
-		
-		oreSell = new JButton("Sell");
-		
+	  		
 		JLabel label_12 = new JLabel(".");
 		GroupLayout gl_OrePanel = new GroupLayout(OrePanel);
 		gl_OrePanel.setHorizontalGroup(
@@ -203,10 +204,7 @@ public class Trade extends JPanel{
 		
 		JLabel label_15 = new JLabel("Sell Price:");
 		
-		gamesBuy = new JButton("Buy");
-		
-		gamesSell = new JButton("Sell");
-		
+				
 		JLabel label_16 = new JLabel(".");
 		GroupLayout gl_GamesPanel = new GroupLayout(GamesPanel);
 		gl_GamesPanel.setHorizontalGroup(
@@ -293,10 +291,7 @@ public class Trade extends JPanel{
 		
 		JLabel label_23 = new JLabel("Sell Price:");
 		
-		medicineBuy = new JButton("Buy");
-		
-		medicineSell = new JButton("Sell");
-		
+				
 		JLabel label_24 = new JLabel(".");
 		GroupLayout gl_MedicinePanel = new GroupLayout(MedicinePanel);
 		gl_MedicinePanel.setHorizontalGroup(
@@ -383,10 +378,7 @@ public class Trade extends JPanel{
 		
 		JLabel label_31 = new JLabel("Sell Price:");
 		
-		narcoticesBuy = new JButton("Buy");
-		
-		narcoticesSell = new JButton("Sell");
-		
+				
 		JLabel label_32 = new JLabel(".");
 		GroupLayout gl_NarcoticesPanel = new GroupLayout(NarcoticesPanel);
 		gl_NarcoticesPanel.setHorizontalGroup(
@@ -540,13 +532,11 @@ public class Trade extends JPanel{
 		
 		JLabel lblSellPrice = new JLabel("Sell Price:");
 		
-		waterBuy = new JButton("Buy");
 		waterBuy.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
 		
-		waterSell = new JButton("Sell");
 		
 		JLabel label = new JLabel(".");
 		GroupLayout gl_WaterPanel = new GroupLayout(WaterPanel);
@@ -585,50 +575,120 @@ public class Trade extends JPanel{
 		//chucnk
 		
 		
-		
-		
-		
-		
+	
 	}
+	
+	
+	
+	
 	public void setWater()
 	{
-		
+		waterBuy = new JButton("Buy");
+		waterSell = new JButton("Sell");
+		waterBuy.setVisible(true);
+		waterSell.setVisible(true);
+
 	}
 	public void setFurs()
 	{
-		
+		 fursBuy = new JButton("Buy");
+		 fursSell = new JButton("Sell");
+		fursBuy.setVisible(true);
+		fursSell.setVisible(true);
+
 	}
 	public void setFood()
 	{
-		
+		 foodBuy = new JButton("Buy");
+		 foodSell = new JButton("Sell");
+if(level>0){
+	foodBuy.setVisible(true);
+	}
+foodSell.setVisible(true);	
 	}
 	public void setOre()
 	{
-		
+		oreBuy = new JButton("Buy");
+		oreSell = new JButton("Sell");
+		if(level>1){
+			oreBuy.setVisible(true);
+}
+if(level>1){
+			oreSell.setVisible(true);
+}
 	}
-	public void setGames()
+	
+
+
+
+
+
+public void setGames()
 	{
-		
+		gamesBuy = new JButton("Buy");
+		gamesSell = new JButton("Sell");
+		if(level>2){
+			gamesBuy.setVisible(true);
+}
+if(level>0){
+			gamesSell.setVisible(true);
+}
 	}
 	public void setFirearms()
 	{
-		
+		firearmsBuy = new JButton("Buy");
+		firearmsSell = new JButton("Sell");
+		if(level>2){
+			firearmsBuy.setVisible(true);
+}
+if(level>0){
+			firearmsSell.setVisible(true);
+}
 	}
 	public void setMedicines()
 	{
-		
+		medicineBuy = new JButton("Buy");
+		medicineSell = new JButton("Sell");
+		if(level>3){
+			medicineBuy.setVisible(true);
+}
+if(level>0){
+			medicineSell.setVisible(true);
+}
 	}
 	public void setMachines()
 	{
-		
+		machinesBuy = new JButton("Buy");
+		machinesSell = new JButton("Sell");
+		if(level>3){
+			machinesBuy.setVisible(true);
+}
+if(level>2){
+			machinesSell.setVisible(true);
+}
 	}
 	public void setNarcotices()
 	{
-		
+		narcoticesBuy = new JButton("Buy");
+		narcoticesSell = new JButton("Sell");
+		if(level>4){
+			narcoticesBuy.setVisible(true);
+}
+
+			narcoticesSell.setVisible(true);
+
+
 	}
 	public void setRobot()
 	{
-		
+		robotsBuy = new JButton("Buy");
+		robotsSell = new JButton("Sell");
+		if(level>5){
+			robotsBuy.setVisible(true);
+}
+if(level>3){
+			robotsSell.setVisible(true);
+}
 	}
 	
 	public void buy(int aItems, int aIndex) {
@@ -642,4 +702,13 @@ public class Trade extends JPanel{
 	public boolean quantityCheck(int aIndex) {
 		throw new UnsupportedOperationException();
 	}
+
 }
+
+
+
+
+
+
+
+
