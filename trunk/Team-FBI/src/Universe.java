@@ -1,3 +1,4 @@
+import java.awt.Graphics;
 import java.awt.Point;
 import java.io.BufferedReader;
 import java.io.File;
@@ -53,7 +54,7 @@ public class Universe {
 	//create all the positions
 	for(int x=0;x<25;x++){
 		for(int y=0;y<20;y++){
-			positionList.add(new Point(x,y));
+			positionList.add(new Point(15*x,15*y));
 		}	
 	}
 	
@@ -72,6 +73,11 @@ public class Universe {
 	for(int i=0;i<5;i++){
 		
 		for(int j=0;j<30;j++){
+			//why create a Zone object? unless you assign each number to return
+			// some level (int) because the Zone class does not do anything with
+			// the number being passed in. Recommend to just make randon int from 
+			// 0 - 5 for each level and each will correspond to a specific zone.
+			// - Haytham
 			Zone tempZone = new Zone(i);
 			planet[tempZoneIndex].setZone(tempZone);
 			tempZoneIndex++;
@@ -108,7 +114,18 @@ public class Universe {
 		  planetNames = record;
 	}
 
-
+    public void draw(Graphics g) {
+    	for(int i = 0; i < planet.length; i++)
+    	{
+    		if(planet[i] != null)
+    	planet[i].draw(g, null);
+    		else
+    			planet[i].emptyDraw(g, null);
+    	}
+    //	for (Planet p : planet) {
+    //			p.draw(g, null);
+    //	}
+    }
 	public Planet[] getPlanet() {
 		// TODO Auto-generated method stub
 		return planet;

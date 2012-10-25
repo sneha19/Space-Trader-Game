@@ -11,6 +11,9 @@ public class Ship {
 	private String name;
 	private ShipType st;
 	
+	private Goods currentGoods;
+	
+	
 	/**
 	 * A constructor that takes a shiptype
 	 * @param st Ship type that specify which ship to create
@@ -95,6 +98,13 @@ public class Ship {
 	 */
 	public String getName(){
 		return name;
+	}
+	
+	public Goods getCurrentGoods() {
+		return currentGoods;
+	}
+	public void setCurrentGoods(Goods currentGoods) {
+		this.currentGoods = currentGoods;
 	}
 	
 	/*
