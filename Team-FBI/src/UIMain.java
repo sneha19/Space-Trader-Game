@@ -22,9 +22,12 @@ public class UIMain {
 	private SkillsInterface skillsGUI;
 	private JFrame frame;
 	private JTabbedPane tabPane;
-	private MapPanel mapGUI;
+	private MapPanel map;
 	private JButton btnStart;
 	
+	private Universe universe;
+	private Trade trade;
+	private Planet[] planetlist;
 	/**
 	 * Constructor
 	 */
@@ -34,6 +37,10 @@ public class UIMain {
 		start.setbtnStartActionListener(new StartListener());
 		tabPane = new JTabbedPane();
 		tabPane.addTab("Welcome",start);
+		universe = new Universe();
+		map = new MapPanel(universe);
+		planetlist = universe.getPlanet();
+		
 		
 		frame = new JFrame("Star Trader");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -41,6 +48,7 @@ public class UIMain {
 		frame.setContentPane(tabPane);
 		frame.pack();
 		frame.setVisible(true);
+		
 	}
 	
 	
@@ -99,8 +107,10 @@ public class UIMain {
 		 * Method must be implemented from ActionListener interface  
 		 */
 		public void actionPerformed (ActionEvent e){
-			mapGUI = new MapPanel(skills.getPlayer());
-			tabPane.add(mapGUI,"Map");
+			Player ptest = new Player("d");
+			Planet platest= new Planet("d");
+			trade = new Trade(ptest.getShip(),platest);
+			tabPane.addTab("trade", trade);
 			tabPane.setSelectedIndex(1);
 			skillsGUI.disablebtnNext();
 		}

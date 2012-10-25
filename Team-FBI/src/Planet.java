@@ -14,7 +14,7 @@ public Planet(String planetName)
 {	
 this.planetName = planetName;
 rand = new Random();
-techLevel = rand.nextInt(8);
+techLevel = 1;
 resources = rand.nextInt(13);
 governments = new Governments(rand.nextInt(5));
 location= new Point(0,0);

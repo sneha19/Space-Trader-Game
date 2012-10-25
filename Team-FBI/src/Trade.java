@@ -246,9 +246,9 @@ public class Trade extends JPanel{
 		
 		JLabel label_19 = new JLabel("Sell Price:");
 		
-		firearmsBuy = new JButton("Buy");
+		//firearmsBuy = new JButton("Buy");
 		
-		firearmsSell = new JButton("Sell");
+		//firearmsSell = new JButton("Sell");
 		
 		JLabel label_20 = new JLabel(".");
 		GroupLayout gl_FirearmsPanel = new GroupLayout(FirearmsPanel);
@@ -333,9 +333,9 @@ public class Trade extends JPanel{
 		
 		JLabel label_27 = new JLabel("Sell Price:");
 		
-		machinesBuy = new JButton("Buy");
+		//machinesBuy = new JButton("Buy");
 		
-		machinesSell = new JButton("Sell");
+		//machinesSell = new JButton("Sell");
 		
 		JLabel label_28 = new JLabel(".");
 		GroupLayout gl_MachinesPanel = new GroupLayout(MachinesPanel);
@@ -422,9 +422,9 @@ public class Trade extends JPanel{
 		
 		JLabel label_9 = new JLabel("Sell Price:");
 		
-		robotsBuy = new JButton("Buy");
+		//robotsBuy = new JButton("Buy");
 		
-		robotsSell = new JButton("Sell");
+		//robotsSell = new JButton("Sell");
 		
 		JLabel label_13 = new JLabel(".");
 		GroupLayout gl_RobotsPanel = new GroupLayout(RobotsPanel);
@@ -585,36 +585,39 @@ public class Trade extends JPanel{
 	{
 		waterBuy = new JButton("Buy");
 		waterSell = new JButton("Sell");
-		waterBuy.setVisible(true);
-		waterSell.setVisible(true);
+		waterBuy.setEnabled(true);
+		waterSell.setEnabled(true);
 
 	}
 	public void setFurs()
 	{
 		 fursBuy = new JButton("Buy");
 		 fursSell = new JButton("Sell");
-		fursBuy.setVisible(true);
-		fursSell.setVisible(true);
+		fursBuy.setEnabled(true);
+		fursSell.setEnabled(true);
 
 	}
 	public void setFood()
 	{
 		 foodBuy = new JButton("Buy");
 		 foodSell = new JButton("Sell");
+		 foodBuy.setEnabled(false);
 if(level>0){
-	foodBuy.setVisible(true);
+	foodBuy.setEnabled(true);
 	}
-foodSell.setVisible(true);	
+foodSell.setEnabled(true);	
 	}
 	public void setOre()
 	{
 		oreBuy = new JButton("Buy");
 		oreSell = new JButton("Sell");
+		oreBuy.setEnabled(false);
+		oreSell.setEnabled(false);
 		if(level>1){
-			oreBuy.setVisible(true);
+			oreBuy.setEnabled(true);
 }
 if(level>1){
-			oreSell.setVisible(true);
+			oreSell.setEnabled(true);
 }
 	}
 	
@@ -627,55 +630,65 @@ public void setGames()
 	{
 		gamesBuy = new JButton("Buy");
 		gamesSell = new JButton("Sell");
+		gamesBuy.setEnabled(false);
+		gamesSell.setEnabled(false);
 		if(level>2){
-			gamesBuy.setVisible(true);
+			gamesBuy.setEnabled(true);
 }
 if(level>0){
-			gamesSell.setVisible(true);
+			gamesSell.setEnabled(true);
 }
 	}
 	public void setFirearms()
 	{
 		firearmsBuy = new JButton("Buy");
 		firearmsSell = new JButton("Sell");
+		firearmsBuy.setEnabled(false);
+		firearmsSell.setEnabled(false);
 		if(level>2){
-			firearmsBuy.setVisible(true);
+			firearmsBuy.setEnabled(true);
 }
 if(level>0){
-			firearmsSell.setVisible(true);
+			firearmsSell.setEnabled(true);
 }
 	}
 	public void setMedicines()
 	{
 		medicineBuy = new JButton("Buy");
 		medicineSell = new JButton("Sell");
+		medicineBuy.setEnabled(false);
+		medicineSell.setEnabled(false);
 		if(level>3){
-			medicineBuy.setVisible(true);
+			medicineBuy.setEnabled(true);
 }
 if(level>0){
-			medicineSell.setVisible(true);
+			medicineSell.setEnabled(true);
 }
 	}
 	public void setMachines()
 	{
 		machinesBuy = new JButton("Buy");
 		machinesSell = new JButton("Sell");
+		machinesBuy.setEnabled(false);
+		machinesSell.setEnabled(false);
 		if(level>3){
-			machinesBuy.setVisible(true);
+			machinesBuy.setEnabled(true);
 }
 if(level>2){
-			machinesSell.setVisible(true);
+			machinesSell.setEnabled(true);
 }
 	}
 	public void setNarcotices()
 	{
 		narcoticesBuy = new JButton("Buy");
 		narcoticesSell = new JButton("Sell");
+		narcoticesBuy.setEnabled(false);
+		
 		if(level>4){
-			narcoticesBuy.setVisible(true);
+			narcoticesBuy.setEnabled(true);
 }
 
-			narcoticesSell.setVisible(true);
+			narcoticesSell.setEnabled(true);
 
 
 	}
@@ -683,11 +696,13 @@ if(level>2){
 	{
 		robotsBuy = new JButton("Buy");
 		robotsSell = new JButton("Sell");
+		robotsBuy.setEnabled(false);
+		robotsSell.setEnabled(false);
 		if(level>5){
-			robotsBuy.setVisible(true);
+			robotsBuy.setEnabled(true);
 }
-if(level>3){
-			robotsSell.setVisible(true);
+		if(level>3){
+			robotsSell.setEnabled(true);
 }
 	}
 	
