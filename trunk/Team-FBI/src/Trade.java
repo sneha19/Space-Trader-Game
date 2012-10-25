@@ -76,7 +76,11 @@ public class Trade extends JPanel{
 				setMachines();
 				setNarcotices();
 				setRobot();
-		JLabel label_4 = new JLabel(".");
+		JLabel fursAmount = new JLabel(".");
+		
+		JLabel FursBuyPrice = new JLabel(".");
+		
+		JLabel fursSellPrice = new JLabel(".");
 		
 		//Chunck
 		GroupLayout gl_FursPanel = new GroupLayout(FursPanel);
@@ -87,15 +91,19 @@ public class Trade extends JPanel{
 					.addComponent(lblFurs)
 					.addGap(26)
 					.addComponent(label_2)
-					.addGap(38)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(FursBuyPrice, GroupLayout.PREFERRED_SIZE, 4, GroupLayout.PREFERRED_SIZE)
+					.addGap(28)
 					.addComponent(label_3)
-					.addGap(31)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(fursSellPrice, GroupLayout.PREFERRED_SIZE, 4, GroupLayout.PREFERRED_SIZE)
+					.addGap(21)
 					.addComponent(fursBuy)
 					.addGap(12)
 					.addComponent(fursSell)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(label_4)
-					.addContainerGap(23, Short.MAX_VALUE))
+					.addComponent(fursAmount)
+					.addContainerGap(25, Short.MAX_VALUE))
 		);
 		gl_FursPanel.setVerticalGroup(
 			gl_FursPanel.createParallelGroup(Alignment.LEADING)
@@ -104,10 +112,12 @@ public class Trade extends JPanel{
 					.addGroup(gl_FursPanel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblFurs)
 						.addComponent(fursBuy)
-						.addComponent(label_4)
+						.addComponent(fursAmount)
 						.addComponent(label_2)
 						.addComponent(label_3)
-						.addComponent(fursSell))
+						.addComponent(fursSell)
+						.addComponent(FursBuyPrice)
+						.addComponent(fursSellPrice))
 					.addContainerGap(7, Short.MAX_VALUE))
 		);
 		FursPanel.setLayout(gl_FursPanel);
@@ -120,7 +130,11 @@ public class Trade extends JPanel{
 		JLabel label_7 = new JLabel("Sell Price:");
 		
 				
-		JLabel label_8 = new JLabel(".");
+		JLabel foodAmount = new JLabel(".");
+		
+		JLabel foodBuyPrice = new JLabel(".");
+		
+		JLabel foodSellPrice = new JLabel(".");
 		GroupLayout gl_FoodPanel = new GroupLayout(FoodPanel);
 		gl_FoodPanel.setHorizontalGroup(
 			gl_FoodPanel.createParallelGroup(Alignment.LEADING)
@@ -129,15 +143,19 @@ public class Trade extends JPanel{
 					.addComponent(lblFood)
 					.addGap(18)
 					.addComponent(label_6)
-					.addGap(42)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(foodBuyPrice, GroupLayout.PREFERRED_SIZE, 4, GroupLayout.PREFERRED_SIZE)
+					.addGap(32)
 					.addComponent(label_7)
-					.addGap(29)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(foodSellPrice, GroupLayout.PREFERRED_SIZE, 4, GroupLayout.PREFERRED_SIZE)
+					.addGap(19)
 					.addComponent(foodBuy)
 					.addGap(12)
 					.addComponent(foodSell)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(label_8)
-					.addContainerGap(23, Short.MAX_VALUE))
+					.addComponent(foodAmount)
+					.addContainerGap(27, Short.MAX_VALUE))
 		);
 		gl_FoodPanel.setVerticalGroup(
 			gl_FoodPanel.createParallelGroup(Alignment.LEADING)
@@ -146,10 +164,12 @@ public class Trade extends JPanel{
 					.addGroup(gl_FoodPanel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblFood)
 						.addComponent(label_6)
-						.addComponent(label_8)
+						.addComponent(foodAmount)
 						.addComponent(label_7)
 						.addComponent(foodBuy)
-						.addComponent(foodSell))
+						.addComponent(foodSell)
+						.addComponent(foodBuyPrice)
+						.addComponent(foodSellPrice))
 					.addContainerGap(7, Short.MAX_VALUE))
 		);
 		FoodPanel.setLayout(gl_FoodPanel);
@@ -162,7 +182,11 @@ public class Trade extends JPanel{
 		JLabel label_11 = new JLabel("Sell Price:");
 		
 	  		
-		JLabel label_12 = new JLabel(".");
+		JLabel oreAmount = new JLabel(".");
+		
+		JLabel oreBuyPrice = new JLabel(".");
+		
+		JLabel oreSellPrice = new JLabel(".");
 		GroupLayout gl_OrePanel = new GroupLayout(OrePanel);
 		gl_OrePanel.setHorizontalGroup(
 			gl_OrePanel.createParallelGroup(Alignment.LEADING)
@@ -171,15 +195,19 @@ public class Trade extends JPanel{
 					.addComponent(lblOre)
 					.addGap(27)
 					.addComponent(label_10)
-					.addGap(40)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(oreBuyPrice, GroupLayout.PREFERRED_SIZE, 4, GroupLayout.PREFERRED_SIZE)
+					.addGap(30)
 					.addComponent(label_11)
-					.addGap(28)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(oreSellPrice, GroupLayout.PREFERRED_SIZE, 4, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
 					.addComponent(oreBuy)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(oreSell)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(label_12)
-					.addContainerGap(23, Short.MAX_VALUE))
+					.addComponent(oreAmount)
+					.addContainerGap(30, Short.MAX_VALUE))
 		);
 		gl_OrePanel.setVerticalGroup(
 			gl_OrePanel.createParallelGroup(Alignment.LEADING)
@@ -188,10 +216,12 @@ public class Trade extends JPanel{
 					.addGroup(gl_OrePanel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblOre)
 						.addComponent(oreBuy)
-						.addComponent(label_12)
+						.addComponent(oreAmount)
 						.addComponent(label_10)
 						.addComponent(label_11)
-						.addComponent(oreSell))
+						.addComponent(oreSell)
+						.addComponent(oreBuyPrice)
+						.addComponent(oreSellPrice))
 					.addContainerGap(7, Short.MAX_VALUE))
 		);
 		OrePanel.setLayout(gl_OrePanel);
@@ -206,6 +236,10 @@ public class Trade extends JPanel{
 		
 				
 		JLabel label_16 = new JLabel(".");
+		
+		JLabel gamesBuyPrice = new JLabel(".");
+		
+		JLabel gamesSellPrice = new JLabel(".");
 		GroupLayout gl_GamesPanel = new GroupLayout(GamesPanel);
 		gl_GamesPanel.setHorizontalGroup(
 			gl_GamesPanel.createParallelGroup(Alignment.LEADING)
@@ -214,9 +248,13 @@ public class Trade extends JPanel{
 					.addComponent(lblGames)
 					.addGap(18)
 					.addComponent(label_14)
-					.addGap(40)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(gamesBuyPrice, GroupLayout.PREFERRED_SIZE, 4, GroupLayout.PREFERRED_SIZE)
+					.addGap(30)
 					.addComponent(label_15)
-					.addGap(18)
+					.addGap(2)
+					.addComponent(gamesSellPrice, GroupLayout.PREFERRED_SIZE, 4, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(gamesBuy)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(gamesSell)
@@ -234,7 +272,9 @@ public class Trade extends JPanel{
 						.addComponent(label_15)
 						.addComponent(label_16)
 						.addComponent(gamesBuy)
-						.addComponent(gamesSell))
+						.addComponent(gamesSell)
+						.addComponent(gamesBuyPrice)
+						.addComponent(gamesSellPrice))
 					.addContainerGap(7, Short.MAX_VALUE))
 		);
 		GamesPanel.setLayout(gl_GamesPanel);
@@ -250,7 +290,11 @@ public class Trade extends JPanel{
 		
 		//firearmsSell = new JButton("Sell");
 		
-		JLabel label_20 = new JLabel(".");
+		JLabel firearmsAmount = new JLabel(".");
+		
+		JLabel firearmsBuyPrice = new JLabel(".");
+		
+		JLabel firearmsSellPrice = new JLabel(".");
 		GroupLayout gl_FirearmsPanel = new GroupLayout(FirearmsPanel);
 		gl_FirearmsPanel.setHorizontalGroup(
 			gl_FirearmsPanel.createParallelGroup(Alignment.LEADING)
@@ -259,15 +303,19 @@ public class Trade extends JPanel{
 					.addComponent(lblFirearms)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(label_18)
-					.addGap(40)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(firearmsBuyPrice, GroupLayout.PREFERRED_SIZE, 4, GroupLayout.PREFERRED_SIZE)
+					.addGap(30)
 					.addComponent(label_19)
-					.addGap(18)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(firearmsSellPrice, GroupLayout.PREFERRED_SIZE, 4, GroupLayout.PREFERRED_SIZE)
+					.addGap(8)
 					.addComponent(firearmsBuy)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(firearmsSell)
 					.addGap(31)
-					.addComponent(label_20)
-					.addContainerGap(23, Short.MAX_VALUE))
+					.addComponent(firearmsAmount)
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		gl_FirearmsPanel.setVerticalGroup(
 			gl_FirearmsPanel.createParallelGroup(Alignment.LEADING)
@@ -275,11 +323,13 @@ public class Trade extends JPanel{
 					.addContainerGap()
 					.addGroup(gl_FirearmsPanel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblFirearms)
-						.addComponent(label_20)
+						.addComponent(firearmsAmount)
 						.addComponent(firearmsBuy)
 						.addComponent(firearmsSell)
 						.addComponent(label_19)
-						.addComponent(label_18))
+						.addComponent(label_18)
+						.addComponent(firearmsBuyPrice)
+						.addComponent(firearmsSellPrice))
 					.addContainerGap(7, Short.MAX_VALUE))
 		);
 		FirearmsPanel.setLayout(gl_FirearmsPanel);
@@ -292,7 +342,11 @@ public class Trade extends JPanel{
 		JLabel label_23 = new JLabel("Sell Price:");
 		
 				
-		JLabel label_24 = new JLabel(".");
+		JLabel MedicineAmount = new JLabel(".");
+		
+		JLabel medicineBuyPrice = new JLabel(".");
+		
+		JLabel medicineSellPrice = new JLabel(".");
 		GroupLayout gl_MedicinePanel = new GroupLayout(MedicinePanel);
 		gl_MedicinePanel.setHorizontalGroup(
 			gl_MedicinePanel.createParallelGroup(Alignment.LEADING)
@@ -301,15 +355,19 @@ public class Trade extends JPanel{
 					.addComponent(lblMedicine)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(label_22)
-					.addGap(30)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(medicineBuyPrice, GroupLayout.PREFERRED_SIZE, 4, GroupLayout.PREFERRED_SIZE)
+					.addGap(20)
 					.addComponent(label_23)
-					.addGap(34)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(medicineSellPrice, GroupLayout.PREFERRED_SIZE, 4, GroupLayout.PREFERRED_SIZE)
+					.addGap(24)
 					.addComponent(medicineBuy)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(medicineSell)
 					.addGap(18)
-					.addComponent(label_24)
-					.addContainerGap(98, Short.MAX_VALUE))
+					.addComponent(MedicineAmount)
+					.addContainerGap(9, Short.MAX_VALUE))
 		);
 		gl_MedicinePanel.setVerticalGroup(
 			gl_MedicinePanel.createParallelGroup(Alignment.LEADING)
@@ -321,7 +379,9 @@ public class Trade extends JPanel{
 						.addComponent(medicineSell)
 						.addComponent(label_23)
 						.addComponent(label_22)
-						.addComponent(label_24))
+						.addComponent(MedicineAmount)
+						.addComponent(medicineBuyPrice)
+						.addComponent(medicineSellPrice))
 					.addContainerGap(7, Short.MAX_VALUE))
 		);
 		MedicinePanel.setLayout(gl_MedicinePanel);
@@ -337,7 +397,11 @@ public class Trade extends JPanel{
 		
 		//machinesSell = new JButton("Sell");
 		
-		JLabel label_28 = new JLabel(".");
+		JLabel MachinesAmount = new JLabel(".");
+		
+		JLabel machinesBuyPrice = new JLabel(".");
+		
+		JLabel machinesSellPrice = new JLabel(".");
 		GroupLayout gl_MachinesPanel = new GroupLayout(MachinesPanel);
 		gl_MachinesPanel.setHorizontalGroup(
 			gl_MachinesPanel.createParallelGroup(Alignment.LEADING)
@@ -346,15 +410,19 @@ public class Trade extends JPanel{
 					.addComponent(lblMachines)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(label_26)
-					.addGap(18)
+					.addGap(2)
+					.addComponent(machinesBuyPrice, GroupLayout.PREFERRED_SIZE, 4, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(label_27)
-					.addGap(44)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(machinesSellPrice, GroupLayout.PREFERRED_SIZE, 4, GroupLayout.PREFERRED_SIZE)
+					.addGap(34)
 					.addComponent(machinesBuy)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(machinesSell)
-					.addGap(27)
-					.addComponent(label_28)
-					.addContainerGap(23, Short.MAX_VALUE))
+					.addGap(18)
+					.addComponent(MachinesAmount, GroupLayout.PREFERRED_SIZE, 13, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		gl_MachinesPanel.setVerticalGroup(
 			gl_MachinesPanel.createParallelGroup(Alignment.LEADING)
@@ -362,11 +430,13 @@ public class Trade extends JPanel{
 					.addContainerGap()
 					.addGroup(gl_MachinesPanel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblMachines)
-						.addComponent(label_28)
+						.addComponent(MachinesAmount)
 						.addComponent(label_26)
 						.addComponent(label_27)
 						.addComponent(machinesBuy)
-						.addComponent(machinesSell))
+						.addComponent(machinesSell)
+						.addComponent(machinesBuyPrice)
+						.addComponent(machinesSellPrice))
 					.addContainerGap(7, Short.MAX_VALUE))
 		);
 		MachinesPanel.setLayout(gl_MachinesPanel);
@@ -379,7 +449,11 @@ public class Trade extends JPanel{
 		JLabel label_31 = new JLabel("Sell Price:");
 		
 				
-		JLabel label_32 = new JLabel(".");
+		JLabel narcoticesAmount = new JLabel(".");
+		
+		JLabel narcoticesBuyPrice = new JLabel(".");
+		
+		JLabel narcoticesSellPrice = new JLabel(".");
 		GroupLayout gl_NarcoticesPanel = new GroupLayout(NarcoticesPanel);
 		gl_NarcoticesPanel.setHorizontalGroup(
 			gl_NarcoticesPanel.createParallelGroup(Alignment.LEADING)
@@ -388,15 +462,19 @@ public class Trade extends JPanel{
 					.addComponent(lblNarcotices)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(label_30)
-					.addGap(27)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(narcoticesBuyPrice, GroupLayout.PREFERRED_SIZE, 4, GroupLayout.PREFERRED_SIZE)
+					.addGap(17)
 					.addComponent(label_31)
-					.addGap(34)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(narcoticesSellPrice, GroupLayout.PREFERRED_SIZE, 4, GroupLayout.PREFERRED_SIZE)
+					.addGap(24)
 					.addComponent(narcoticesBuy)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(narcoticesSell)
 					.addGap(18)
-					.addComponent(label_32)
-					.addContainerGap(16, Short.MAX_VALUE))
+					.addComponent(narcoticesAmount)
+					.addContainerGap(7, Short.MAX_VALUE))
 		);
 		gl_NarcoticesPanel.setVerticalGroup(
 			gl_NarcoticesPanel.createParallelGroup(Alignment.LEADING)
@@ -408,7 +486,9 @@ public class Trade extends JPanel{
 						.addComponent(narcoticesBuy)
 						.addComponent(label_31)
 						.addComponent(narcoticesSell)
-						.addComponent(label_32))
+						.addComponent(narcoticesAmount)
+						.addComponent(narcoticesBuyPrice)
+						.addComponent(narcoticesSellPrice))
 					.addContainerGap(7, Short.MAX_VALUE))
 		);
 		NarcoticesPanel.setLayout(gl_NarcoticesPanel);
@@ -426,7 +506,11 @@ public class Trade extends JPanel{
 		
 		//robotsSell = new JButton("Sell");
 		
-		JLabel label_13 = new JLabel(".");
+		JLabel robotsAmount = new JLabel(".");
+		
+		JLabel robotsBuyPrice = new JLabel(".");
+		
+		JLabel robotsSellPrice = new JLabel(".");
 		GroupLayout gl_RobotsPanel = new GroupLayout(RobotsPanel);
 		gl_RobotsPanel.setHorizontalGroup(
 			gl_RobotsPanel.createParallelGroup(Alignment.LEADING)
@@ -435,31 +519,42 @@ public class Trade extends JPanel{
 					.addComponent(lblRobots)
 					.addGap(18)
 					.addComponent(label_5)
-					.addGap(40)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(robotsBuyPrice, GroupLayout.PREFERRED_SIZE, 4, GroupLayout.PREFERRED_SIZE)
+					.addGap(30)
 					.addComponent(label_9)
-					.addGap(31)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(robotsSellPrice, GroupLayout.PREFERRED_SIZE, 4, GroupLayout.PREFERRED_SIZE)
+					.addGap(21)
 					.addComponent(robotsBuy)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(robotsSell)
 					.addGap(12)
-					.addComponent(label_13)
-					.addContainerGap(23, Short.MAX_VALUE))
+					.addComponent(robotsAmount)
+					.addContainerGap(14, Short.MAX_VALUE))
 		);
 		gl_RobotsPanel.setVerticalGroup(
 			gl_RobotsPanel.createParallelGroup(Alignment.LEADING)
-				.addGap(0, 42, Short.MAX_VALUE)
 				.addGroup(gl_RobotsPanel.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(gl_RobotsPanel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblRobots)
 						.addComponent(label_9)
-						.addComponent(label_13)
+						.addComponent(robotsAmount)
 						.addComponent(label_5)
 						.addComponent(robotsBuy)
-						.addComponent(robotsSell))
+						.addComponent(robotsSell)
+						.addComponent(robotsBuyPrice)
+						.addComponent(robotsSellPrice))
 					.addContainerGap(7, Short.MAX_VALUE))
 		);
 		RobotsPanel.setLayout(gl_RobotsPanel);
+		
+		JLabel currentAmountOfGoods = new JLabel("T");
+		
+		JLabel label_1 = new JLabel("|");
+		
+		JLabel totalAmountOfGoods = new JLabel("T");
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -479,9 +574,15 @@ public class Trade extends JPanel{
 									.addComponent(MachinesPanel, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 445, Short.MAX_VALUE))
 								.addGroup(groupLayout.createSequentialGroup()
 									.addComponent(lblTrade)
-									.addPreferredGap(ComponentPlacement.RELATED, 347, Short.MAX_VALUE)
+									.addPreferredGap(ComponentPlacement.RELATED, 268, Short.MAX_VALUE)
 									.addComponent(lblNewLabel)
-									.addGap(9))))
+									.addGap(18)
+									.addComponent(currentAmountOfGoods, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(label_1)
+									.addPreferredGap(ComponentPlacement.UNRELATED)
+									.addComponent(totalAmountOfGoods, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)
+									.addGap(23))))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(172)
 							.addComponent(btnFinished))
@@ -497,10 +598,15 @@ public class Trade extends JPanel{
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(lblTrade)
+							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lblTrade)
+								.addComponent(lblNewLabel))
 							.addGap(18))
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(lblNewLabel)
+							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(label_1)
+								.addComponent(currentAmountOfGoods)
+								.addComponent(totalAmountOfGoods))
 							.addPreferredGap(ComponentPlacement.RELATED)))
 					.addComponent(WaterPanel, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
@@ -521,7 +627,7 @@ public class Trade extends JPanel{
 					.addComponent(NarcoticesPanel, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(RobotsPanel, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
 					.addComponent(btnFinished)
 					.addContainerGap())
 		);
@@ -538,7 +644,11 @@ public class Trade extends JPanel{
 		});
 		
 		
-		JLabel label = new JLabel(".");
+		JLabel waterAmount = new JLabel(".");
+		
+		JLabel waterBuyPrice = new JLabel(".");
+		
+		JLabel waterSellPrice = new JLabel(".");
 		GroupLayout gl_WaterPanel = new GroupLayout(WaterPanel);
 		gl_WaterPanel.setHorizontalGroup(
 			gl_WaterPanel.createParallelGroup(Alignment.LEADING)
@@ -547,15 +657,19 @@ public class Trade extends JPanel{
 					.addComponent(lblWater)
 					.addGap(18)
 					.addComponent(lblBuyPrice)
-					.addGap(40)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(waterBuyPrice)
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(lblSellPrice)
-					.addGap(31)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(waterSellPrice)
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(waterBuy)
 					.addGap(12)
 					.addComponent(waterSell)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(label)
-					.addContainerGap(23, Short.MAX_VALUE))
+					.addComponent(waterAmount)
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		gl_WaterPanel.setVerticalGroup(
 			gl_WaterPanel.createParallelGroup(Alignment.LEADING)
@@ -565,9 +679,11 @@ public class Trade extends JPanel{
 						.addComponent(lblWater)
 						.addComponent(lblBuyPrice)
 						.addComponent(lblSellPrice)
-						.addComponent(label)
+						.addComponent(waterAmount)
 						.addComponent(waterBuy)
-						.addComponent(waterSell))
+						.addComponent(waterSell)
+						.addComponent(waterBuyPrice)
+						.addComponent(waterSellPrice))
 					.addContainerGap(7, Short.MAX_VALUE))
 		);
 		WaterPanel.setLayout(gl_WaterPanel);
@@ -717,7 +833,6 @@ if(level>2){
 	public boolean quantityCheck(int aIndex) {
 		throw new UnsupportedOperationException();
 	}
-
 }
 
 
