@@ -6,6 +6,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.Random;
 
 public class Trade extends JPanel{
 	private int _price;
@@ -37,11 +38,43 @@ public class Trade extends JPanel{
 	JButton narcoticesSell;
 	JButton robotsBuy;
 	JButton robotsSell;
-	public Trade(Ship s, Planet planet)
+//	
+//	int waterBasePrice = 30;
+//	int fursBasePrice = 250;
+//	int foodBasePrice = 100;
+//	int oreBasePrice = 350;
+//	int gamesBasePrice = 250;
+//	int firearmsBasePrice = 1250;
+//	int medicineBasePrice = 650;
+//	int machinesBasePrice = 900;
+//	int narcoticsBasePrice = 3500;
+//	int robotsBasePrice = 5000;
+	
+	int[] basePrice = new int[]{30,250,100,350,250,1250,650,900,3500,5000};
+	int[] priceIncreasePerTechLevel = new int[]{3,10,5,20,-10,-75,-20,-30,-125,-150};
+	int[] minLevelToProduceResource = new int[]{0,0,1,2,3,3,4,4,5,6};
+	int[] variance = new int[]{4,10,5,10,5,100,10,5,150,100};
+	
+	public int calculatorPrice(int location)
 	{
-		currShip = s;
-		
-		currPlanet = planet;
+		Random r = new Random();
+		int temp = variance[location];
+		int flipCoin = r.nextInt(2);
+		int coinResults;
+		if(flipCoin == 0)
+			coinResults = 1;
+		else coinResults = -1;
+		int variance = r.nextInt(temp);
+		int total = basePrice[location] + 
+				(priceIncreasePerTechLevel[location] * (currPlanet.getTechLevel() - minLevelToProduceResource[location])) +
+				basePrice[location]*(variance/100)*coinResults;
+		return total;
+	}
+	public Trade(Player p, Planet planet)
+	{
+		currPlayer = p;
+		currShip = currPlayer.getShip();
+		currPlanet  = planet;
 		
 		level = currPlanet.getTechLevel();
 		
@@ -76,9 +109,11 @@ public class Trade extends JPanel{
 				setMachines();
 				setNarcotices();
 				setRobot();
-		JLabel fursAmount = new JLabel(".");
-		
-		JLabel FursBuyPrice = new JLabel(".");
+				int furAmount = currPlayer.getShip().getCurrentGoods().getFurs();
+		JLabel fursAmount = new JLabel(furAmount+"");
+		int furBuy = calculatorPrice(2);
+		String myfur = Integer.toString(furBuy);
+		JLabel FursBuyPrice = new JLabel(myfur);
 		
 		JLabel fursSellPrice = new JLabel(".");
 		
@@ -130,7 +165,7 @@ public class Trade extends JPanel{
 		JLabel label_7 = new JLabel("Sell Price:");
 		
 				
-		JLabel foodAmount = new JLabel(".");
+		JLabel foodAmount = new JLabel(Integer.toString(currPlayer.getShip().getCurrentGoods().getFood()));
 		
 		JLabel foodBuyPrice = new JLabel(".");
 		
@@ -182,7 +217,7 @@ public class Trade extends JPanel{
 		JLabel label_11 = new JLabel("Sell Price:");
 		
 	  		
-		JLabel oreAmount = new JLabel(".");
+		JLabel oreAmount = new JLabel(Integer.toString(currPlayer.getShip().getCurrentGoods().getOre()));
 		
 		JLabel oreBuyPrice = new JLabel(".");
 		
@@ -235,7 +270,7 @@ public class Trade extends JPanel{
 		JLabel label_15 = new JLabel("Sell Price:");
 		
 				
-		JLabel label_16 = new JLabel(".");
+		JLabel label_16 = new JLabel(Integer.toString(currPlayer.getShip().getCurrentGoods().getGames()));
 		
 		JLabel gamesBuyPrice = new JLabel(".");
 		
@@ -290,7 +325,7 @@ public class Trade extends JPanel{
 		
 		//firearmsSell = new JButton("Sell");
 		
-		JLabel firearmsAmount = new JLabel(".");
+		JLabel firearmsAmount = new JLabel(Integer.toString(currPlayer.getShip().getCurrentGoods().getFirearms()));
 		
 		JLabel firearmsBuyPrice = new JLabel(".");
 		
@@ -342,7 +377,7 @@ public class Trade extends JPanel{
 		JLabel label_23 = new JLabel("Sell Price:");
 		
 				
-		JLabel MedicineAmount = new JLabel(".");
+		JLabel MedicineAmount = new JLabel(Integer.toString(currPlayer.getShip().getCurrentGoods().getMedicines()));
 		
 		JLabel medicineBuyPrice = new JLabel(".");
 		
@@ -397,7 +432,7 @@ public class Trade extends JPanel{
 		
 		//machinesSell = new JButton("Sell");
 		
-		JLabel MachinesAmount = new JLabel(".");
+		JLabel MachinesAmount = new JLabel(Integer.toString(currPlayer.getShip().getCurrentGoods().getMachines()));
 		
 		JLabel machinesBuyPrice = new JLabel(".");
 		
@@ -449,7 +484,7 @@ public class Trade extends JPanel{
 		JLabel label_31 = new JLabel("Sell Price:");
 		
 				
-		JLabel narcoticesAmount = new JLabel(".");
+		JLabel narcoticesAmount = new JLabel(Integer.toString(currPlayer.getShip().getCurrentGoods().getNarcotics()));
 		
 		JLabel narcoticesBuyPrice = new JLabel(".");
 		
@@ -506,7 +541,7 @@ public class Trade extends JPanel{
 		
 		//robotsSell = new JButton("Sell");
 		
-		JLabel robotsAmount = new JLabel(".");
+		JLabel robotsAmount = new JLabel(Integer.toString(currPlayer.getShip().getCurrentGoods().getRobots()));
 		
 		JLabel robotsBuyPrice = new JLabel(".");
 		
@@ -644,7 +679,7 @@ public class Trade extends JPanel{
 		});
 		
 		
-		JLabel waterAmount = new JLabel(".");
+		JLabel waterAmount = new JLabel(Integer.toString(currPlayer.getShip().getCurrentGoods().getWater()));
 		
 		JLabel waterBuyPrice = new JLabel(".");
 		

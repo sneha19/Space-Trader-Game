@@ -10,7 +10,6 @@ public class Ship {
 	private int cost;
 	private String name;
 	private ShipType st;
-	
 	private Goods currentGoods;
 	
 	
@@ -25,6 +24,7 @@ public class Ship {
 		cargoCapacity=st.getCarco();
 		cost=st.getCost();
 		fuelCapacity=st.getFuel();
+		currentGoods = new Goods();
 	}
 	/**
 	 * Setter, set the hull strength
