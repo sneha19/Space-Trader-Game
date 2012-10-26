@@ -25,11 +25,8 @@ public class Ship {
 		cargoCapacity=st.getCarco();
 		cost=st.getCost();
 		fuelCapacity=st.getFuel();
-<<<<<<< .mine
 		cargoNumber =0;
-=======
 		currentGoods = new Goods();
->>>>>>> .r93
 	}
 	/**
 	 * Setter, set the hull strength
@@ -152,7 +149,7 @@ public class Ship {
 			cargoNumber+=1;
 			break;
 		case 8:
-			currentGoods.setNatcotics(1);
+			currentGoods.setNarcotics(1);
 			cargoNumber+=1;
 			break;
 		case 9:
@@ -177,102 +174,88 @@ public class Ship {
 				currentGoods.setWater(-1);
 				cargoNumber-=1;
 				flag = 0;
+				return currentGoods.getWater();
 			}
 			else
-				flag = 1;
-			break;
+				return currentGoods.getWater();
 		case 1:
 			if(currentGoods.getFurs() > 0){
 				currentGoods.setFurs(-1);
 				cargoNumber-=1;
 				flag = 0;
+				return currentGoods.getFurs();
 			}
 			else
-				flag = 1;
-			
-			break;
+			return currentGoods.getFurs();
 		case 2:
 			if(currentGoods.getFood() > 0){
 				currentGoods.setFood(-1);
 				cargoNumber-=1;
-				flag = 0;
+				return currentGoods.getFood();
 			}
 			else
-				flag = 1;
-			
-			break;
+				return currentGoods.getFood();
 		case 3:
 			if(currentGoods.getOre() > 0){
 				currentGoods.setOre(-1);
 				cargoNumber-=1;
-				flag = 0;
+				return currentGoods.getOre();
 			}
 			else
-				flag = 1;
-			
-			break;
+				return currentGoods.getOre();
 		case 4:
 			if(currentGoods.getGames() > 0){
 				currentGoods.setGames(-1);
 				cargoNumber-=1;
-				flag = 0;
+				return currentGoods.getGames();
 			}
 			else
-				flag = 1;
-			
-			break;
+				return currentGoods.getGames();
 		case 5:
-			if(currentGoods.getFireamrs() > 0){
+			if(currentGoods.getFirearms() > 0){
 				currentGoods.setFirearms(-1);
 				cargoNumber-=1;
-				flag = 0;
+				return currentGoods.getFirearms();
 			}
 			else
-				flag = 1;
-			
-			break;
+				return currentGoods.getFirearms();
 		case 6:
 			if(currentGoods.getMedicines() > 0){
 				currentGoods.setMedicines(-1);
 				cargoNumber-=1;
-				flag = 0;
+				return currentGoods.getMedicines();
 			}
 			else
-				flag = 1;
-			
-			break;
+				return currentGoods.getMedicines();
 		case 7:
 			if(currentGoods.getMachines() > 0){
 				currentGoods.setMachines(-1);
 				cargoNumber-=1;
-				flag = 0;
+				return currentGoods.getMachines();
 			}
 			else
-				flag = 1;
+				return currentGoods.getMachines();
 			
-			break;
 		case 8:
-			if(currentGoods.getNatcotics() > 0){
-				currentGoods.setNatcotics(-1);
+			if(currentGoods.getNarcotics() > 0){
+				currentGoods.setNarcotics(-1);
 				cargoNumber-=1;
-				flag = 0;
+				return currentGoods.getNarcotics();
 			}
 			else
-				flag = 1;
-			
-			break;
+				return currentGoods.getNarcotics();
+
 		case 9:
 			if(currentGoods.getRobots() > 0){
 				currentGoods.setRobots(-1);
 				cargoNumber-=1;
-				flag = 0;
+				return currentGoods.getRobots();
 			}
 			else
-				flag = 1;
-			
-			break;
+				return currentGoods.getRobots();
+
 		}
-	 return flag;
+			return -10000;
 	  }
 	}
 	

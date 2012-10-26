@@ -38,6 +38,7 @@ public class Trade extends JPanel{
 	JButton narcoticesSell;
 	JButton robotsBuy;
 	JButton robotsSell;
+	JLabel lblFurs;
 //	
 //	int waterBasePrice = 30;
 //	int fursBasePrice = 250;
@@ -102,7 +103,7 @@ public class Trade extends JPanel{
 		JLabel lblNewLabel = new JLabel("Amount");
 		
 		
-		JLabel lblFurs = new JLabel("Furs");
+		lblFurs = new JLabel("Furs");
 		
 		JLabel label_2 = new JLabel("Buy Price:");
 		
@@ -749,14 +750,14 @@ public class Trade extends JPanel{
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(lblSellPrice)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(lblWsp)
-					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(lblWsp, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
+					.addGap(110)
 					.addComponent(waterBuy)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(waterSell)
 					.addGap(30)
 					.addComponent(waterAmount)
-					.addContainerGap(34, Short.MAX_VALUE))
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		gl_WaterPanel.setVerticalGroup(
 			gl_WaterPanel.createParallelGroup(Alignment.LEADING)
@@ -777,8 +778,8 @@ public class Trade extends JPanel{
 		setLayout(groupLayout);
 		//chucnk
 		
-		int[] allBuy = new int[10];
-		int[] allSell= new int[10];
+		allBuy = new int[10];
+		allSell= new int[10];
 		allBuy[0]=waterBuyPrice;
 		allBuy[1]=fursBuyPrice;
 		allBuy[2]=foodBuyPrice;
@@ -1027,7 +1028,7 @@ if(level>2){
 				index =7;
 			}else if(btnName.equals("narcoticesSell")){
 				index =8;
-			}else if(btnName.equals("robotesSell")){
+			}else if(btnName.equals("robotsSell")){
 				index =9;
 			}
 			if(notZeroGood(index)){
