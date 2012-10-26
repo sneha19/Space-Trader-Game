@@ -113,50 +113,50 @@ public class Ship {
 		this.currentGoods = currentGoods;
 	}
 	
-	public int increase(Goods good,int index){
+	public int increase(int index){
 		if(cargoNumber >= cargoCapacity){
 			return 1;
 		}
 		else{
 			switch(index){
 		case 0:
-			good.setWater(1);
+			currentGoods.setWater(1);
 			cargoNumber+=1;
 			break;
 		case 1:
-			good.setFurs(1);
+			currentGoods.setFurs(1);
 			cargoNumber+=1;
 			break;
 		case 2:
-			good.setFood(1);
+			currentGoods.setFood(1);
 			cargoNumber+=1;
 			break;
 		case 3:
-			good.setOre(1);
+			currentGoods.setOre(1);
 			cargoNumber+=1;
 			break;
 		case 4:
-			good.setGames(1);
+			currentGoods.setGames(1);
 			cargoNumber+=1;
 			break;
 		case 5:
-			good.setFirearms(1);
+			currentGoods.setFirearms(1);
 			cargoNumber+=1;
 			break;
 		case 6:
-			good.setMedicines(1);
+			currentGoods.setMedicines(1);
 			cargoNumber+=1;
 			break;
 		case 7:
-			good.setMachines(1);
+			currentGoods.setMachines(1);
 			cargoNumber+=1;
 			break;
 		case 8:
-			good.setNatcotics(1);
+			currentGoods.setNatcotics(1);
 			cargoNumber+=1;
 			break;
 		case 9:
-			good.setRobots(1);
+			currentGoods.setRobots(1);
 			cargoNumber+=1;
 			break;
 		}
@@ -164,54 +164,115 @@ public class Ship {
 	  }
 	}
 	
-	public int decrease(Goods good,int index){
+	public int decrease(int index){
+		int flag = 0;
 		if(cargoNumber < 0){
-			return 1;
+			flag = 1;
+			return flag;
 		}
 		else{
 			switch(index){
 		case 0:
-			good.setWater(-1);
-			cargoNumber-=1;
+			if(currentGoods.getWater() > 0){
+				currentGoods.setWater(-1);
+				cargoNumber-=1;
+				flag = 0;
+			}
+			else
+				flag = 1;
 			break;
 		case 1:
-			good.setFurs(-1);
-			cargoNumber-=1;
+			if(currentGoods.getFurs() > 0){
+				currentGoods.setFurs(-1);
+				cargoNumber-=1;
+				flag = 0;
+			}
+			else
+				flag = 1;
+			
 			break;
 		case 2:
-			good.setFood(-1);
-			cargoNumber-=1;
+			if(currentGoods.getFood() > 0){
+				currentGoods.setFood(-1);
+				cargoNumber-=1;
+				flag = 0;
+			}
+			else
+				flag = 1;
+			
 			break;
 		case 3:
-			good.setOre(-1);
-			cargoNumber-=1;
+			if(currentGoods.getOre() > 0){
+				currentGoods.setOre(-1);
+				cargoNumber-=1;
+				flag = 0;
+			}
+			else
+				flag = 1;
+			
 			break;
 		case 4:
-			good.setGames(-1);
-			cargoNumber-=1;
+			if(currentGoods.getGames() > 0){
+				currentGoods.setGames(-1);
+				cargoNumber-=1;
+				flag = 0;
+			}
+			else
+				flag = 1;
+			
 			break;
 		case 5:
-			good.setFirearms(-1);
-			cargoNumber-=1;
+			if(currentGoods.getFireamrs() > 0){
+				currentGoods.setFirearms(-1);
+				cargoNumber-=1;
+				flag = 0;
+			}
+			else
+				flag = 1;
+			
 			break;
 		case 6:
-			good.setMedicines(-1);
-			cargoNumber-=1;
+			if(currentGoods.getMedicines() > 0){
+				currentGoods.setMedicines(-1);
+				cargoNumber-=1;
+				flag = 0;
+			}
+			else
+				flag = 1;
+			
 			break;
 		case 7:
-			good.setMachines(-1);
-			cargoNumber-=1;
+			if(currentGoods.getMachines() > 0){
+				currentGoods.setMachines(-1);
+				cargoNumber-=1;
+				flag = 0;
+			}
+			else
+				flag = 1;
+			
 			break;
 		case 8:
-			good.setNatcotics(-1);
-			cargoNumber-=1;
+			if(currentGoods.getNatcotics() > 0){
+				currentGoods.setNatcotics(-1);
+				cargoNumber-=1;
+				flag = 0;
+			}
+			else
+				flag = 1;
+			
 			break;
 		case 9:
-			good.setRobots(-1);
-			cargoNumber-=1;
+			if(currentGoods.getRobots() > 0){
+				currentGoods.setRobots(-1);
+				cargoNumber-=1;
+				flag = 0;
+			}
+			else
+				flag = 1;
+			
 			break;
 		}
-	 return 0;
+	 return flag;
 	  }
 	}
 	
