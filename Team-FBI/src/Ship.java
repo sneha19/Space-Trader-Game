@@ -8,6 +8,7 @@ public class Ship {
 	private int cargoCapacity;
 	private int fuelCapacity;
 	private int cost;
+	private int cargoNumber;
 	private String name;
 	private ShipType st;
 	private Goods currentGoods;
@@ -24,7 +25,11 @@ public class Ship {
 		cargoCapacity=st.getCarco();
 		cost=st.getCost();
 		fuelCapacity=st.getFuel();
+<<<<<<< .mine
+		cargoNumber =0;
+=======
 		currentGoods = new Goods();
+>>>>>>> .r93
 	}
 	/**
 	 * Setter, set the hull strength
@@ -103,8 +108,111 @@ public class Ship {
 	public Goods getCurrentGoods() {
 		return currentGoods;
 	}
-	public void setCurrentGoods(Goods currentGoods) {
+	public void setCurrentGoods(Goods currentGoods) 
+	{
 		this.currentGoods = currentGoods;
+	}
+	
+	public int increase(Goods good,int index){
+		if(cargoNumber >= cargoCapacity){
+			return 1;
+		}
+		else{
+			switch(index){
+		case 0:
+			good.setWater(1);
+			cargoNumber+=1;
+			break;
+		case 1:
+			good.setFurs(1);
+			cargoNumber+=1;
+			break;
+		case 2:
+			good.setFood(1);
+			cargoNumber+=1;
+			break;
+		case 3:
+			good.setOre(1);
+			cargoNumber+=1;
+			break;
+		case 4:
+			good.setGames(1);
+			cargoNumber+=1;
+			break;
+		case 5:
+			good.setFirearms(1);
+			cargoNumber+=1;
+			break;
+		case 6:
+			good.setMedicines(1);
+			cargoNumber+=1;
+			break;
+		case 7:
+			good.setMachines(1);
+			cargoNumber+=1;
+			break;
+		case 8:
+			good.setNatcotics(1);
+			cargoNumber+=1;
+			break;
+		case 9:
+			good.setRobots(1);
+			cargoNumber+=1;
+			break;
+		}
+	 return 0;
+	  }
+	}
+	
+	public int decrease(Goods good,int index){
+		if(cargoNumber < 0){
+			return 1;
+		}
+		else{
+			switch(index){
+		case 0:
+			good.setWater(-1);
+			cargoNumber-=1;
+			break;
+		case 1:
+			good.setFurs(-1);
+			cargoNumber-=1;
+			break;
+		case 2:
+			good.setFood(-1);
+			cargoNumber-=1;
+			break;
+		case 3:
+			good.setOre(-1);
+			cargoNumber-=1;
+			break;
+		case 4:
+			good.setGames(-1);
+			cargoNumber-=1;
+			break;
+		case 5:
+			good.setFirearms(-1);
+			cargoNumber-=1;
+			break;
+		case 6:
+			good.setMedicines(-1);
+			cargoNumber-=1;
+			break;
+		case 7:
+			good.setMachines(-1);
+			cargoNumber-=1;
+			break;
+		case 8:
+			good.setNatcotics(-1);
+			cargoNumber-=1;
+			break;
+		case 9:
+			good.setRobots(-1);
+			cargoNumber-=1;
+			break;
+		}
+	 return 0;
+	  }
 	}
 	
 	/*
