@@ -1,7 +1,19 @@
 import java.util.Vector;
 
 public class Goods {
-	private int water;
+	public Goods()
+	{
+		 water =0;
+		furs = 0;
+		food = 0;
+		ore = 0;
+		games = 0;
+		firearms = 0;
+		medicines = 0;
+		machines = 0;
+		narcotics = 0;
+		robots = 0;
+	}
 	public int getWater() {
 		return water;
 	}
@@ -50,11 +62,11 @@ public class Goods {
 	public void setMachines(int machines) {
 		this.machines += machines;
 	}
-	public int getNatcotics() {
-		return natcotics;
+	public int getNarcotics() {
+		return narcotics;
 	}
-	public void setNatcotics(int natcotics) {
-		this.natcotics += natcotics;
+	public void setNarcotics(int natcotics) {
+		this.narcotics += natcotics;
 	}
 	public int getRobots() {
 		return robots;
@@ -62,14 +74,14 @@ public class Goods {
 	public void setRobots(int robots) {
 		this.robots = robots;
 	}
-	private int furs = 0;
-	private int food = 0;
-	private int ore = 0;
-	private int games = 0;
-	private int firearms = 0;
-	private int medicines = 0;
-	private int machines = 0;
-	private int natcotics = 0;
-	private int robots = 0;
-	public Vector<Trade> _unnamed_Trade_ = new Vector<Trade>();
+	private int water;
+	private int furs;
+	private int food;
+	private int ore;
+	private int games;
+	private int firearms;
+	private int medicines;
+	private int machines;
+	private int narcotics;
+	private int robots;
 }
