@@ -53,15 +53,13 @@ public void setLocation(Point location)
 {	
 this.location = location;
 }
-public void emptyDraw(Graphics g, Point p)
-{
-	g.setColor(color.gray);
-	g.drawRect(location.x, location.y,15,15	);
-}
+
 public void draw(Graphics g,Point p){
 g.setColor(color);
-g.drawRect(location.x, location.y,15,15);
-g.fillOval(location.x, location.y,15,15);
+g.fillOval(15*location.x, 15*location.y,15,15);
+g.setColor(Color.gray);
+g.drawRect(15*location.x, 15*location.y, 15, 15);
+
 }
 
 public void setZone(Zone z){
