@@ -17,7 +17,7 @@ public class Start extends JPanel {
 	private String playerName;
 	private int difficulty;
 	private JButton btnStart;
-	
+	private boolean isDiffed;
 	public Start() {
 		
 		JLabel lblYoungSailorStart = new JLabel("Young sailor, start your journey here!");
@@ -36,7 +36,7 @@ public class Start extends JPanel {
 		JButton btnImpossib = new JButton("Impossible");
 		btnImpossib.addActionListener(new DiffListener());
 		btnStart = new JButton("START");
-		
+		isDiffed = false;
 		//Chunk of groupLayout codes
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
@@ -118,7 +118,9 @@ public class Start extends JPanel {
 	public String getName(){
 		return textField.getText();
 	}
-	   
+	public boolean isDiffed(){
+		return isDiffed;
+	}
 	private class DiffListener implements ActionListener{
 		   private String diffString;
 		   public void actionPerformed(ActionEvent e){
@@ -127,14 +129,19 @@ public class Start extends JPanel {
 			   
 			   if(diffString.equals("Beginner")){
 				   difficulty =1;
+				   isDiffed = true;
 			   }else if(diffString.equals("Easy")){
 				   difficulty=2;
+				   isDiffed=true;
 			   }else if(diffString.equals("Normal")){
 				   difficulty=3;
+				   isDiffed=true;
 			   }else if(diffString.equals("Hard")){
 				   difficulty=4;
+				   isDiffed=true;
 			   }else if(diffString.equals("Impossible")){
 				   difficulty=5;
+				   isDiffed=true;
 			   }
 		   }
 	   }

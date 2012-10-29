@@ -137,6 +137,7 @@ public class Ship {
 	public Goods getCurrentGoods() {
 		return currentGoods;
 	}
+	
 	public void setCurrentGoods(Goods currentGoods) 
 	{
 		this.currentGoods = currentGoods;
@@ -208,9 +209,10 @@ public class Ship {
 				flag = 0;
 				return currentGoods.getWater();
 			}
-			else
+			else{
 				return currentGoods.getWater();
-		case 1:
+			}
+			case 1:
 			if(currentGoods.getFurs() > 0){
 				currentGoods.setFurs(-1);
 				cargoNumber-=1;

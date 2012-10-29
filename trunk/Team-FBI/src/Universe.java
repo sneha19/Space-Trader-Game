@@ -10,7 +10,10 @@ import java.util.ArrayList;
 import java.util.Random;
 
 
+
 public class Universe {
+	//public static final Universe universe = new Universe();
+
 	private String[] planetNames;
 	private Planet[] planet;
 	private Random rand;
@@ -109,7 +112,7 @@ public class Universe {
 //		}
 //		i++;
 //	}
-	
+//	System.out.println("d");
 	}
 	
 	
