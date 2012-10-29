@@ -20,13 +20,6 @@ public class Universe {
 	private ArrayList<Point> positionList;
 	private Planet[][] tempPlanets = new Planet[25][20];
 	static Player currPlayer;
-	public static void main(String[] args)
-	{
-		Universe univ = new Universe(currPlayer);
-		System.out.println("GHGHG");
-	}
-	
-	
 	public Universe(Player p){
 		currPlayer = p;
 		try {
@@ -75,6 +68,25 @@ public class Universe {
 	m--;
 	}
 	
+	
+	
+	for(int i = 0; i < planet.length; i++)
+	{
+		if(planet[i] != null){
+		Planet pl = planet[i];
+		
+		if(pl.getLocation().x>=0 && pl.getLocation().x <= 7 && pl.getLocation().y>=0 && pl.getLocation().y <= 10)
+			pl.setZone(new Zone(1));
+		if(pl.getLocation().x > 7 && pl.getLocation().x <= 13 && pl.getLocation().y>=0 && pl.getLocation().y <= 10)
+			pl.setZone(new Zone(2));
+		if(pl.getLocation().x > 13 && pl.getLocation().x <= 24 && pl.getLocation().y>=0 && pl.getLocation().y <= 10)
+			pl.setZone(new Zone(3));
+		if(pl.getLocation().x >= 0 && pl.getLocation().x <= 11 && pl.getLocation().y>10 && pl.getLocation().y <= 19)
+			pl.setZone(new Zone(4));
+		if(pl.getLocation().x > 11 && pl.getLocation().x <= 24 && pl.getLocation().y>10 && pl.getLocation().y <= 19)
+			pl.setZone(new Zone(5));
+		}
+	}
 	
 	//assign zone
 //	for(int i=0;i<122;i++){
