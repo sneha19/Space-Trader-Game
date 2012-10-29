@@ -215,7 +215,7 @@ public class MapPanel extends JPanel {
 	                }
 
 	            }
-	            if(currPlayer.getShip().getCurrentFuel() == 0)
+	            if(currPlayer.getShip().getCurrentFuel() < currPlayer.getShip().getFuelPerMove())
 	            {
 	            	JOptionPane.showMessageDialog(new JFrame(), "Game OVER!");
 
