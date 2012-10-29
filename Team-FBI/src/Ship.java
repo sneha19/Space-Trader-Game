@@ -92,8 +92,12 @@ public class Ship {
 	}
 	public double getCurrentFuel()
 	{
+		return decimalFormat(currentFuel);
+	}
+	public double decimalFormat(double longDouble)
+	{
         DecimalFormat df = new DecimalFormat("#.##");
-		return Double.valueOf(df.format(currentFuel));
+        return Double.valueOf(df.format(longDouble));
 	}
 	/**
 	 * Getter, get the fuel capacity 
