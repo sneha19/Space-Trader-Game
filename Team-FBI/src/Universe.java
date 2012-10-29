@@ -148,10 +148,10 @@ public class Universe {
     				tempPlanets[i][j].draw(g, null);
     			else{
     				g.setColor(Color.gray);
-    				g.drawRect(15*i, 15*j, 15, 15);
+    				g.drawRect(30*i, 30*j, 30, 30);
     			}
     		}
-    	g.drawImage(currPlayer.getShip().getPic(), 15*currPlayer.getPosition().x, 15*currPlayer.getPosition().y, null);
+    	g.drawImage(currPlayer.getShip().getPic(), 30*currPlayer.getPosition().x, 30*currPlayer.getPosition().y, null);
     //	g.fillOval(15*currPlayer.getPosition().x, 15*currPlayer.getPosition().y, 15, 15);
 //    
 //    	for (Planet p : planet) {
