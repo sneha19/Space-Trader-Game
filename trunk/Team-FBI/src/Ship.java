@@ -29,7 +29,7 @@ public class Ship {
 	 */
 	public Ship(ShipType st){
 		try {
-		    shipImage = ImageIO.read(new File("initialship.jpg"));
+		    shipImage = ImageIO.read(new File("img/shiptest.png"));
 		} catch (IOException e) {
 		}
 		this.st=st;

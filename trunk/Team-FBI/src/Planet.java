@@ -66,7 +66,10 @@ g.setColor(Color.gray);
 g.drawRect(30*location.x, 30*location.y, 30, 30);
 
 }
-
+public Zone getZone()
+{
+	return zone;
+}
 public void setZone(Zone z){
 	zone=z;
 }

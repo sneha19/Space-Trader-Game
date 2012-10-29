@@ -647,6 +647,18 @@ public class Trade extends JPanel{
 		
 		totalAmountOfGoods = new JLabel(currShip.getCargoCapacity()+"");
 		
+		JLabel lblPlanetName = new JLabel("Planet Name:");
+		
+		JLabel lblPlanetName_1 = new JLabel(planet.getPlanetName());
+		
+		JLabel lblTechLevel = new JLabel("Tech level:");
+		
+		JLabel lblNewLabel_2 = new JLabel(planet.getTechLevel() + "");
+		
+		JLabel lblZone = new JLabel("Zone:");
+		
+		JLabel lblNewLabel_1 = new JLabel(planet.getZone().getZone() +"");
+		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -654,11 +666,11 @@ public class Trade extends JPanel{
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addContainerGap()
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(WaterPanel, GroupLayout.DEFAULT_SIZE, 581, Short.MAX_VALUE)
-								.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+								.addComponent(WaterPanel, GroupLayout.DEFAULT_SIZE, 608, Short.MAX_VALUE)
+								.addGroup(groupLayout.createSequentialGroup()
 									.addComponent(lblTrade)
-									.addPreferredGap(ComponentPlacement.RELATED, 319, Short.MAX_VALUE)
+									.addPreferredGap(ComponentPlacement.RELATED, 346, Short.MAX_VALUE)
 									.addComponent(lblNewLabel)
 									.addGap(28)
 									.addComponent(currentAmountOfGoods, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)
@@ -667,21 +679,36 @@ public class Trade extends JPanel{
 									.addPreferredGap(ComponentPlacement.UNRELATED)
 									.addComponent(totalAmountOfGoods, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)
 									.addGap(109))
-								.addComponent(FursPanel, GroupLayout.DEFAULT_SIZE, 581, Short.MAX_VALUE)
-								.addComponent(FoodPanel, GroupLayout.DEFAULT_SIZE, 581, Short.MAX_VALUE)
-								.addComponent(OrePanel, GroupLayout.DEFAULT_SIZE, 581, Short.MAX_VALUE)
-								.addComponent(GamesPanel, GroupLayout.DEFAULT_SIZE, 581, Short.MAX_VALUE)
-								.addComponent(FirearmsPanel, GroupLayout.DEFAULT_SIZE, 581, Short.MAX_VALUE)
-								.addComponent(MedicinePanel, GroupLayout.DEFAULT_SIZE, 581, Short.MAX_VALUE)
-								.addComponent(MachinesPanel, GroupLayout.PREFERRED_SIZE, 581, Short.MAX_VALUE)))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(172)
-							.addComponent(btnFinished))
+								.addComponent(FursPanel, GroupLayout.DEFAULT_SIZE, 608, Short.MAX_VALUE)
+								.addComponent(FoodPanel, GroupLayout.DEFAULT_SIZE, 608, Short.MAX_VALUE)
+								.addComponent(OrePanel, GroupLayout.DEFAULT_SIZE, 608, Short.MAX_VALUE)
+								.addComponent(GamesPanel, GroupLayout.DEFAULT_SIZE, 608, Short.MAX_VALUE)
+								.addComponent(FirearmsPanel, GroupLayout.DEFAULT_SIZE, 608, Short.MAX_VALUE)
+								.addComponent(MedicinePanel, GroupLayout.DEFAULT_SIZE, 608, Short.MAX_VALUE)
+								.addComponent(MachinesPanel, GroupLayout.PREFERRED_SIZE, 608, Short.MAX_VALUE)))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addContainerGap()
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(RobotsPanel, GroupLayout.DEFAULT_SIZE, 581, Short.MAX_VALUE)
-								.addComponent(NarcoticesPanel, GroupLayout.DEFAULT_SIZE, 581, Short.MAX_VALUE))))
+								.addComponent(RobotsPanel, GroupLayout.DEFAULT_SIZE, 608, Short.MAX_VALUE)
+								.addComponent(NarcoticesPanel, GroupLayout.DEFAULT_SIZE, 608, Short.MAX_VALUE)))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addContainerGap()
+									.addComponent(lblPlanetName)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(lblPlanetName_1)
+									.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+									.addComponent(lblTechLevel))
+								.addGroup(groupLayout.createSequentialGroup()
+									.addGap(172)
+									.addComponent(btnFinished)))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(lblNewLabel_2)
+							.addGap(36)
+							.addComponent(lblZone)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(lblNewLabel_1)))
 					.addContainerGap())
 		);
 		groupLayout.setVerticalGroup(
@@ -713,7 +740,15 @@ public class Trade extends JPanel{
 					.addComponent(NarcoticesPanel, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(RobotsPanel, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblPlanetName)
+						.addComponent(lblPlanetName_1)
+						.addComponent(lblTechLevel)
+						.addComponent(lblNewLabel_2)
+						.addComponent(lblZone)
+						.addComponent(lblNewLabel_1))
+					.addGap(20)
 					.addComponent(btnFinished)
 					.addContainerGap())
 		);
@@ -945,7 +980,7 @@ if(level>2){
 	}
 	
 	public boolean checkMoney(int index){
-		if(currPlayer.getCash()>=allBuy[index]){
+		if(currPlayer.getCash()>=allBuy[index]&&currShip.getCurrentGoods().getTotal()<currShip.getCargoCapacity()){
 			return true;
 		}else{
 			return false;
@@ -1184,74 +1219,6 @@ if(level>2){
 		btnFinished.addActionListener(a);
 		return true;
 	}
-	/*
-	private class BuyListener implements ActionListener{
-		public void actionPerformed(ActionEvent e){
-			int index=-1;
-			JButton btnName = (JButton)e.getSource();
-			if(btnName.equals(waterSell)){
-				index =0;
-			}else if(e.getSource()==fursSell){
-				index =1;
-			}else if(e.getSource()==foodSell){
-				index =2;
-			}else if(e.getSource()==oreSell){
-				index =3;
-			}else if(e.getSource()==gamesSell){
-				index =4;
-			}else if(e.getSource()==firearmsSell){
-				index =5;
-			}else if(e.getSource()==medicineSell){
-				index =6;
-			}else if(e.getSource()==machinesSell){
-				index =7;
-			}else if(e.getSource()==narcoticesSell){
-				index =8;
-			}else if(e.getSource()==robotsSell){
-				index =9;
-			}
-			if(checkMoney(index)){
-				buy(index);
-			}
-			update();
-			
-			
-		}
-	}
-	
-	private class SellListener implements ActionListener{
-		public void actionPerformed(ActionEvent e){
-			int index =-1;
-			if(e.getSource()==waterSell){
-				index =0;
-			}else if(e.getSource()==fursSell){
-				index =1;
-			}else if(e.getSource()==foodSell){
-				index =2;
-			}else if(e.getSource()==oreSell){
-				index =3;
-			}else if(e.getSource()==gamesSell){
-				index =4;
-			}else if(e.getSource()==firearmsSell){
-				index =5;
-			}else if(e.getSource()==medicineSell){
-				index =6;
-			}else if(e.getSource()==machinesSell){
-				index =7;
-			}else if(e.getSource()==narcoticesSell){
-				index =8;
-			}else if(e.getSource()==robotsSell){
-				index =9;
-			}
-			if(notZeroGood(index)){
-			sell(index);
-			}
-			update();
-			
-		}
-	}
-	*/
-	
 }
 
 
