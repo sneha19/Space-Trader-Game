@@ -24,9 +24,13 @@ public class MapPanel extends JPanel {
 	 private int yValue;
 	 private Color color;
 	 public Planet[][] planetGrid = new Planet[WIDTH][HEIGHT];
-	 static Player currPlayer = new Player("h");
-	 static Universe universe = new Universe(currPlayer);
+	 //static Player currPlayer = new Player("h");
+	 //static Universe universe = new Universe(currPlayer);
 	 private double fuelPerMove;
+	 
+	 private Player currPlayer;
+	 private Universe universe;
+	 
 	 JLabel lblFuelRemaining1;
 		
 		JLabel lblFuelRemaining;
@@ -41,7 +45,7 @@ public class MapPanel extends JPanel {
 	 * Create the panel.
 	 */
 	public MapPanel(Universe univ, Player p) {
-		this.universe = univ;
+		universe = univ;
 		currPlayer = p;
 		planetGrid = univ.getPlanetWithLocation();
 		int i = 0;
@@ -94,8 +98,9 @@ public class MapPanel extends JPanel {
 		setLayout(groupLayout);
 		setVisible( true );
 		//this.addKeyListener(new KeyController());
-		 KeyController kc = new KeyController();
-		 this.addKeyListener(kc);
+		 
+		//KeyController kc = new KeyController();
+		 //this.addKeyListener(kc);
 		 this.requestFocusInWindow();
 		repaint();
 		
@@ -125,18 +130,23 @@ public class MapPanel extends JPanel {
 		 super.paintComponent(g);
 		 draw(g);
 	 }
+	
+	/* 
 	 public static void main(String[] args)
-	 {
+	 {	
+		 Player currPlayer = new Player("a");
+		 Universe universe = new Universe(currPlayer);
 		 MapPanel mp = new MapPanel(universe, currPlayer);
 		 JFrame f = new JFrame();
 		 f.getContentPane().add(mp);
 		 f.setSize(new Dimension(450,450));
 		 f.setVisible(true);
 		 f.setFocusable(true);
-		 mp.requestFocusInWindow();
-		
-		
-	 }
+		 mp.requestFocusInWindow();	
+	 }*/
+	 
+	 
+	 
 	 public Boolean checkIfPlanetIsPresent(Point currLocation)
 	 {
 		 if(currLocation.x < WIDTH && currLocation.x >=0 && currLocation.y < HEIGHT && currLocation.y >=0){
@@ -151,6 +161,8 @@ public class MapPanel extends JPanel {
 			 return true;
 		 else return false;
 	 }
+	 
+	 /*
 	 private class KeyController implements KeyListener {
 		 public KeyController()
 		 {
@@ -231,4 +243,13 @@ public class MapPanel extends JPanel {
 				System.out.println("typeeeddd");
 			}
 	    }
+	    */
+	public double getfuelPerMove(){
+		 return fuelPerMove;
+	 }
+	
+	public boolean setKeyListener(KeyListener k){
+		this.addKeyListener(k);
+		return true;
+	}
 }
