@@ -1,3 +1,10 @@
+import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
+import java.text.DecimalFormat;
+
+import javax.imageio.ImageIO;
+
 /**
  * This is a ship class that holds the critical information of a ship
  * 
@@ -12,15 +19,23 @@ public class Ship {
 	private String name;
 	private ShipType st;
 	private Goods currentGoods;
-	
+	private Image shipImage;
+	private double currentFuel;
+	private double fuelPerMove;
 	
 	/**
 	 * A constructor that takes a shiptype
 	 * @param st Ship type that specify which ship to create
 	 */
 	public Ship(ShipType st){
+		try {
+		    shipImage = ImageIO.read(new File("initialship.jpg"));
+		} catch (IOException e) {
+		}
 		this.st=st;
 		name=st.getName();
+		fuelPerMove = 1.4;
+		currentFuel = st.getFuel();
 		hull=st.getHull();
 		cargoCapacity=st.getCarco();
 		cost=st.getCost();
@@ -49,6 +64,14 @@ public class Ship {
 	public void setCargoCapacity(int cargo){
 		cargoCapacity = cargo;
 	}
+	public void setFuelPerMove(double fpm)
+	{
+		fuelPerMove = fpm;
+	}
+	public double getFuelPerMove()
+	{
+		return fuelPerMove;
+	}
 	/**
 	 * Getter, get the cargo capacity
 	 * @return cargoCapacity
@@ -62,6 +85,15 @@ public class Ship {
 	 */
 	public void setFuelCapacity(int fuel){
 		fuelCapacity = fuel;
+	}
+	public void setCurrentFuel(double decrease)
+	{
+		currentFuel -= decrease;
+	}
+	public double getCurrentFuel()
+	{
+        DecimalFormat df = new DecimalFormat("#.##");
+		return Double.valueOf(df.format(currentFuel));
 	}
 	/**
 	 * Getter, get the fuel capacity 
@@ -257,6 +289,17 @@ public class Ship {
 		}
 			return -10000;
 	  }
+	}
+	public void setPicture(String i)
+	{
+		try {
+		    shipImage = ImageIO.read(new File("i"));
+		} catch (IOException e) {
+		}
+	}
+	public Image getPic()
+	{
+		return shipImage;
 	}
 	
 	/*

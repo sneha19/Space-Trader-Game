@@ -8,6 +8,12 @@ import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 
 public class MapPanel extends JPanel {
@@ -20,6 +26,16 @@ public class MapPanel extends JPanel {
 	 public Planet[][] planetGrid = new Planet[WIDTH][HEIGHT];
 	 static Player currPlayer = new Player("h");
 	 static Universe universe = new Universe(currPlayer);
+	 private double fuelPerMove;
+	 JLabel lblFuelRemaining1;
+		
+		JLabel lblFuelRemaining;
+		
+		JLabel lblFuelperMove;
+		
+		JLabel lblFuelPerMove;
+		private JLabel lblLocation;
+		private JLabel lblCurrLocation;
 
 	 /**
 	 * Create the panel.
@@ -27,27 +43,72 @@ public class MapPanel extends JPanel {
 	public MapPanel(Universe univ, Player p) {
 		this.universe = univ;
 		currPlayer = p;
+		planetGrid = univ.getPlanetWithLocation();
 		int i = 0;
-		
-//		for(Planet p: universe.getPlanet())
-//		{
-//			if(p != null)
-//			{
-//				int xCord = universe.getPlanet()[i].getLocation().x;
-//				int yCord = universe.getPlanet()[i].getLocation().y;
-//				//planetGrid[xCord][yCord] = p;
-//				System.out.println("name: " + p.getPlanetName() + " x: " + p.getLocation().x + " y: " + p.getLocation().y);
-//			}
-//			i++;
-//		}
-		
 		this.setSize(new Dimension(450,450));
+		fuelPerMove = currPlayer.getShip().getFuelPerMove();
+		lblFuelRemaining1 = new JLabel("Fuel remaining:");
+		
+		lblFuelRemaining = new JLabel("New label");
+		
+		lblFuelperMove = new JLabel("Fuel/per move:");
+		
+		lblFuelPerMove = new JLabel("New label");
+		
+		lblLocation = new JLabel("Location:");
+		
+		lblCurrLocation = new JLabel("[" +currPlayer.getPosition().x + " , " + currPlayer.getPosition().y + "]");
+		GroupLayout groupLayout = new GroupLayout(this);
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(14)
+					.addComponent(lblFuelRemaining1)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(lblFuelRemaining)
+					.addGap(30)
+					.addComponent(lblFuelperMove)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(lblFuelPerMove)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(lblLocation)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(lblCurrLocation)
+					.addContainerGap(25, Short.MAX_VALUE))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap(428, Short.MAX_VALUE)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblFuelRemaining1)
+						.addComponent(lblFuelRemaining)
+						.addComponent(lblFuelperMove)
+						.addComponent(lblFuelPerMove)
+						.addComponent(lblLocation)
+						.addComponent(lblCurrLocation))
+					.addContainerGap())
+		);
+		lblFuelRemaining.setText(Double.toString(currPlayer.getShip().getCurrentFuel()));
+		lblFuelPerMove.setText(Double.toString(currPlayer.getShip().getFuelPerMove()));
+		setLayout(groupLayout);
 		setVisible( true );
-//this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		//this.addKeyListener(new KeyController());
+		 KeyController kc = new KeyController();
+		 this.addKeyListener(kc);
+		 this.requestFocusInWindow();
 		repaint();
+		
+		 
 		
 	}
 	
+	public void updateLables()
+	{
+		lblFuelRemaining.setText(Double.toString(currPlayer.getShip().getCurrentFuel()));
+		lblFuelPerMove.setText(Double.toString(currPlayer.getShip().getFuelPerMove()));
+		lblCurrLocation.setText("["+currPlayer.getPosition().x + " , " + currPlayer.getPosition().y + "]");
+	}
 	
 	 /**
 	  * Draw method to draw the playing field
@@ -57,7 +118,8 @@ public class MapPanel extends JPanel {
 	 public void draw(Graphics g)
 	 {
 	 universe.draw(g);
-	  KeyController key = new KeyController();
+	 
+//	  KeyController key = new KeyController();
 	 }
 	 public void paintComponent(Graphics g) {
 		 super.paintComponent(g);
@@ -67,43 +129,102 @@ public class MapPanel extends JPanel {
 	 {
 		 MapPanel mp = new MapPanel(universe, currPlayer);
 		 JFrame f = new JFrame();
-		 f.add(mp);
+		 f.getContentPane().add(mp);
 		 f.setSize(new Dimension(450,450));
 		 f.setVisible(true);
 		 f.setFocusable(true);
+		 mp.requestFocusInWindow();
+		
 		
 	 }
-	 private class KeyController extends KeyAdapter {
-
+	 public Boolean checkIfPlanetIsPresent(Point currLocation)
+	 {
+		 if(currLocation.x < WIDTH && currLocation.x >=0 && currLocation.y < HEIGHT && currLocation.y >=0){
+		 if(planetGrid[currLocation.x][currLocation.y] != null)
+			 return true;
+		 }
+		 return false;
+	 }
+	 public boolean checkIfMoveIsValid()
+	 {
+		 if(currPlayer.getShip().getCurrentFuel() >= currPlayer.getShip().getFuelPerMove())
+			 return true;
+		 else return false;
+	 }
+	 private class KeyController implements KeyListener {
+		 public KeyController()
+		 {
+			 setFocusable(true);
+			// addKeyListener(this);
+		 }
 	        @Override
 	        public void keyPressed(final KeyEvent key) {
-	        	System.out.println("fgfgf");
 	            if (currPlayer != null) {
 
 	                int oldX = currPlayer.getPosition().x;
 	                int oldY = currPlayer.getPosition().y;
-
 	                switch (key.getKeyCode()) {
 	                    case KeyEvent.VK_RIGHT:
+	                    	if(oldX+1 < WIDTH && checkIfMoveIsValid()){
+	                    		//checkIfPlanetIsPresent(currPlayer.getPosition()) 
 	                      currPlayer.setPosition(new Point(oldX+1, oldY)); //move right
-	                      System.out.println("RIGHT");
+	                      if(checkIfPlanetIsPresent(currPlayer.getPosition()))
+	                    	  createTrade();  
+	                      currPlayer.getShip().setCurrentFuel(fuelPerMove);
+	                    	}
 	                        break;
 	                    case KeyEvent.VK_LEFT:
-		                      currPlayer.setPosition(new Point(oldX-1, oldY)); //move left
+	                    	if(oldX-1 >=0  && checkIfMoveIsValid()){
+	                    		//checkIfPlanetIsPresent(currPlayer.getPosition()) 
+	                      currPlayer.setPosition(new Point(oldX-1, oldY)); //move left
+	                      if(checkIfPlanetIsPresent(currPlayer.getPosition()))
+	                    	  createTrade();  
+	                      currPlayer.getShip().setCurrentFuel(fuelPerMove);
+	                    	}
 	                        break;
 	                    case KeyEvent.VK_DOWN:
-		                      currPlayer.setPosition(new Point(oldX, oldY+1)); //move down
-	                        break;
+	                    	if(oldY+1 < HEIGHT && checkIfMoveIsValid()){
+	                    		//checkIfPlanetIsPresent(currPlayer.getPosition()) 
+	                      currPlayer.setPosition(new Point(oldX, oldY+1)); //move down
+	                      if(checkIfPlanetIsPresent(currPlayer.getPosition()))
+	                    	  createTrade();  
+	                      currPlayer.getShip().setCurrentFuel(fuelPerMove);
+	                    	}
+	                    	break;
 	                    case KeyEvent.VK_UP:
-		                      currPlayer.setPosition(new Point(oldX, oldY-1)); //move up
-	                        break;
+	                    	if(oldY-1 >= 0 && checkIfMoveIsValid()){
+	                      currPlayer.setPosition(new Point(oldX, oldY-1)); //move up
+	                      System.out.println(currPlayer.getPosition());
+	                      if(checkIfPlanetIsPresent(currPlayer.getPosition()))
+	                    	  createTrade();          	  
+	                    	  currPlayer.getShip().setCurrentFuel(fuelPerMove);
+	                    	}
+	                    	break;
 	                }
 
 	            }
+	            if(currPlayer.getShip().getCurrentFuel() == 0)
+	            {
+	            	JOptionPane.showMessageDialog(new JFrame(), "Game OVER!");
+
+	            }
+                updateLables();
 	            repaint();
 	        }
+	        
+	        public void createTrade()
+	        {
+	        	JFrame f = new JFrame("Trade");
+	        	f.add(new Trade(currPlayer, planetGrid[currPlayer.getPosition().x][currPlayer.getPosition().y]));
+	        	f.setVisible(true);
+	        	f.setSize(new Dimension(700,700));
+	        }
+			@Override
+			public void keyReleased(KeyEvent e) {
+			}
+			@Override
+			public void keyTyped(KeyEvent e) {
+				System.out.println("typeeeddd");
+			}
 	    }
-	 
-	
-
 }

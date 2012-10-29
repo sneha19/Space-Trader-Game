@@ -148,11 +148,16 @@ public class Universe {
     				g.drawRect(15*i, 15*j, 15, 15);
     			}
     		}
-    	g.drawOval(currPlayer.getPosition().x, currPlayer.getPosition().y, 15, 15);
+    	g.drawImage(currPlayer.getShip().getPic(), 15*currPlayer.getPosition().x, 15*currPlayer.getPosition().y, null);
+    //	g.fillOval(15*currPlayer.getPosition().x, 15*currPlayer.getPosition().y, 15, 15);
 //    
 //    	for (Planet p : planet) {
 //    			p.draw(g, null);
 //    	}
+    }
+    public Planet[][] getPlanetWithLocation()
+    {
+    	return tempPlanets;
     }
 	public Planet[] getPlanet() {
 		// TODO Auto-generated method stub
