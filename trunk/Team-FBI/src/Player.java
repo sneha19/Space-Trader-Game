@@ -1,4 +1,9 @@
+import java.awt.Image;
 import java.awt.Point;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 /**
  * This is the class that represent a user. It is a info-holder for all the fields a player should have.
@@ -26,6 +31,7 @@ public class Player {
 	 * @param name the name of the player
 	 */
 	public Player(String name){
+		
 		this.name=name;
 		cash=1000;
 		position= new Point(0,0);

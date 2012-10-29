@@ -214,10 +214,14 @@ public class MapPanel extends JPanel {
 	        
 	        public void createTrade()
 	        {
+	        	
 	        	JFrame f = new JFrame("Trade");
+	        	int answer = JOptionPane.showConfirmDialog(f, "Trade?");
+	            if (answer == JOptionPane.YES_OPTION) {
 	        	f.add(new Trade(currPlayer, planetGrid[currPlayer.getPosition().x][currPlayer.getPosition().y]));
 	        	f.setVisible(true);
 	        	f.setSize(new Dimension(700,700));
+	            }
 	        }
 			@Override
 			public void keyReleased(KeyEvent e) {
