@@ -45,7 +45,7 @@ public class UIMain {
 		
 		frame = new JFrame("Star Trader");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setPreferredSize(new Dimension(600,700));
+		frame.setPreferredSize(new Dimension(800,900));
 		frame.setContentPane(tabPane);
 		frame.pack();
 		frame.setVisible(true);
@@ -178,7 +178,7 @@ public class UIMain {
 	                }
 
 	            }
-	            if(player.getShip().getCurrentFuel() == 0)
+	            if(player.getShip().getCurrentFuel() < player.getShip().getFuelPerMove())
 	            {
 	            	JOptionPane.showMessageDialog(new JFrame(), "Game OVER!");
 
