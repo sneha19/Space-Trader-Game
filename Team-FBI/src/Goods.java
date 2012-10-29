@@ -74,6 +74,9 @@ public class Goods {
 	public void setRobots(int robots) {
 		this.robots = robots;
 	}
+	public int getTotal(){
+		return water+furs+food+ore+games+firearms+medicines+machines+narcotics+robots;
+	}
 	private int water;
 	private int furs;
 	private int food;
