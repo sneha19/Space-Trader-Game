@@ -1,4 +1,5 @@
 import javax.swing.*;
+
 import java.awt.*;
 import java.awt.event.*;
 
@@ -107,14 +108,108 @@ public class UIMain {
 		 * Method must be implemented from ActionListener interface  
 		 */
 		public void actionPerformed (ActionEvent e){
-			Player p = new Player("d");
-			Planet pla = new Planet("d");
-			trade = new Trade(p,pla);
-			tabPane.addTab("Trade",trade);
+			universe = new Universe(player);
+			map=new MapPanel(universe,player);
+			tabPane.addTab("Map",map);
 			tabPane.setSelectedIndex(1);
 			skillsGUI.disablebtnNext();
+			map.setKeyListener(new KeyController());
+			
 		}
 	}
+	
+	private class BtnFinishedListener implements ActionListener{
+		public void actionPerformed(ActionEvent e){
+			tabPane.remove(2);
+			tabPane.setEnabledAt(0,true);
+			tabPane.setEnabledAt(1,true);
+		}
+	}
+	
+	private class KeyController implements KeyListener {
+		 public KeyController()
+		 {
+			 map.setFocusable(true);
+			// addKeyListener(this);
+		 }
+	        @Override
+	        public void keyPressed(final KeyEvent key) {
+	            if (player != null) {
+
+	                int oldX = player.getPosition().x;
+	                int oldY = player.getPosition().y;
+	                switch (key.getKeyCode()) {
+	                    case KeyEvent.VK_RIGHT:
+	                    	if(oldX+1 < map.WIDTH && map.checkIfMoveIsValid()){
+	                    		//checkIfPlanetIsPresent(currPlayer.getPosition()) 
+	                      player.setPosition(new Point(oldX+1, oldY)); //move right
+	                      if(map.checkIfPlanetIsPresent(player.getPosition()))
+	                    	  createTrade();  
+	                      player.getShip().setCurrentFuel(map.getfuelPerMove());
+	                    	}
+	                        break;
+	                    case KeyEvent.VK_LEFT:
+	                    	if(oldX-1 >=0  && map.checkIfMoveIsValid()){
+	                    		//checkIfPlanetIsPresent(currPlayer.getPosition()) 
+	                      player.setPosition(new Point(oldX-1, oldY)); //move left
+	                      if(map.checkIfPlanetIsPresent(player.getPosition()))
+	                    	  createTrade();  
+	                      player.getShip().setCurrentFuel(map.getfuelPerMove());
+	                    	}
+	                        break;
+	                    case KeyEvent.VK_DOWN:
+	                    	if(oldY+1 < map.HEIGHT && map.checkIfMoveIsValid()){
+	                    		//checkIfPlanetIsPresent(currPlayer.getPosition()) 
+	                      player.setPosition(new Point(oldX, oldY+1)); //move down
+	                      if(map.checkIfPlanetIsPresent(player.getPosition()))
+	                    	  createTrade();  
+	                      player.getShip().setCurrentFuel(map.getfuelPerMove());
+	                    	}
+	                    	break;
+	                    case KeyEvent.VK_UP:
+	                    	if(oldY-1 >= 0 && map.checkIfMoveIsValid()){
+	                      player.setPosition(new Point(oldX, oldY-1)); //move up
+	                      System.out.println(player.getPosition());
+	                      if(map.checkIfPlanetIsPresent(player.getPosition()))
+	                    	  createTrade();          	  
+	                    	  player.getShip().setCurrentFuel(map.getfuelPerMove());
+	                    	}
+	                    	break;
+	                }
+
+	            }
+	            if(player.getShip().getCurrentFuel() == 0)
+	            {
+	            	JOptionPane.showMessageDialog(new JFrame(), "Game OVER!");
+
+	            }
+               map.updateLables();
+	           map. repaint();
+	        }
+	        
+	        public void createTrade()
+	        {
+	        	
+	        	JFrame f = new JFrame("Trade");
+	        	int answer = JOptionPane.showConfirmDialog(f, "Trade?");
+	            if (answer == JOptionPane.YES_OPTION) {
+	            Trade t = new Trade(player, map.planetGrid[player.getPosition().x][player.getPosition().y]);
+	        	t.setBtnFinished(new BtnFinishedListener());
+	            tabPane.add(t,"Trade");
+	        	tabPane.setSelectedIndex(2);
+	        	tabPane.setEnabledAt(0,false);
+	        	tabPane.setEnabledAt(1,false);
+	            }
+	        }
+			@Override
+			public void keyReleased(KeyEvent e) {
+			}
+			@Override
+			public void keyTyped(KeyEvent e) {
+				System.out.println("typeeeddd");
+			}
+	    }
+
 	
 
 	//every class need a setCurPlayer and getPlayer method!!
