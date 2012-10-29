@@ -1,5 +1,9 @@
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.Random;
+
+import javax.imageio.ImageIO;
 
 public class Planet {
 private String planetName;
@@ -12,6 +16,7 @@ private Color color;
 private Zone zone;
 public Planet(String planetName)
 {	
+	
 this.planetName = planetName;
 rand = new Random();
 techLevel = rand.nextInt(7);
@@ -69,5 +74,6 @@ public void setZone(Zone z){
 public Color getColor(){
 	return color;
 }
+
 
 }
