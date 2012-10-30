@@ -15,7 +15,11 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-
+/**
+ * GUI to illustrate the graphical side of the screen with planets, ship, movement, ect. 
+ * @author Haytham Abutair
+ *
+ */
 public class MapPanel extends JPanel {
 	public static final int WIDTH = 25;
 	 public static final int HEIGHT = 20;
@@ -42,7 +46,7 @@ public class MapPanel extends JPanel {
 		private JLabel lblCurrLocation;
 
 	 /**
-	 * Create the panel.
+	 * Create the panel through the contructor.
 	 */
 	public MapPanel(Universe univ, Player p) {
 		universe = univ;
@@ -107,7 +111,9 @@ public class MapPanel extends JPanel {
 		 
 		
 	}
-	
+	/**
+	 * update all current labels on the screen 
+	 */
 	public void updateLables()
 	{
 		lblFuelRemaining.setText(Double.toString(currPlayer.getShip().getCurrentFuel()));
@@ -126,6 +132,9 @@ public class MapPanel extends JPanel {
 	 
 //	  KeyController key = new KeyController();
 	 }
+	 /**
+	  * used for JPanel over-ride
+	  */
 	 public void paintComponent(Graphics g) {
 		 super.paintComponent(g);
 		 draw(g);
@@ -146,7 +155,11 @@ public class MapPanel extends JPanel {
 	 }*/
 	 
 	 
-	 
+	 /**
+	  * checks weather a planet is present in a certain location
+	  * @param currLocation current location of ship
+	  * @return true if planet is present, false O/W
+	  */
 	 public Boolean checkIfPlanetIsPresent(Point currLocation)
 	 {
 		 if(currLocation.x < WIDTH && currLocation.x >=0 && currLocation.y < HEIGHT && currLocation.y >=0){
@@ -155,6 +168,10 @@ public class MapPanel extends JPanel {
 		 }
 		 return false;
 	 }
+	 /**
+	  * checks to see if a move is allowed
+	  * @return true if allowed, false O/W
+	  */
 	 public boolean checkIfMoveIsValid()
 	 {
 		 if(currPlayer.getShip().getCurrentFuel() >= currPlayer.getShip().getFuelPerMove())
@@ -244,10 +261,18 @@ public class MapPanel extends JPanel {
 			}
 	    }
 	    */
+	 /**
+	  * returns the amount of fuel used per move
+	  * @return fuel used
+	  */
 	public double getfuelPerMove(){
 		 return fuelPerMove;
 	 }
-	
+	/**
+	 * keyListener used for this panel
+	 * @param k user keylistener
+	 * @return true if allowed, false otherwise
+	 */
 	public boolean setKeyListener(KeyListener k){
 		this.addKeyListener(k);
 		return true;
