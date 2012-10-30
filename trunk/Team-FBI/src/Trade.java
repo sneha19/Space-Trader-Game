@@ -7,7 +7,11 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.Random;
-
+/**
+ * The JPanel for a trade screen, where player buy/sell goods
+ * @author Guang Lu
+ *
+ */
 public class Trade extends JPanel{
 	private Zone zone;
 	private PlanetScreen PlanetScreen;
@@ -62,7 +66,11 @@ public class Trade extends JPanel{
 	int[] allBuy = new int[10];
 	int[] allSell= new int[10];
 	
-	
+	/**
+	 * Calculate the buy price for an item
+	 * @param location item index number
+	 * @return the buy price
+	 */
 	public int calculatorBuy(int location)
 	{
 		Random r = new Random();
@@ -78,14 +86,22 @@ public class Trade extends JPanel{
 				basePrice[location]*(variance/100)*coinResults;
 		return total;
 	}
-	
+	/**
+	 * Calculate the sell price for an item based on its buy price
+	 * @param buyPrice 
+	 * @return sellPrice
+	 */
 	public int calculatorSell(int buyPrice)
 	{
 		Random r = new Random();
 		int sellPrice = (int) ((buyPrice*(1-r.nextInt(26)*0.01)))/1;
 		return sellPrice;
 	}
-	
+	/**
+	 * Constructor for Trade
+	 * @param p current player
+	 * @param planet on which the trade is going on
+	 */
 	public Trade(Player p, Planet planet)
 	{
 		currPlayer = p;
@@ -837,7 +853,9 @@ public class Trade extends JPanel{
 	
 	
 	
-	
+	/**
+	 * Set water buy/sell button visibility based on the tech level of the planet
+	 */
 	public void setWater()
 	{
 		waterBuy = new JButton("Buy");
@@ -846,6 +864,9 @@ public class Trade extends JPanel{
 		waterSell.setEnabled(true);
 
 	}
+	/**
+	 * Set fur buy/sell button visibility based on the tech level of the planet
+	 */
 	public void setFurs()
 	{
 		 fursBuy = new JButton("Buy");
@@ -854,6 +875,9 @@ public class Trade extends JPanel{
 		fursSell.setEnabled(true);
 
 	}
+	/**
+	 * Set food buy/sell button visibility based on the tech level of the planet
+	 */
 	public void setFood()
 	{
 		 foodBuy = new JButton("Buy");
@@ -864,6 +888,9 @@ public class Trade extends JPanel{
 	}
 		 foodSell.setEnabled(true);	
 	}
+	/**
+	 * Set ore buy/sell button visibility based on the tech level of the planet
+	 */
 	public void setOre()
 	{
 		oreBuy = new JButton("Buy");
@@ -882,7 +909,9 @@ public class Trade extends JPanel{
 
 
 
-
+	/**
+	 * Set game buy/sell button visibility based on the tech level of the planet
+	 */
 public void setGames()
 	{
 		gamesBuy = new JButton("Buy");
@@ -896,6 +925,9 @@ if(level>0){
 			gamesSell.setEnabled(true);
 }
 	}
+/**
+ * Set firearms buy/sell button visibility based on the tech level of the planet
+ */
 	public void setFirearms()
 	{
 		firearmsBuy = new JButton("Buy");
@@ -909,6 +941,9 @@ if(level>0){
 			firearmsSell.setEnabled(true);
 }
 	}
+	/**
+	 * Set medicine buy/sell button visibility based on the tech level of the planet
+	 */
 	public void setMedicines()
 	{
 		medicineBuy = new JButton("Buy");
@@ -922,6 +957,9 @@ if(level>0){
 			medicineSell.setEnabled(true);
 }
 	}
+	/**
+	 * Set machines buy/sell button visibility based on the tech level of the planet
+	 */
 	public void setMachines()
 	{
 		machinesBuy = new JButton("Buy");
@@ -935,6 +973,9 @@ if(level>2){
 			machinesSell.setEnabled(true);
 }
 	}
+	/**
+	 * Set narcotics buy/sell button visibility based on the tech level of the planet
+	 */
 	public void setNarcotices()
 	{
 		narcoticesBuy = new JButton("Buy");
@@ -949,6 +990,9 @@ if(level>2){
 
 
 	}
+	/**
+	 * Set robot buy/sell button visibility based on the tech level of the planet
+	 */
 	public void setRobot()
 	{
 		robotsBuy = new JButton("Buy");
@@ -962,23 +1006,33 @@ if(level>2){
 			robotsSell.setEnabled(true);
 }
 	}
-	
+	/**
+	 * processing the buy request of the trade
+	 * @param index of the item being bought
+	 * @return true if buy is successful
+	 */
 	public boolean buy(int index) {
 		currPlayer.setCash(-allBuy[index]);
 		currShip.increase(index);
 		return true;
 	}
-
+	/**
+	 * processing the sell request of the trade
+	 * @param index of the item being sold
+	 * @return true if sell is successful
+	 */
 	public boolean sell(int index) {
 		currPlayer.setCash(allSell[index]);
 		currShip.decrease(index);
 		return true;
 	}
-
-	public boolean quantityCheck(int aIndex) {
-		throw new UnsupportedOperationException();
-	}
 	
+	
+	/**
+	 * Check is player has enough money after buy is pressed
+	 * @param index number of the item
+	 * @return whether player has enough money
+	 */
 	public boolean checkMoney(int index){
 		if(currPlayer.getCash()>=allBuy[index]&&currShip.getCurrentGoods().getTotal()<currShip.getCargoCapacity()){
 			return true;
@@ -986,7 +1040,10 @@ if(level>2){
 			return false;
 		}
 	}
-	
+	/**
+	 * UPdate all the labels after buy/sell
+	 * @return whether the update is successful
+	 */
 	public boolean update(){
 		lblTrade.setText("$ "+currPlayer.getCash());
 		currentAmountOfGoods.setText(currShip.getCurrentGoods().getTotal()+"");
@@ -1003,7 +1060,11 @@ if(level>2){
 		fursAmount.setText(currShip.getCurrentGoods().getFurs()+"");
 		return true;
 	}
-	
+	/**
+	 * Check if the player has the item to sell
+	 * @param index number of the item
+	 * @return whether player has an item to sell
+	 */
 	public boolean notZeroGood(int index){
 		int amount=0;
 		switch (index){
@@ -1047,7 +1108,11 @@ if(level>2){
 		}
 	}
 	
-	
+	/**
+	 * Private listener class for water buy button
+	 * @author Guang Lu
+	 *
+	 */
 	private class WaterBuyListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
 			if(checkMoney(0)){
@@ -1056,6 +1121,11 @@ if(level>2){
 			update();
 		}
 	}
+	/**
+	 * Private listener class for furs buy button
+	 * @author Guang Lu
+	 *
+	 */
 	private class FursBuyListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
 			if(checkMoney(1)){
@@ -1064,6 +1134,11 @@ if(level>2){
 			update();
 		}
 	}
+	/**
+	 * Private listener class for food buy button
+	 * @author Guang Lu
+	 *
+	 */
 	private class FoodBuyListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
 			if(checkMoney(2)){
@@ -1072,6 +1147,11 @@ if(level>2){
 			update();
 		}
 	}
+	/**
+	 * Private listener class for ore buy button
+	 * @author Guang Lu
+	 *
+	 */
 	private class OreBuyListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
 			if(checkMoney(3)){
@@ -1080,6 +1160,11 @@ if(level>2){
 			update();
 		}
 	}
+	/**
+	 * Private listener class for game buy button
+	 * @author Guang Lu
+	 *
+	 */
 	private class GamesBuyListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
 			if(checkMoney(4)){
@@ -1088,6 +1173,11 @@ if(level>2){
 			update();
 		}
 	}
+	/**
+	 * Private listener class for firearms buy button
+	 * @author Guang Lu
+	 *
+	 */
 	private class FirearmsBuyListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
 			if(checkMoney(5)){
@@ -1096,6 +1186,11 @@ if(level>2){
 			update();
 		}
 	}
+	/**
+	 * Private listener class for medicine buy button
+	 * @author Guang Lu
+	 *
+	 */
 	private class MedicineBuyListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
 			if(checkMoney(6)){
@@ -1104,6 +1199,11 @@ if(level>2){
 			update();
 		}
 	}
+	/**
+	 * Private listener class for machines buy button
+	 * @author Guang Lu
+	 *
+	 */
 	private class MachinesBuyListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
 			if(checkMoney(7)){
@@ -1112,6 +1212,11 @@ if(level>2){
 			update();
 		}
 	}
+	/**
+	 * Private listener class for narcotics buy button
+	 * @author Guang Lu
+	 *
+	 */
 	private class NarcoticsBuyListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
 			if(checkMoney(8)){
@@ -1120,6 +1225,11 @@ if(level>2){
 			update();
 		}
 	}
+	/**
+	 * Private listener class for robot buy button
+	 * @author Guang Lu
+	 *
+	 */
 	private class RobotsBuyListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
 			if(checkMoney(9)){
@@ -1131,9 +1241,11 @@ if(level>2){
 	
 	
 	
-	
-	
-	
+	/**
+	 * Private listener class for water sell button
+	 * @author Guang Lu
+	 *
+	 */
 	private class WaterSellListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
 			if(notZeroGood(0)){
@@ -1142,6 +1254,11 @@ if(level>2){
 			update();
 		}
 	}
+	/**
+	 * Private listener class for fur sell button
+	 * @author Guang Lu
+	 *
+	 */
 	private class FursSellListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
 			if(notZeroGood(1)){
@@ -1150,6 +1267,11 @@ if(level>2){
 			update();
 		}
 	}
+	/**
+	 * Private listener class for food sell button
+	 * @author Guang Lu
+	 *
+	 */
 	private class FoodSellListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
 			if(notZeroGood(2)){
@@ -1158,6 +1280,11 @@ if(level>2){
 			update();
 		}
 	}
+	/**
+	 * Private listener class for ore sell button
+	 * @author Guang Lu
+	 *
+	 */
 	private class OreSellListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
 			if(notZeroGood(3)){
@@ -1166,6 +1293,11 @@ if(level>2){
 			update();
 		}
 	}
+	/**
+	 * Private listener class for games sell button
+	 * @author Guang Lu
+	 *
+	 */
 	private class GamesSellListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
 			if(notZeroGood(4)){
@@ -1174,6 +1306,11 @@ if(level>2){
 			update();
 		}
 	}
+	/**
+	 * Private listener class for firearms sell button
+	 * @author Guang Lu
+	 *
+	 */
 	private class FirearmsSellListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
 			if(notZeroGood(5)){
@@ -1182,6 +1319,11 @@ if(level>2){
 			update();
 		}
 	}
+	/**
+	 * Private listener class for medicine sell button
+	 * @author Guang Lu
+	 *
+	 */
 	private class MedicineSellListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
 			if(notZeroGood(6)){
@@ -1190,6 +1332,11 @@ if(level>2){
 			update();
 		}
 	}
+	/**
+	 * Private listener class for machines sell button
+	 * @author Guang Lu
+	 *
+	 */
 	private class MachinesSellListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
 			if(notZeroGood(7)){
@@ -1198,6 +1345,11 @@ if(level>2){
 			update();
 		}
 	}
+	/**
+	 * Private listener class for narcotics sell button
+	 * @author Guang Lu
+	 *
+	 */
 	private class NarcoticsSellListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
 			if(notZeroGood(8)){
@@ -1206,6 +1358,11 @@ if(level>2){
 			update();
 		}
 	}
+	/**
+	 * Private listener class for robot sell button
+	 * @author Guang Lu
+	 *
+	 */
 	private class RobotsSellListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
 			if(notZeroGood(9)){
@@ -1214,7 +1371,11 @@ if(level>2){
 			update();
 		}
 	}
-	
+	/**
+	 * Set the btnlistener for the finished button
+	 * @param a a button listener in the UIMain class
+	 * @return whether the set is successful
+	 */
 	public boolean setBtnFinished(ActionListener a){
 		btnFinished.addActionListener(a);
 		return true;

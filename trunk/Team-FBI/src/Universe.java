@@ -8,9 +8,11 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
-
-
-
+/**
+ * The universe contains all the planets
+ * @author Guang
+ *
+ */
 public class Universe {
 	//public static final Universe universe = new Universe();
 
@@ -20,6 +22,10 @@ public class Universe {
 	private ArrayList<Point> positionList;
 	private Planet[][] tempPlanets = new Planet[25][20];
 	static Player currPlayer;
+	/**
+	 * The constructor of the universe
+	 * @param p player
+	 */
 	public Universe(Player p){
 		currPlayer = p;
 		try {
@@ -129,7 +135,10 @@ public class Universe {
 	
 	
 
-	
+	/**
+	 * Get all the planet names from the text file
+	 * @throws IOException
+	 */
 	public void writeFile() throws IOException
 	{
 		File file = new File("src/planets.txt");
@@ -151,7 +160,10 @@ public class Universe {
 		  planetNames = record;
 		  in.close();
 	}
-
+	/**
+	 * Draw method will draw all the planers according to their position and color.
+	 * @param g Graphics
+	 */
     public void draw(Graphics g) {
     	for(int i = 0; i <25; i++)
     		for(int j = 0; j < 20; j++)
@@ -170,10 +182,18 @@ public class Universe {
 //    			p.draw(g, null);
 //    	}
     }
+    /**
+     * Getter for a temp holder for planers
+     * @return tempPlanets
+     */
     public Planet[][] getPlanetWithLocation()
     {
     	return tempPlanets;
     }
+    /**
+     * Getter for the planet array
+     * @return planet
+     */
 	public Planet[] getPlanet() {
 		// TODO Auto-generated method stub
 		return planet;

@@ -117,22 +117,38 @@ public class UIMain {
 			
 		}
 	}
-	
+	/**
+	 * This is the action listener class for the btnFinished in Trade class
+	 * @author Guang Lu
+	 *
+	 */
 	private class BtnFinishedListener implements ActionListener{
+		/**
+		 * Method must be implemented from ActionListener interface  
+		 */
 		public void actionPerformed(ActionEvent e){
 			tabPane.remove(2);
 			tabPane.setEnabledAt(0,true);
 			tabPane.setEnabledAt(1,true);
 		}
 	}
-	
+	/**
+	 * This is the key listener class for map screen to move the player around
+	 * @author Haytham
+	 *
+	 */
 	private class KeyController implements KeyListener {
-		 public KeyController()
+		/**
+		 * Set the panel to be focusable 
+		 */
+		public KeyController()
 		 {
 			 map.setFocusable(true);
 			// addKeyListener(this);
 		 }
-	        @Override
+		 	/**
+			 * Method must be implemented from ActionListener interface  
+			 */
 	        public void keyPressed(final KeyEvent key) {
 	            if (player != null) {
 
@@ -186,7 +202,9 @@ public class UIMain {
                map.updateLables();
 	           map. repaint();
 	        }
-	        
+	        /**
+	         * This method will create a trade screen when player agree to trade
+	         */
 	        public void createTrade()
 	        {
 	        	
@@ -201,12 +219,16 @@ public class UIMain {
 	        	tabPane.setEnabledAt(1,false);
 	            }
 	        }
-			@Override
+	        /**
+			 * Method must be implemented from ActionListener interface  
+			 */
 			public void keyReleased(KeyEvent e) {
 			}
-			@Override
+			/**
+			 * Method must be implemented from ActionListener interface  
+			 */
 			public void keyTyped(KeyEvent e) {
-				System.out.println("typeeeddd");
+				//System.out.println("typeeeddd");
 			}
 	    }
 
