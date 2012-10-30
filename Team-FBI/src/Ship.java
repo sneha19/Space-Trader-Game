@@ -64,10 +64,18 @@ public class Ship {
 	public void setCargoCapacity(int cargo){
 		cargoCapacity = cargo;
 	}
+	/**
+	 * Set the fuel consumption when ship moves
+	 * @param fpm
+	 */
 	public void setFuelPerMove(double fpm)
 	{
 		fuelPerMove = fpm;
 	}
+	/**
+	 * Get the fuel consumption when ship moves
+	 * @return fuelPerMove
+	 */
 	public double getFuelPerMove()
 	{
 		return fuelPerMove;
@@ -86,14 +94,27 @@ public class Ship {
 	public void setFuelCapacity(int fuel){
 		fuelCapacity = fuel;
 	}
+	/**
+	 * Setter, set current fuel
+	 * @param decrease the dcresement value
+	 */
 	public void setCurrentFuel(double decrease)
 	{
 		currentFuel -= decrease;
 	}
+	/**
+	 * Get current Fuel
+	 * @return currentFuel
+	 */
 	public double getCurrentFuel()
 	{
 		return decimalFormat(currentFuel);
 	}
+	/**
+	 * Change a double to decimal format
+	 * @param longDouble
+	 * @return decimal format
+	 */
 	public double decimalFormat(double longDouble)
 	{
         DecimalFormat df = new DecimalFormat("#.##");
@@ -137,16 +158,26 @@ public class Ship {
 	public String getName(){
 		return name;
 	}
-	
+	/**
+	 * Get current goods
+	 * @return currentGoods
+	 */
 	public Goods getCurrentGoods() {
 		return currentGoods;
 	}
-	
+	/**
+	 * Set current goods
+	 * @param currentGoods
+	 */
 	public void setCurrentGoods(Goods currentGoods) 
 	{
 		this.currentGoods = currentGoods;
 	}
-	
+	/**
+	 * Increase the corrent item amount every time player buy stuff
+	 * @param index
+	 * @return a int, if method go through return 0, otherwise return 1
+	 */
 	public int increase(int index){
 		if(cargoNumber >= cargoCapacity){
 			return 1;
@@ -197,7 +228,11 @@ public class Ship {
 	 return 0;
 	  }
 	}
-	
+	/**
+	 * Decrese the item amount every time player sell
+	 * @param index of the item
+	 * @return 0 if fail, 1 if success
+	 */
 	public int decrease(int index){
 		int flag = 0;
 		if(cargoNumber < 0){
@@ -296,6 +331,10 @@ public class Ship {
 			return -10000;
 	  }
 	}
+	/**
+	 * Set the picture of ship
+	 * @param i the image of ship
+	 */
 	public void setPicture(String i)
 	{
 		try {
@@ -303,6 +342,10 @@ public class Ship {
 		} catch (IOException e) {
 		}
 	}
+	/**
+	 * get the image of the ship
+	 * @return shipImage
+	 */
 	public Image getPic()
 	{
 		return shipImage;
