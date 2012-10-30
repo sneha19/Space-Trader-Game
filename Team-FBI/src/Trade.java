@@ -92,10 +92,13 @@ public class Trade extends JPanel{
 	 * @return sellPrice
 	 */
 	public int calculatorSell(int buyPrice)
-	{
+	{	
+		
 		Random r = new Random();
+		
 		int sellPrice = (int) ((buyPrice*(1-r.nextInt(26)*0.01)))/1;
 		return sellPrice;
+		
 	}
 	/**
 	 * Constructor for Trade
