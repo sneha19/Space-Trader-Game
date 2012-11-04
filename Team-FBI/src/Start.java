@@ -1,6 +1,9 @@
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.GroupLayout;
@@ -8,6 +11,9 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
+import net.miginfocom.swing.MigLayout;
+import java.awt.Color;
+import javax.swing.border.EtchedBorder;
 
 
 
@@ -19,85 +25,39 @@ public class Start extends JPanel {
 	private JButton btnStart;
 	private boolean isDiffed;
 	public Start() {
+		setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		
 		JLabel lblYoungSailorStart = new JLabel("Young sailor, start your journey here!");
-		JLabel lblEnterName = new JLabel("Enter Name");
-		textField = new JTextField();
-		textField.setColumns(10);
+		lblYoungSailorStart.setForeground(new Color(255, 255, 255));
 		JLabel lblDifficulty = new JLabel("Difficulty");
+		lblDifficulty.setForeground(new Color(255, 255, 255));
+		isDiffed = false;
+		setLayout(new MigLayout("", "[134px][112px][113px]", "[16px][16px][][][16px][][][12px][][1px][][][6px][29px][29px][29px][29px]"));
+		add(lblYoungSailorStart, "cell 0 0 3 1,alignx center,aligny top");
 		JButton btnBeginner = new JButton("Beginner");
 		btnBeginner.addActionListener(new DiffListener());
+		JLabel lblEnterName = new JLabel("Enter Name");
+		lblEnterName.setForeground(new Color(255, 255, 255));
+		add(lblEnterName, "cell 0 1,alignx center,aligny top");
+		textField = new JTextField();
+		textField.setColumns(10);
+		add(textField, "cell 0 2,alignx left,aligny top");
+		add(btnBeginner, "flowy,cell 2 2,growx,aligny top");
+		add(lblDifficulty, "cell 2 1,alignx left,aligny top");
 		JButton btnEasy = new JButton("Easy");
 		btnEasy.addActionListener(new DiffListener());
+		add(btnEasy, "cell 2 2,growx,aligny top");
 		JButton btnNormal = new JButton("Normal");
 		btnNormal.addActionListener(new DiffListener());
+		add(btnNormal, "cell 2 2,growx,aligny top");
 		JButton btnHard = new JButton("Hard");
 		btnHard.addActionListener(new DiffListener());
+		add(btnHard, "cell 2 2,growx,aligny top");
 		JButton btnImpossib = new JButton("Impossible");
 		btnImpossib.addActionListener(new DiffListener());
+		add(btnImpossib, "cell 2 2,alignx left,aligny top");
 		btnStart = new JButton("START");
-		isDiffed = false;
-		//Chunk of groupLayout codes
-		GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(95)
-							.addComponent(lblYoungSailorStart))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addGap(60)
-									.addComponent(lblEnterName))
-								.addGroup(groupLayout.createSequentialGroup()
-									.addGap(28)
-									.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-								.addGroup(groupLayout.createSequentialGroup()
-									.addGap(49)
-									.addComponent(btnStart)))
-							.addGap(112)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-								.addComponent(btnEasy, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(btnBeginner, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(btnNormal, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(btnHard, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(btnImpossib))))
-					.addGap(53))
-				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-					.addContainerGap(293, Short.MAX_VALUE)
-					.addComponent(lblDifficulty)
-					.addGap(96))
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(23)
-					.addComponent(lblYoungSailorStart)
-					.addGap(18)
-					.addComponent(lblDifficulty)
-					.addGap(11)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(lblEnterName)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(btnBeginner)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(btnEasy)))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnNormal)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnHard)
-						.addComponent(btnStart))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnImpossib)
-					.addContainerGap(47, Short.MAX_VALUE))
-		);
-		setLayout(groupLayout);
+		add(btnStart, "cell 1 15,alignx center,aligny top");
 		//groupLayout codes end
 	}
 	
@@ -145,4 +105,9 @@ public class Start extends JPanel {
 			   }
 		   }
 	   }
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		Image bg = new ImageIcon("img/bricks.jpg").getImage();
+		g.drawImage(bg, 0, 0,getWidth(),getHeight(), this);
+	}
 }

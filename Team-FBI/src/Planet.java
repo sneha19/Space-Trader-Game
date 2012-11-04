@@ -95,8 +95,8 @@ this.location = location;
 public void draw(Graphics g,Point p){
 g.setColor(color);
 g.fillOval(30*location.x, 30*location.y,30,30);
-g.setColor(Color.gray);
-g.drawRect(30*location.x, 30*location.y, 30, 30);
+//g.setColor(Color.gray);
+//g.drawRect(30*location.x, 30*location.y, 30, 30);
 
 }
 /**
