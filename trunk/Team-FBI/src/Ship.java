@@ -22,19 +22,20 @@ public class Ship {
 	private Image shipImage;
 	private double currentFuel;
 	private double fuelPerMove;
-	
+	private double maxHull;
+
 	/**
 	 * A constructor that takes a shiptype
 	 * @param st Ship type that specify which ship to create
 	 */
 	public Ship(ShipType st){
 		try {
-		    shipImage = ImageIO.read(new File("img/shiptest.png"));
+			shipImage = ImageIO.read(new File("img/shiptest.png"));
 		} catch (IOException e) {
 		}
 		this.st=st;
 		name=st.getName();
-		fuelPerMove = 1.4;
+		fuelPerMove = fuelPerMove();
 		currentFuel = st.getFuel();
 		hull=st.getHull();
 		cargoCapacity=st.getCarco();
@@ -42,6 +43,31 @@ public class Ship {
 		fuelCapacity=st.getFuel();
 		cargoNumber =0;
 		currentGoods = new Goods();
+		maxHull = st.getHull();
+	}
+	public double getMaxHull()
+	{
+		return maxHull;
+	}
+	public double fuelPerMove()
+	{
+
+		if("fighter".equals(st.name().trim()))
+			fuelPerMove = 1.0;
+		if("hauler".equals(st.name().trim()))
+			fuelPerMove = 1.5;
+		if("bullDog".equals(st.name().trim()))
+			fuelPerMove = 2.0;
+		if("carrier".equals(st.name().trim()))
+			fuelPerMove = 1.7;
+		if("yellowJacket".equals(st.name().trim()))
+			fuelPerMove = 1.3;
+		if("destroyer".equals(st.name().trim()))
+			fuelPerMove = 2.5;
+		if("heat".equals(st.name().trim()))
+			fuelPerMove = .9;
+		return fuelPerMove;
+
 	}
 	/**
 	 * Setter, set the hull strength
@@ -103,6 +129,14 @@ public class Ship {
 		currentFuel -= decrease;
 	}
 	/**
+	 * updated the fuel to increase it
+	 * @param increase amount to increase
+	 */
+	public void updateCurrentFuel(double increase)
+	{
+		currentFuel += increase;
+	}
+	/**
 	 * Get current Fuel
 	 * @return currentFuel
 	 */
@@ -117,8 +151,8 @@ public class Ship {
 	 */
 	public double decimalFormat(double longDouble)
 	{
-        DecimalFormat df = new DecimalFormat("#.##");
-        return Double.valueOf(df.format(longDouble));
+		DecimalFormat df = new DecimalFormat("#.##");
+		return Double.valueOf(df.format(longDouble));
 	}
 	/**
 	 * Getter, get the fuel capacity 
@@ -184,49 +218,49 @@ public class Ship {
 		}
 		else{
 			switch(index){
-		case 0:
-			currentGoods.setWater(1);
-			cargoNumber+=1;
-			break;
-		case 1:
-			currentGoods.setFurs(1);
-			cargoNumber+=1;
-			break;
-		case 2:
-			currentGoods.setFood(1);
-			cargoNumber+=1;
-			break;
-		case 3:
-			currentGoods.setOre(1);
-			cargoNumber+=1;
-			break;
-		case 4:
-			currentGoods.setGames(1);
-			cargoNumber+=1;
-			break;
-		case 5:
-			currentGoods.setFirearms(1);
-			cargoNumber+=1;
-			break;
-		case 6:
-			currentGoods.setMedicines(1);
-			cargoNumber+=1;
-			break;
-		case 7:
-			currentGoods.setMachines(1);
-			cargoNumber+=1;
-			break;
-		case 8:
-			currentGoods.setNarcotics(1);
-			cargoNumber+=1;
-			break;
-		case 9:
-			currentGoods.setRobots(1);
-			cargoNumber+=1;
-			break;
+			case 0:
+				currentGoods.setWater(1);
+				cargoNumber+=1;
+				break;
+			case 1:
+				currentGoods.setFurs(1);
+				cargoNumber+=1;
+				break;
+			case 2:
+				currentGoods.setFood(1);
+				cargoNumber+=1;
+				break;
+			case 3:
+				currentGoods.setOre(1);
+				cargoNumber+=1;
+				break;
+			case 4:
+				currentGoods.setGames(1);
+				cargoNumber+=1;
+				break;
+			case 5:
+				currentGoods.setFirearms(1);
+				cargoNumber+=1;
+				break;
+			case 6:
+				currentGoods.setMedicines(1);
+				cargoNumber+=1;
+				break;
+			case 7:
+				currentGoods.setMachines(1);
+				cargoNumber+=1;
+				break;
+			case 8:
+				currentGoods.setNarcotics(1);
+				cargoNumber+=1;
+				break;
+			case 9:
+				currentGoods.setRobots(1);
+				cargoNumber+=1;
+				break;
+			}
+			return 0;
 		}
-	 return 0;
-	  }
 	}
 	/**
 	 * Decrese the item amount every time player sell
@@ -241,95 +275,95 @@ public class Ship {
 		}
 		else{
 			switch(index){
-		case 0:
-			if(currentGoods.getWater() > 0){
-				currentGoods.setWater(-1);
-				cargoNumber-=1;
-				flag = 0;
-				return currentGoods.getWater();
-			}
-			else{
-				return currentGoods.getWater();
-			}
+			case 0:
+				if(currentGoods.getWater() > 0){
+					currentGoods.setWater(-1);
+					cargoNumber-=1;
+					flag = 0;
+					return currentGoods.getWater();
+				}
+				else{
+					return currentGoods.getWater();
+				}
 			case 1:
-			if(currentGoods.getFurs() > 0){
-				currentGoods.setFurs(-1);
-				cargoNumber-=1;
-				flag = 0;
-				return currentGoods.getFurs();
-			}
-			else
-			return currentGoods.getFurs();
-		case 2:
-			if(currentGoods.getFood() > 0){
-				currentGoods.setFood(-1);
-				cargoNumber-=1;
-				return currentGoods.getFood();
-			}
-			else
-				return currentGoods.getFood();
-		case 3:
-			if(currentGoods.getOre() > 0){
-				currentGoods.setOre(-1);
-				cargoNumber-=1;
-				return currentGoods.getOre();
-			}
-			else
-				return currentGoods.getOre();
-		case 4:
-			if(currentGoods.getGames() > 0){
-				currentGoods.setGames(-1);
-				cargoNumber-=1;
-				return currentGoods.getGames();
-			}
-			else
-				return currentGoods.getGames();
-		case 5:
-			if(currentGoods.getFirearms() > 0){
-				currentGoods.setFirearms(-1);
-				cargoNumber-=1;
-				return currentGoods.getFirearms();
-			}
-			else
-				return currentGoods.getFirearms();
-		case 6:
-			if(currentGoods.getMedicines() > 0){
-				currentGoods.setMedicines(-1);
-				cargoNumber-=1;
-				return currentGoods.getMedicines();
-			}
-			else
-				return currentGoods.getMedicines();
-		case 7:
-			if(currentGoods.getMachines() > 0){
-				currentGoods.setMachines(-1);
-				cargoNumber-=1;
-				return currentGoods.getMachines();
-			}
-			else
-				return currentGoods.getMachines();
-			
-		case 8:
-			if(currentGoods.getNarcotics() > 0){
-				currentGoods.setNarcotics(-1);
-				cargoNumber-=1;
-				return currentGoods.getNarcotics();
-			}
-			else
-				return currentGoods.getNarcotics();
+				if(currentGoods.getFurs() > 0){
+					currentGoods.setFurs(-1);
+					cargoNumber-=1;
+					flag = 0;
+					return currentGoods.getFurs();
+				}
+				else
+					return currentGoods.getFurs();
+			case 2:
+				if(currentGoods.getFood() > 0){
+					currentGoods.setFood(-1);
+					cargoNumber-=1;
+					return currentGoods.getFood();
+				}
+				else
+					return currentGoods.getFood();
+			case 3:
+				if(currentGoods.getOre() > 0){
+					currentGoods.setOre(-1);
+					cargoNumber-=1;
+					return currentGoods.getOre();
+				}
+				else
+					return currentGoods.getOre();
+			case 4:
+				if(currentGoods.getGames() > 0){
+					currentGoods.setGames(-1);
+					cargoNumber-=1;
+					return currentGoods.getGames();
+				}
+				else
+					return currentGoods.getGames();
+			case 5:
+				if(currentGoods.getFirearms() > 0){
+					currentGoods.setFirearms(-1);
+					cargoNumber-=1;
+					return currentGoods.getFirearms();
+				}
+				else
+					return currentGoods.getFirearms();
+			case 6:
+				if(currentGoods.getMedicines() > 0){
+					currentGoods.setMedicines(-1);
+					cargoNumber-=1;
+					return currentGoods.getMedicines();
+				}
+				else
+					return currentGoods.getMedicines();
+			case 7:
+				if(currentGoods.getMachines() > 0){
+					currentGoods.setMachines(-1);
+					cargoNumber-=1;
+					return currentGoods.getMachines();
+				}
+				else
+					return currentGoods.getMachines();
 
-		case 9:
-			if(currentGoods.getRobots() > 0){
-				currentGoods.setRobots(-1);
-				cargoNumber-=1;
-				return currentGoods.getRobots();
-			}
-			else
-				return currentGoods.getRobots();
+			case 8:
+				if(currentGoods.getNarcotics() > 0){
+					currentGoods.setNarcotics(-1);
+					cargoNumber-=1;
+					return currentGoods.getNarcotics();
+				}
+				else
+					return currentGoods.getNarcotics();
 
-		}
+			case 9:
+				if(currentGoods.getRobots() > 0){
+					currentGoods.setRobots(-1);
+					cargoNumber-=1;
+					return currentGoods.getRobots();
+				}
+				else
+					return currentGoods.getRobots();
+
+			}
 			return -10000;
-	  }
+		}
 	}
 	/**
 	 * Set the picture of ship
@@ -338,7 +372,7 @@ public class Ship {
 	public void setPicture(String i)
 	{
 		try {
-		    shipImage = ImageIO.read(new File("i"));
+			shipImage = ImageIO.read(new File("i"));
 		} catch (IOException e) {
 		}
 	}
@@ -350,17 +384,5 @@ public class Ship {
 	{
 		return shipImage;
 	}
-	
-	/*
-	public void setInitialShip(){
-		player.ship = ShipType.fighter;
-		
-	}*/
-	
-	/*
-	public void setFuelAfterMove() {
-		throw new UnsupportedOperationException();
-	}*/
-
 
 }

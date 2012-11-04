@@ -25,6 +25,7 @@ public class UIMain {
 	private JTabbedPane tabPane;
 	private MapPanel map;
 	private JButton btnStart;
+	private StarDock stardock;
 	
 	private Universe universe;
 	private Trade trade;
@@ -130,6 +131,7 @@ public class UIMain {
 			tabPane.remove(2);
 			tabPane.setEnabledAt(0,true);
 			tabPane.setEnabledAt(1,true);
+			
 		}
 	}
 	/**
@@ -161,6 +163,8 @@ public class UIMain {
 	                      player.setPosition(new Point(oldX+1, oldY)); //move right
 	                      if(map.checkIfPlanetIsPresent(player.getPosition()))
 	                    	  createTrade();  
+	                      if(map.checkIfStarDockIsPresent(player.getPosition()))
+	                    	  createStarDock();  
 	                      player.getShip().setCurrentFuel(map.getfuelPerMove());
 	                    	}
 	                        break;
@@ -170,6 +174,8 @@ public class UIMain {
 	                      player.setPosition(new Point(oldX-1, oldY)); //move left
 	                      if(map.checkIfPlanetIsPresent(player.getPosition()))
 	                    	  createTrade();  
+	                      if(map.checkIfStarDockIsPresent(player.getPosition()))
+	                    	  createStarDock();  
 	                      player.getShip().setCurrentFuel(map.getfuelPerMove());
 	                    	}
 	                        break;
@@ -179,6 +185,8 @@ public class UIMain {
 	                      player.setPosition(new Point(oldX, oldY+1)); //move down
 	                      if(map.checkIfPlanetIsPresent(player.getPosition()))
 	                    	  createTrade();  
+	                      if(map.checkIfStarDockIsPresent(player.getPosition()))
+	                    	  createStarDock();  
 	                      player.getShip().setCurrentFuel(map.getfuelPerMove());
 	                    	}
 	                    	break;
@@ -187,7 +195,9 @@ public class UIMain {
 	                      player.setPosition(new Point(oldX, oldY-1)); //move up
 	                      System.out.println(player.getPosition());
 	                      if(map.checkIfPlanetIsPresent(player.getPosition()))
-	                    	  createTrade();          	  
+	                    	  createTrade();  
+	                      if(map.checkIfStarDockIsPresent(player.getPosition()))
+	                    	  createStarDock();  
 	                    	  player.getShip().setCurrentFuel(map.getfuelPerMove());
 	                    	}
 	                    	break;
@@ -196,8 +206,14 @@ public class UIMain {
 	            }
 	            if(player.getShip().getCurrentFuel() < player.getShip().getFuelPerMove())
 	            {
-	            	JOptionPane.showMessageDialog(new JFrame(), "Game OVER!");
-
+	            	  int reply = JOptionPane.showConfirmDialog(null, "Unfortunatly your ship ran out of fuel, play again?", "SHIP BLEW UP!", JOptionPane.YES_NO_OPTION);
+	                  if (reply == JOptionPane.YES_OPTION) {
+	                    JOptionPane.showConfirmDialog(null, new UIMain(), "", 0);
+	                  }
+	                  else {
+	                     JOptionPane.showMessageDialog(null, "GOODBYE");
+	                     System.exit(0);
+	                  }
 	            }
                map.updateLables();
 	           map. repaint();
@@ -219,6 +235,18 @@ public class UIMain {
 	        	tabPane.setEnabledAt(1,false);
 	            }
 	        }
+	        public void createStarDock()
+	        {
+	        	JFrame f = new JFrame("Star Dock");
+	        	stardock = new StarDock(player);
+	        	stardock.setBtnFinished(new BtnFinishedListener());
+		            tabPane.add(stardock,"StarDock");
+		        	tabPane.setSelectedIndex(2);
+		        	tabPane.setEnabledAt(0,false);
+		        	tabPane.setEnabledAt(1,false);
+		        	
+		            }
+	        
 	        /**
 			 * Method must be implemented from ActionListener interface  
 			 */
@@ -230,8 +258,8 @@ public class UIMain {
 			public void keyTyped(KeyEvent e) {
 				//System.out.println("typeeeddd");
 			}
-	    }
-
+	    
+}
 	
 
 	//every class need a setCurPlayer and getPlayer method!!

@@ -1,3 +1,4 @@
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.GroupLayout;
@@ -6,10 +7,14 @@ import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
 import javax.swing.JSpinner;
+
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 /**
  * GUI for skills
@@ -63,14 +68,19 @@ public class SkillsInterface extends JPanel {
 		
 		
 		lblSkillsPointsRemaning = new JLabel(Integer.toString(currSkills.getCurrPoints()));
+		lblSkillsPointsRemaning.setForeground(new Color(255, 255, 255));
 		
 	    lblEngineeringPoints = new JLabel(Integer.toString(currSkills.getEngineerPoints()));
+	    lblEngineeringPoints.setForeground(new Color(255, 255, 255));
 		
 		lblFighterPoints = new JLabel(Integer.toString(currSkills.getFighterPoints()));
+		lblFighterPoints.setForeground(new Color(255, 255, 255));
 		
 		lblPilotPoints = new JLabel(Integer.toString(currSkills.getPilotPoints()));
+		lblPilotPoints.setForeground(new Color(255, 255, 255));
 		
 		lblTraderPoints = new JLabel(Integer.toString(currSkills.getTraderPoints()));
+		lblTraderPoints.setForeground(new Color(255, 255, 255));
 		
 		
 		
@@ -199,6 +209,12 @@ public class SkillsInterface extends JPanel {
 									.addComponent(lblSkillsPointsRemaning, GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
 									.addGap(44))))))
 		);
+		lblSkillsMenu.setForeground(Color.WHITE);
+		lblPointsRemaning.setForeground(new Color(255, 255, 255));
+		lblEngineering.setForeground(new Color(255, 255, 255));
+		lblFighter.setForeground(new Color(255, 255, 255));
+		lblPilot.setForeground(new Color(255, 255, 255));
+		lblTrader.setForeground(new Color(255, 255, 255));
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
@@ -247,5 +263,10 @@ public class SkillsInterface extends JPanel {
 	 */
 	public void disablebtnNext(){
 		btnNext.setVisible(false);
+	}
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		Image bg = new ImageIcon("img/bricks.jpg").getImage();
+		g.drawImage(bg, 0, 0,getWidth(),getHeight(), this);
 	}
 }

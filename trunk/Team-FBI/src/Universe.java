@@ -21,7 +21,10 @@ public class Universe {
 	private Random rand;
 	private ArrayList<Point> positionList;
 	private Planet[][] tempPlanets = new Planet[25][20];
+	private StarDockInfo[][] tempStarDock = new StarDockInfo[25][20];
+
 	static Player currPlayer;
+	//StarDockInfo stdi = new StarDockInfo(null);
 	/**
 	 * The constructor of the universe
 	 * @param p player
@@ -35,7 +38,7 @@ public class Universe {
 			e.printStackTrace();
 		}
 
-	planet = new Planet[123];
+	planet = new Planet[128];
 	
 	for(int i=0;i<122;i++){
 		String name = planetNames[i];
@@ -64,17 +67,31 @@ public class Universe {
 		}	
 	}
 	
+	
 	//assign locations
 	int m=500;
 	for(int i=0;i<122;i++){
 	int index = rand.nextInt(m);
+	if(index == 0)
+		index = rand.nextInt(m);
 	planet[i].setLocation(positionList.get(index));
 	tempPlanets[positionList.get(index).x][positionList.get(index).y] = planet[i];
 	positionList.remove(index);
 	m--;
 	}
-	
-	
+	for(int i = 0; i < 5; i++)
+	{
+		int index = rand.nextInt(m-5);
+		if(index < 0)
+			index = rand.nextInt(m-5);
+		if(index < 0)
+			index = rand.nextInt(m-5);
+		if(index > 0){
+		Point point = positionList.get(index);
+		tempStarDock[point.x][point.y] = new StarDockInfo(point,currPlayer);
+		positionList.remove(index);
+		}
+	}
 	
 	for(int i = 0; i < planet.length; i++)
 	{
@@ -94,43 +111,6 @@ public class Universe {
 		}
 	}
 	
-	//assign zone
-//	for(int i=0;i<122;i++){
-//		
-//			//why create a Zone object? unless you assign each number to return
-//			// some level (int) because the Zone class does not do anything with
-//			// the number being passed in. Recommend to just make randon int from 
-//			// 0 - 5 for each level and each will correspond to a specific zone.
-//			// - Haytham
-//			//Zone tempZone = new Zone(i);
-//			planet[i].setZone(tempZone);
-//			tempZoneIndex++;
-//			if(tempZoneIndex>=122){
-//				break;
-//			}
-//		}
-//		i++;
-//	}
-//	
-//	int tempZoneIndex=0;
-//	for(int i=0;i<5;i++){
-//		
-//		for(int j=0;j<30;j++){
-//			//why create a Zone object? unless you assign each number to return
-//			// some level (int) because the Zone class does not do anything with
-//			// the number being passed in. Recommend to just make randon int from 
-//			// 0 - 5 for each level and each will correspond to a specific zone.
-//			// - Haytham
-//			Zone tempZone = new Zone(i);
-//			planet[tempZoneIndex].setZone(tempZone);
-//			tempZoneIndex++;
-//			if(tempZoneIndex>=122){
-//				break;
-//			}
-//		}
-//		i++;
-//	}
-//	System.out.println("d");
 	}
 	
 	
@@ -161,7 +141,7 @@ public class Universe {
 		  in.close();
 	}
 	/**
-	 * Draw method will draw all the planers according to their position and color.
+	 * Draw method will draw all the planets according to their position and color.
 	 * @param g Graphics
 	 */
     public void draw(Graphics g) {
@@ -170,11 +150,16 @@ public class Universe {
     		{
     			if(tempPlanets[i][j] != null)
     				tempPlanets[i][j].draw(g, null);
-    			else{
-    				g.setColor(Color.gray);
-    				g.drawRect(30*i, 30*j, 30, 30);
-    			}
+    			if(tempStarDock[i][j] != null)
+    				tempStarDock[i][j].draw(g, new Point(i,j));
+    	//		else{
+    	//			g.setColor(Color.gray);
+    	//			g.drawRect(30*i, 30*j, 30, 30);
+    	//		}
     		}
+    	
+    	
+    	
     	g.drawImage(currPlayer.getShip().getPic(), 30*currPlayer.getPosition().x, 30*currPlayer.getPosition().y, null);
     //	g.fillOval(15*currPlayer.getPosition().x, 15*currPlayer.getPosition().y, 15, 15);
 //    
@@ -190,13 +175,13 @@ public class Universe {
     {
     	return tempPlanets;
     }
+    public StarDockInfo[][] getStarDocksWithLocation()
+    {
+    	return tempStarDock;
+    }
     /**
      * Getter for the planet array
      * @return planet
      */
-	public Planet[] getPlanet() {
-		// TODO Auto-generated method stub
-		return planet;
-	}
-	
+
 }
