@@ -1,12 +1,19 @@
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
+
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.Random;
+import java.awt.Color;
+import java.awt.Font;
+import net.miginfocom.swing.MigLayout;
 /**
  * The JPanel for a trade screen, where player buy/sell goods
  * @author Guang Lu
@@ -154,36 +161,50 @@ public class Trade extends JPanel{
 		
 		
 		lblTrade = new JLabel("$ "+currPlayer.getCash());
+		lblTrade.setForeground(new Color(255, 255, 255));
 		
 		JPanel WaterPanel = new JPanel();
+		WaterPanel.setBackground(new Color(0, 0, 0));
 		JPanel OrePanel = new JPanel();
+		OrePanel.setBackground(new Color(0, 0, 0));
 		JPanel FursPanel = new JPanel();
+		FursPanel.setBackground(new Color(0, 0, 0));
 		JPanel FoodPanel = new JPanel();
+		FoodPanel.setBackground(new Color(0, 0, 0));
 		JPanel FirearmsPanel = new JPanel();
+		FirearmsPanel.setBackground(new Color(0, 0, 0));
 		JPanel MedicinePanel = new JPanel();
+		MedicinePanel.setBackground(new Color(0, 0, 0));
 		JPanel MachinesPanel = new JPanel();
+		MachinesPanel.setBackground(new Color(0, 0, 0));
 		JPanel NarcoticesPanel = new JPanel();
+		NarcoticesPanel.setBackground(new Color(0, 0, 0));
 		JPanel RobotsPanel = new JPanel();
-
-		JLabel lblNewLabel = new JLabel("Amount");
+		RobotsPanel.setBackground(new Color(0, 0, 0));
 		
 		
 		lblFurs = new JLabel("Furs");
+		lblFurs.setForeground(new Color(255, 255, 255));
 		
 		JLabel label_2 = new JLabel("Buy Price:");
+		label_2.setForeground(new Color(255, 255, 255));
 		
 		JLabel label_3 = new JLabel("Sell Price:");
+		label_3.setForeground(new Color(255, 255, 255));
 		
 					
 		
 						
 		fursAmount = new JLabel(currShip.getCurrentGoods().getFurs()+"");
+		fursAmount.setForeground(new Color(255, 255, 255));
 		
 		int fursBuyPrice=calculatorBuy(1);
 		int fursSellPrice=calculatorSell(fursBuyPrice);
 		JLabel lblFbp = new JLabel(fursBuyPrice+"");
+		lblFbp.setForeground(new Color(255, 255, 255));
 		
 		JLabel lblFsp = new JLabel(fursSellPrice+"");
+		lblFsp.setForeground(new Color(255, 255, 255));
 		
 		//Chunck
 		GroupLayout gl_FursPanel = new GroupLayout(FursPanel);
@@ -200,45 +221,53 @@ public class Trade extends JPanel{
 					.addComponent(label_3)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(lblFsp)
-					.addGap(18)
+					.addGap(27)
 					.addComponent(fursBuy)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(fursSell)
 					.addGap(18)
 					.addComponent(fursAmount)
-					.addContainerGap(136, Short.MAX_VALUE))
+					.addContainerGap(11, Short.MAX_VALUE))
 		);
 		gl_FursPanel.setVerticalGroup(
 			gl_FursPanel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_FursPanel.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(gl_FursPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblFurs)
-						.addComponent(label_2)
-						.addComponent(label_3)
-						.addComponent(fursSell)
-						.addComponent(lblFbp)
-						.addComponent(lblFsp)
-						.addComponent(fursBuy)
-						.addComponent(fursAmount))
-					.addContainerGap(7, Short.MAX_VALUE))
+					.addGroup(gl_FursPanel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_FursPanel.createParallelGroup(Alignment.BASELINE)
+							.addComponent(lblFurs)
+							.addComponent(label_2)
+							.addComponent(label_3)
+							.addComponent(fursSell)
+							.addComponent(lblFbp)
+							.addComponent(lblFsp)
+							.addComponent(fursAmount))
+						.addComponent(fursBuy))
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		FursPanel.setLayout(gl_FursPanel);
 		
 		
 		JLabel lblFood = new JLabel("Food");
+		lblFood.setForeground(new Color(255, 255, 255));
 		
 		JLabel label_6 = new JLabel("Buy Price:");
+		label_6.setForeground(new Color(255, 255, 255));
 		
 		JLabel label_7 = new JLabel("Sell Price:");
+		label_7.setForeground(new Color(255, 255, 255));
 		
 				
 		foodAmount = new JLabel(Integer.toString(currShip.getCurrentGoods().getFood()));
+		foodAmount.setForeground(new Color(255, 255, 255));
+		foodAmount.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
 		int foodBuyPrice=calculatorBuy(2);
 		int foodSellPrice=calculatorSell(foodBuyPrice);
 		JLabel lblFoobp = new JLabel(foodBuyPrice+"");
+		lblFoobp.setForeground(new Color(255, 255, 255));
 		
 		JLabel lblFoosp = new JLabel(foodSellPrice+"");
+		lblFoosp.setForeground(new Color(255, 255, 255));
 		GroupLayout gl_FoodPanel = new GroupLayout(FoodPanel);
 		gl_FoodPanel.setHorizontalGroup(
 			gl_FoodPanel.createParallelGroup(Alignment.LEADING)
@@ -253,46 +282,53 @@ public class Trade extends JPanel{
 					.addComponent(label_7)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(lblFoosp)
-					.addGap(21)
+					.addGap(32)
 					.addComponent(foodBuy)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(foodSell)
 					.addGap(18)
 					.addComponent(foodAmount)
-					.addContainerGap(137, Short.MAX_VALUE))
+					.addContainerGap(12, Short.MAX_VALUE))
 		);
 		gl_FoodPanel.setVerticalGroup(
 			gl_FoodPanel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_FoodPanel.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(gl_FoodPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblFood)
-						.addComponent(label_6)
-						.addComponent(label_7)
-						.addComponent(lblFoobp)
-						.addComponent(lblFoosp)
-						.addComponent(foodBuy)
-						.addComponent(foodSell)
-						.addComponent(foodAmount))
-					.addContainerGap(7, Short.MAX_VALUE))
+					.addGroup(gl_FoodPanel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_FoodPanel.createParallelGroup(Alignment.BASELINE)
+							.addComponent(lblFood)
+							.addComponent(label_6)
+							.addComponent(label_7)
+							.addComponent(lblFoobp)
+							.addComponent(lblFoosp)
+							.addComponent(foodSell)
+							.addComponent(foodAmount))
+						.addComponent(foodBuy))
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		FoodPanel.setLayout(gl_FoodPanel);
 		
 		
 		JLabel lblOre = new JLabel("Ore");
+		lblOre.setForeground(new Color(255, 255, 255));
 		
 		JLabel label_10 = new JLabel("Buy Price:");
+		label_10.setForeground(new Color(255, 255, 255));
 		
 		JLabel label_11 = new JLabel("Sell Price:");
+		label_11.setForeground(new Color(255, 255, 255));
 		
 	  		
 		oreAmount = new JLabel(Integer.toString(currShip.getCurrentGoods().getOre()));
+		oreAmount.setForeground(new Color(255, 255, 255));
 		
 		int oreBuyPrice=calculatorBuy(3);
 		int oreSellPrice=calculatorSell(oreBuyPrice);
 		JLabel lblObp = new JLabel(oreBuyPrice+"");
+		lblObp.setForeground(new Color(255, 255, 255));
 		
 		JLabel lblOsp = new JLabel(oreSellPrice+"");
+		lblOsp.setForeground(new Color(255, 255, 255));
 		GroupLayout gl_OrePanel = new GroupLayout(OrePanel);
 		gl_OrePanel.setHorizontalGroup(
 			gl_OrePanel.createParallelGroup(Alignment.LEADING)
@@ -307,47 +343,55 @@ public class Trade extends JPanel{
 					.addComponent(label_11)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(lblOsp)
-					.addGap(20)
+					.addGap(32)
 					.addComponent(oreBuy)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(oreSell)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(oreAmount)
-					.addContainerGap(138, Short.MAX_VALUE))
+					.addContainerGap(13, Short.MAX_VALUE))
 		);
 		gl_OrePanel.setVerticalGroup(
 			gl_OrePanel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_OrePanel.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(gl_OrePanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblOre)
-						.addComponent(label_10)
-						.addComponent(label_11)
-						.addComponent(lblObp)
-						.addComponent(lblOsp)
-						.addComponent(oreSell)
-						.addComponent(oreBuy)
-						.addComponent(oreAmount))
-					.addContainerGap(7, Short.MAX_VALUE))
+					.addGroup(gl_OrePanel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_OrePanel.createParallelGroup(Alignment.BASELINE)
+							.addComponent(lblOre)
+							.addComponent(label_10)
+							.addComponent(label_11)
+							.addComponent(lblObp)
+							.addComponent(lblOsp)
+							.addComponent(oreSell)
+							.addComponent(oreAmount))
+						.addComponent(oreBuy))
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		OrePanel.setLayout(gl_OrePanel);
 		
 		JPanel GamesPanel = new JPanel();
+		GamesPanel.setBackground(new Color(0, 0, 0));
 		
 		JLabel lblGames = new JLabel("Games");
+		lblGames.setForeground(new Color(255, 255, 255));
 		
 		JLabel label_14 = new JLabel("Buy Price:");
+		label_14.setForeground(new Color(255, 255, 255));
 		
 		JLabel label_15 = new JLabel("Sell Price:");
+		label_15.setForeground(new Color(255, 255, 255));
 		
 				
 		label_16 = new JLabel(Integer.toString(currShip.getCurrentGoods().getGames()));
+		label_16.setForeground(new Color(255, 255, 255));
 		
 		int gameBuyPrice=calculatorBuy(4);
 		int gameSellPrice=calculatorSell(gameBuyPrice);
 		JLabel lblGbp = new JLabel(gameBuyPrice+"");
+		lblGbp.setForeground(new Color(255, 255, 255));
 		
 		JLabel lblGsp = new JLabel(gameSellPrice+"");
+		lblGsp.setForeground(new Color(255, 255, 255));
 		GroupLayout gl_GamesPanel = new GroupLayout(GamesPanel);
 		gl_GamesPanel.setHorizontalGroup(
 			gl_GamesPanel.createParallelGroup(Alignment.LEADING)
@@ -362,45 +406,52 @@ public class Trade extends JPanel{
 					.addComponent(label_15)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(lblGsp)
-					.addGap(12)
+					.addGap(24)
 					.addComponent(gamesBuy)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(gamesSell)
 					.addGap(12)
 					.addComponent(label_16)
-					.addContainerGap(135, Short.MAX_VALUE))
+					.addContainerGap(10, Short.MAX_VALUE))
 		);
 		gl_GamesPanel.setVerticalGroup(
 			gl_GamesPanel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_GamesPanel.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(gl_GamesPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblGames)
-						.addComponent(label_14)
-						.addComponent(label_15)
-						.addComponent(lblGbp)
-						.addComponent(lblGsp)
-						.addComponent(label_16)
-						.addComponent(gamesBuy)
-						.addComponent(gamesSell))
-					.addContainerGap(7, Short.MAX_VALUE))
+					.addGroup(gl_GamesPanel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_GamesPanel.createParallelGroup(Alignment.BASELINE)
+							.addComponent(lblGames)
+							.addComponent(label_14)
+							.addComponent(label_15)
+							.addComponent(lblGbp)
+							.addComponent(lblGsp)
+							.addComponent(label_16)
+							.addComponent(gamesSell))
+						.addComponent(gamesBuy))
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		GamesPanel.setLayout(gl_GamesPanel);
 		
 		
 		JLabel lblFirearms = new JLabel("Firearms");
+		lblFirearms.setForeground(new Color(255, 255, 255));
 		
 		JLabel label_18 = new JLabel("Buy Price:");
+		label_18.setForeground(new Color(255, 255, 255));
 		
 		JLabel label_19 = new JLabel("Sell Price:");
+		label_19.setForeground(new Color(255, 255, 255));
 		
 		
 		firearmsAmount = new JLabel(Integer.toString(currShip.getCurrentGoods().getFirearms()));
+		firearmsAmount.setForeground(new Color(255, 255, 255));
 		
 		int firearmBuyPrice=calculatorBuy(5);
 		int firearmSellPrice=calculatorSell(firearmBuyPrice);
 		JLabel lblFibp = new JLabel(firearmBuyPrice+"");
+		lblFibp.setForeground(new Color(255, 255, 255));
 		JLabel lblFisp = new JLabel(firearmSellPrice+"");
+		lblFisp.setForeground(new Color(255, 255, 255));
 		
 		GroupLayout gl_FirearmsPanel = new GroupLayout(FirearmsPanel);
 		gl_FirearmsPanel.setHorizontalGroup(
@@ -416,45 +467,59 @@ public class Trade extends JPanel{
 					.addComponent(label_19)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(lblFisp)
-					.addGap(12)
+					.addGap(15)
 					.addComponent(firearmsBuy)
-					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGap(4)
 					.addComponent(firearmsSell)
-					.addGap(18)
+					.addGap(13)
 					.addComponent(firearmsAmount)
-					.addContainerGap(135, Short.MAX_VALUE))
+					.addContainerGap(25, Short.MAX_VALUE))
 		);
 		gl_FirearmsPanel.setVerticalGroup(
 			gl_FirearmsPanel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_FirearmsPanel.createSequentialGroup()
-					.addContainerGap(6, Short.MAX_VALUE)
-					.addGroup(gl_FirearmsPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblFirearms)
-						.addComponent(firearmsSell)
-						.addComponent(label_19)
-						.addComponent(label_18)
-						.addComponent(lblFibp)
-						.addComponent(lblFisp)
-						.addComponent(firearmsAmount)
-						.addComponent(firearmsBuy))
-					.addContainerGap(7, Short.MAX_VALUE))
+					.addGroup(gl_FirearmsPanel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_FirearmsPanel.createSequentialGroup()
+							.addContainerGap()
+							.addGroup(gl_FirearmsPanel.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lblFirearms)
+								.addComponent(label_19)
+								.addComponent(label_18)
+								.addComponent(lblFibp)
+								.addComponent(lblFisp)))
+						.addGroup(gl_FirearmsPanel.createSequentialGroup()
+							.addGap(5)
+							.addComponent(firearmsBuy))
+						.addGroup(gl_FirearmsPanel.createSequentialGroup()
+							.addGap(5)
+							.addComponent(firearmsSell))
+						.addGroup(gl_FirearmsPanel.createSequentialGroup()
+							.addGap(9)
+							.addComponent(firearmsAmount)))
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		FirearmsPanel.setLayout(gl_FirearmsPanel);
 		
 		
 		JLabel lblMedicine = new JLabel("Medicine");
+		lblMedicine.setForeground(new Color(255, 255, 255));
 		
 		JLabel label_22 = new JLabel("Buy Price:");
+		label_22.setForeground(new Color(255, 255, 255));
 		
 		JLabel label_23 = new JLabel("Sell Price:");
+		label_23.setForeground(new Color(255, 255, 255));
 		
 				
 		MedicineAmount = new JLabel(Integer.toString(currShip.getCurrentGoods().getMedicines()));
+		MedicineAmount.setForeground(new Color(255, 255, 255));
 		
 		int medBuyPrice=calculatorBuy(6);
 		int medSellPrice=calculatorSell(medBuyPrice);
 		JLabel lblMbp = new JLabel(medBuyPrice+"");
+		lblMbp.setForeground(new Color(255, 255, 255));
 		JLabel lblMsp = new JLabel(medSellPrice+"");
+		lblMsp.setForeground(new Color(255, 255, 255));
 		
 		GroupLayout gl_MedicinePanel = new GroupLayout(MedicinePanel);
 		gl_MedicinePanel.setHorizontalGroup(
@@ -470,13 +535,13 @@ public class Trade extends JPanel{
 					.addComponent(label_23)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(lblMsp)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGap(24)
 					.addComponent(medicineBuy)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(medicineSell)
 					.addGap(18)
 					.addComponent(MedicineAmount)
-					.addContainerGap(133, Short.MAX_VALUE))
+					.addContainerGap(8, Short.MAX_VALUE))
 		);
 		gl_MedicinePanel.setVerticalGroup(
 			gl_MedicinePanel.createParallelGroup(Alignment.LEADING)
@@ -489,28 +554,37 @@ public class Trade extends JPanel{
 						.addComponent(label_22)
 						.addComponent(MedicineAmount)
 						.addComponent(lblMbp)
-						.addComponent(lblMsp)
-						.addComponent(medicineBuy))
-					.addContainerGap(7, Short.MAX_VALUE))
+						.addComponent(lblMsp))
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+				.addGroup(Alignment.TRAILING, gl_MedicinePanel.createSequentialGroup()
+					.addContainerGap(7, Short.MAX_VALUE)
+					.addComponent(medicineBuy)
+					.addGap(5))
 		);
 		MedicinePanel.setLayout(gl_MedicinePanel);
 		
 		
 		JLabel lblMachines = new JLabel("Machines");
+		lblMachines.setForeground(new Color(255, 255, 255));
 		
 		JLabel label_26 = new JLabel("Buy Price:");
+		label_26.setForeground(new Color(255, 255, 255));
 		
 		JLabel label_27 = new JLabel("Sell Price:");
+		label_27.setForeground(new Color(255, 255, 255));
 		
 		
 		
 		MachinesAmount = new JLabel(Integer.toString(currShip.getCurrentGoods().getMachines()));
+		MachinesAmount.setForeground(new Color(255, 255, 255));
 		
 		
 		int macBuyPrice=calculatorBuy(7);
 		int macSellPrice=calculatorSell(macBuyPrice);
 		JLabel lblMabp = new JLabel(macBuyPrice+"");
+		lblMabp.setForeground(new Color(255, 255, 255));
 		JLabel lblMasp = new JLabel(macSellPrice+"");
+		lblMasp.setForeground(new Color(255, 255, 255));
 		GroupLayout gl_MachinesPanel = new GroupLayout(MachinesPanel);
 		gl_MachinesPanel.setHorizontalGroup(
 			gl_MachinesPanel.createParallelGroup(Alignment.LEADING)
@@ -525,46 +599,53 @@ public class Trade extends JPanel{
 					.addComponent(label_27)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(lblMasp)
-					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGap(22)
 					.addComponent(machinesBuy)
-					.addGap(12)
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(machinesSell)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(MachinesAmount, GroupLayout.PREFERRED_SIZE, 13, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(131, Short.MAX_VALUE))
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		gl_MachinesPanel.setVerticalGroup(
 			gl_MachinesPanel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_MachinesPanel.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(gl_MachinesPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblMachines)
-						.addComponent(label_26)
-						.addComponent(label_27)
-						.addComponent(machinesSell)
-						.addComponent(lblMabp)
-						.addComponent(lblMasp)
-						.addComponent(MachinesAmount)
+					.addGroup(gl_MachinesPanel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_MachinesPanel.createParallelGroup(Alignment.BASELINE)
+							.addComponent(lblMachines)
+							.addComponent(label_26)
+							.addComponent(label_27)
+							.addComponent(machinesSell)
+							.addComponent(lblMabp)
+							.addComponent(lblMasp)
+							.addComponent(MachinesAmount))
 						.addComponent(machinesBuy))
-					.addContainerGap(7, Short.MAX_VALUE))
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		MachinesPanel.setLayout(gl_MachinesPanel);
 		
 		
 		JLabel lblNarcotices = new JLabel("Narcotices");
+		lblNarcotices.setForeground(new Color(255, 255, 255));
 		
 		
 		JLabel label_30 = new JLabel("Buy Price:");
+		label_30.setForeground(new Color(255, 255, 255));
 		
 		JLabel label_31 = new JLabel("Sell Price:");
+		label_31.setForeground(new Color(255, 255, 255));
 		
 				
 		narcoticesAmount = new JLabel(Integer.toString(currShip.getCurrentGoods().getNarcotics()));
+		narcoticesAmount.setForeground(new Color(255, 255, 255));
 		int narBuyPrice=calculatorBuy(8);
 		int narSellPrice=calculatorSell(narBuyPrice);
 		JLabel lblNabp = new JLabel(narBuyPrice+"");
+		lblNabp.setForeground(new Color(255, 255, 255));
 		
 		JLabel lblNasp = new JLabel(narSellPrice+"");
+		lblNasp.setForeground(new Color(255, 255, 255));
 		GroupLayout gl_NarcoticesPanel = new GroupLayout(NarcoticesPanel);
 		gl_NarcoticesPanel.setHorizontalGroup(
 			gl_NarcoticesPanel.createParallelGroup(Alignment.LEADING)
@@ -579,48 +660,53 @@ public class Trade extends JPanel{
 					.addComponent(label_31)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(lblNasp)
-					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGap(7)
 					.addComponent(narcoticesBuy)
-					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGap(4)
 					.addComponent(narcoticesSell)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGap(24)
 					.addComponent(narcoticesAmount)
-					.addContainerGap(134, Short.MAX_VALUE))
+					.addContainerGap(9, Short.MAX_VALUE))
 		);
 		gl_NarcoticesPanel.setVerticalGroup(
 			gl_NarcoticesPanel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_NarcoticesPanel.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(gl_NarcoticesPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblNarcotices)
-						.addComponent(label_30)
-						.addComponent(label_31)
-						.addComponent(lblNabp)
-						.addComponent(lblNasp)
+					.addGroup(gl_NarcoticesPanel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_NarcoticesPanel.createParallelGroup(Alignment.BASELINE)
+							.addComponent(lblNarcotices)
+							.addComponent(label_30)
+							.addComponent(label_31)
+							.addComponent(lblNabp)
+							.addComponent(lblNasp)
+							.addComponent(narcoticesAmount))
 						.addComponent(narcoticesBuy)
-						.addComponent(narcoticesSell)
-						.addComponent(narcoticesAmount))
-					.addContainerGap(7, Short.MAX_VALUE))
+						.addComponent(narcoticesSell))
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		NarcoticesPanel.setLayout(gl_NarcoticesPanel);
 		
-		btnFinished = new JButton("Finish");
-		
 		
 		JLabel lblRobots = new JLabel("Robots");
+		lblRobots.setForeground(new Color(255, 255, 255));
 		
 		JLabel label_5 = new JLabel("Buy Price:");
+		label_5.setForeground(new Color(255, 255, 255));
 		
 		JLabel label_9 = new JLabel("Sell Price:");
+		label_9.setForeground(new Color(255, 255, 255));
 		
 		
 		robotsAmount = new JLabel(Integer.toString(currShip.getCurrentGoods().getRobots()));
+		robotsAmount.setForeground(new Color(255, 255, 255));
 		
 		int robBuyPrice=calculatorBuy(9);
 		int robSellPrice=calculatorSell(robBuyPrice);
 		JLabel lblRobp = new JLabel(robBuyPrice+"");
+		lblRobp.setForeground(new Color(255, 255, 255));
 		
 		JLabel lblRosp = new JLabel(robSellPrice+"");
+		lblRosp.setForeground(new Color(255, 255, 255));
 		GroupLayout gl_RobotsPanel = new GroupLayout(RobotsPanel);
 		gl_RobotsPanel.setHorizontalGroup(
 			gl_RobotsPanel.createParallelGroup(Alignment.LEADING)
@@ -635,158 +721,75 @@ public class Trade extends JPanel{
 					.addComponent(label_9)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(lblRosp)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGap(19)
 					.addComponent(robotsBuy)
-					.addGap(12)
+					.addGap(4)
 					.addComponent(robotsSell)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGap(25)
 					.addComponent(robotsAmount)
-					.addContainerGap(133, Short.MAX_VALUE))
+					.addContainerGap(7, Short.MAX_VALUE))
 		);
 		gl_RobotsPanel.setVerticalGroup(
 			gl_RobotsPanel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_RobotsPanel.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(gl_RobotsPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblRobots)
-						.addComponent(label_9)
-						.addComponent(label_5)
-						.addComponent(robotsSell)
-						.addComponent(lblRobp)
-						.addComponent(lblRosp)
-						.addComponent(robotsBuy)
-						.addComponent(robotsAmount))
-					.addContainerGap(7, Short.MAX_VALUE))
+					.addGroup(gl_RobotsPanel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_RobotsPanel.createSequentialGroup()
+							.addContainerGap()
+							.addGroup(gl_RobotsPanel.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lblRobots)
+								.addComponent(label_9)
+								.addComponent(label_5)
+								.addComponent(lblRobp)
+								.addComponent(lblRosp)
+								.addComponent(robotsAmount)))
+						.addGroup(gl_RobotsPanel.createSequentialGroup()
+							.addGap(5)
+							.addComponent(robotsBuy))
+						.addGroup(gl_RobotsPanel.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(robotsSell)))
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		RobotsPanel.setLayout(gl_RobotsPanel);
 		
-		currentAmountOfGoods = new JLabel(currShip.getCurrentGoods().getTotal()+"");
-		
-		JLabel label_1 = new JLabel("|");
-		
-		totalAmountOfGoods = new JLabel(currShip.getCargoCapacity()+"");
-		
-		JLabel lblPlanetName = new JLabel("Planet Name:");
-		
-		JLabel lblPlanetName_1 = new JLabel(planet.getPlanetName());
-		
-		JLabel lblTechLevel = new JLabel("Tech level:");
-		
-		JLabel lblNewLabel_2 = new JLabel(planet.getTechLevel() + "");
-		
-		JLabel lblZone = new JLabel("Zone:");
-		
-		JLabel lblNewLabel_1 = new JLabel(planet.getZone().getZone() +"");
-		
-		GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addContainerGap()
-							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-								.addComponent(WaterPanel, GroupLayout.DEFAULT_SIZE, 608, Short.MAX_VALUE)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(lblTrade)
-									.addPreferredGap(ComponentPlacement.RELATED, 346, Short.MAX_VALUE)
-									.addComponent(lblNewLabel)
-									.addGap(28)
-									.addComponent(currentAmountOfGoods, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(label_1)
-									.addPreferredGap(ComponentPlacement.UNRELATED)
-									.addComponent(totalAmountOfGoods, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)
-									.addGap(109))
-								.addComponent(FursPanel, GroupLayout.DEFAULT_SIZE, 608, Short.MAX_VALUE)
-								.addComponent(FoodPanel, GroupLayout.DEFAULT_SIZE, 608, Short.MAX_VALUE)
-								.addComponent(OrePanel, GroupLayout.DEFAULT_SIZE, 608, Short.MAX_VALUE)
-								.addComponent(GamesPanel, GroupLayout.DEFAULT_SIZE, 608, Short.MAX_VALUE)
-								.addComponent(FirearmsPanel, GroupLayout.DEFAULT_SIZE, 608, Short.MAX_VALUE)
-								.addComponent(MedicinePanel, GroupLayout.DEFAULT_SIZE, 608, Short.MAX_VALUE)
-								.addComponent(MachinesPanel, GroupLayout.PREFERRED_SIZE, 608, Short.MAX_VALUE)))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addContainerGap()
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(RobotsPanel, GroupLayout.DEFAULT_SIZE, 608, Short.MAX_VALUE)
-								.addComponent(NarcoticesPanel, GroupLayout.DEFAULT_SIZE, 608, Short.MAX_VALUE)))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addContainerGap()
-									.addComponent(lblPlanetName)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(lblPlanetName_1)
-									.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-									.addComponent(lblTechLevel))
-								.addGroup(groupLayout.createSequentialGroup()
-									.addGap(172)
-									.addComponent(btnFinished)))
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(lblNewLabel_2)
-							.addGap(36)
-							.addComponent(lblZone)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(lblNewLabel_1)))
-					.addContainerGap())
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(currentAmountOfGoods)
-						.addComponent(label_1)
-						.addComponent(totalAmountOfGoods)
-						.addComponent(lblNewLabel)
-						.addComponent(lblTrade))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(WaterPanel, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(FursPanel, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(FoodPanel, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(OrePanel, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(GamesPanel, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(FirearmsPanel, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(MedicinePanel, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(MachinesPanel, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(NarcoticesPanel, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(RobotsPanel, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblPlanetName)
-						.addComponent(lblPlanetName_1)
-						.addComponent(lblTechLevel)
-						.addComponent(lblNewLabel_2)
-						.addComponent(lblZone)
-						.addComponent(lblNewLabel_1))
-					.addGap(20)
-					.addComponent(btnFinished)
-					.addContainerGap())
-		);
-		
 		JLabel lblWater = new JLabel("Water");
+		lblWater.setForeground(new Color(255, 255, 255));
 		
 		JLabel lblBuyPrice = new JLabel("Buy Price:");
+		lblBuyPrice.setForeground(new Color(255, 255, 255));
 		
 		JLabel lblSellPrice = new JLabel("Sell Price:");
+		lblSellPrice.setForeground(new Color(255, 255, 255));
 		
 		
 		
 		
 		waterAmount = new JLabel(Integer.toString(currShip.getCurrentGoods().getWater()));
+		waterAmount.setForeground(new Color(255, 255, 255));
 		int waterBuyPrice=calculatorBuy(0);
 		int waterSellPrice=calculatorSell(waterBuyPrice);
+		setLayout(new MigLayout("", "[82px][6px][73px][5px][82px][6px][8px][][][][][][36px][35px][6px][][8px][19px][50px][28px][][16px][6px][][5px][12px][125px]", "[16px][42px][42px][42px][42px][42px][42px][42px][42px][42px][42px][16px][][29px][]"));
+		
+				JLabel lblNewLabel = new JLabel("Current CargoBay:");
+				lblNewLabel.setForeground(new Color(255, 255, 255));
+				add(lblNewLabel, "cell 8 0,alignx left,aligny top");
+		
+		currentAmountOfGoods = new JLabel(currShip.getCurrentGoods().getTotal()+"");
+		currentAmountOfGoods.setForeground(new Color(255, 255, 255));
+		add(currentAmountOfGoods, "cell 9 0,growx,aligny top");
+		
+		JLabel label_1 = new JLabel("|");
+		label_1.setForeground(new Color(255, 255, 255));
+		add(label_1, "cell 10 0,alignx left,aligny top");
+		
+		totalAmountOfGoods = new JLabel(currShip.getCargoCapacity()+"");
+		totalAmountOfGoods.setForeground(new Color(255, 255, 255));
+		add(totalAmountOfGoods, "cell 11 0,alignx left,aligny top");
 		JLabel lblWbp = new JLabel(waterBuyPrice+"");
+		lblWbp.setForeground(new Color(255, 255, 255));
 		
 		JLabel lblWsp = new JLabel(waterSellPrice+"");
+		lblWsp.setForeground(new Color(255, 255, 255));
 		GroupLayout gl_WaterPanel = new GroupLayout(WaterPanel);
 		gl_WaterPanel.setHorizontalGroup(
 			gl_WaterPanel.createParallelGroup(Alignment.LEADING)
@@ -801,31 +804,69 @@ public class Trade extends JPanel{
 					.addComponent(lblSellPrice)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(lblWsp, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGap(15)
 					.addComponent(waterBuy)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(waterSell)
 					.addGap(18)
 					.addComponent(waterAmount)
-					.addContainerGap(136, Short.MAX_VALUE))
+					.addContainerGap(11, Short.MAX_VALUE))
 		);
 		gl_WaterPanel.setVerticalGroup(
 			gl_WaterPanel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_WaterPanel.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(gl_WaterPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblWater)
-						.addComponent(lblBuyPrice)
-						.addComponent(lblSellPrice)
-						.addComponent(lblWbp)
-						.addComponent(lblWsp)
-						.addComponent(waterBuy)
-						.addComponent(waterSell)
-						.addComponent(waterAmount))
-					.addContainerGap(7, Short.MAX_VALUE))
+					.addGroup(gl_WaterPanel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_WaterPanel.createParallelGroup(Alignment.BASELINE)
+							.addComponent(lblWater)
+							.addComponent(lblBuyPrice)
+							.addComponent(lblSellPrice)
+							.addComponent(lblWbp)
+							.addComponent(lblWsp)
+							.addComponent(waterSell)
+							.addComponent(waterAmount))
+						.addComponent(waterBuy))
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		WaterPanel.setLayout(gl_WaterPanel);
-		setLayout(groupLayout);
+		add(WaterPanel, "cell 0 1 27 1,growx,aligny top");
+		add(lblTrade, "cell 0 0,alignx left,aligny top");
+		add(FursPanel, "cell 0 2 27 1,growx,aligny top");
+		add(FoodPanel, "cell 0 3 27 1,growx,aligny top");
+		add(OrePanel, "cell 0 4 27 1,growx,aligny top");
+		add(GamesPanel, "cell 0 5 27 1,growx,aligny top");
+		add(FirearmsPanel, "cell 0 6 27 1,growx,aligny top");
+		add(MedicinePanel, "cell 0 7 27 1,growx,aligny top");
+		add(MachinesPanel, "cell 0 8 27 1,growx,aligny top");
+		add(RobotsPanel, "cell 0 10 27 1,growx,aligny top");
+		add(NarcoticesPanel, "cell 0 9 27 1,growx,aligny top");
+		
+		JLabel lblPlanetName = new JLabel("Planet Name:");
+		lblPlanetName.setForeground(new Color(255, 255, 255));
+		add(lblPlanetName, "cell 0 12,alignx left,aligny top");
+		
+		JLabel lblPlanetName_1 = new JLabel(planet.getPlanetName());
+		lblPlanetName_1.setForeground(new Color(255, 255, 255));
+		add(lblPlanetName_1, "cell 2 12,alignx left,aligny top");
+		
+		JLabel lblTechLevel = new JLabel("Tech level:");
+		lblTechLevel.setForeground(new Color(255, 255, 255));
+		add(lblTechLevel, "cell 4 12,alignx right,aligny top");
+		
+		JLabel lblNewLabel_2 = new JLabel(planet.getTechLevel() + "");
+		lblNewLabel_2.setForeground(new Color(255, 255, 255));
+		add(lblNewLabel_2, "cell 7 12,alignx left,aligny top");
+		
+		JLabel lblZone = new JLabel("Zone:");
+		lblZone.setForeground(new Color(255, 255, 255));
+		add(lblZone, "cell 13 12,alignx left,aligny top");
+		
+		JLabel lblNewLabel_1 = new JLabel(planet.getZone().getZone() +"");
+		lblNewLabel_1.setForeground(new Color(255, 255, 255));
+		add(lblNewLabel_1, "cell 15 12,alignx left,aligny top");
+		
+		btnFinished = new JButton("Finish");
+		add(btnFinished, "cell 4 14,alignx left,aligny top");
 		//chucnk
 		
 		allBuy = new int[10];
@@ -983,6 +1024,7 @@ if(level>2){
 	{
 		narcoticesBuy = new JButton("Buy");
 		narcoticesSell = new JButton("Sell");
+		narcoticesSell.setSelectedIcon(new ImageIcon("/Users/haysam_121/Pictures/iPhoto Library/Originals/2010/Aug 29, 2010/DSCN0187.JPG"));
 		narcoticesBuy.setEnabled(false);
 		
 		if(level>4){
@@ -1382,6 +1424,11 @@ if(level>2){
 	public boolean setBtnFinished(ActionListener a){
 		btnFinished.addActionListener(a);
 		return true;
+	}
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		Image bg = new ImageIcon("img/bricks.jpg").getImage();
+		g.drawImage(bg, 0, 0,getWidth(),getHeight(), this);
 	}
 }
 
