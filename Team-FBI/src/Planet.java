@@ -18,6 +18,7 @@ private int resources;
 private Random rand;
 private Color color;
 private Zone zone;
+private Goods goods;
 /**
  * This is the contructor for a planet, takes a planet name
  * @param planetName
@@ -32,7 +33,25 @@ resources = rand.nextInt(13);
 governments = new Governments(rand.nextInt(5));
 location= new Point(0,0);
 color = new Color(rand.nextInt(256),rand.nextInt(256),rand.nextInt(256));
+goods = new Goods();
+goods.setWater(10+(rand.nextInt(2*(1+techLevel))-(1+techLevel)));
+goods.setFurs(10+(rand.nextInt(2*(1+techLevel))-(1+techLevel)));
+goods.setFood(10+(rand.nextInt(2*(1+techLevel))-(1+techLevel)));
+goods.setFirearms(10+(rand.nextInt(2*(1+techLevel))-(1+techLevel)));
+goods.setMedicines(10+(rand.nextInt(2*(1+techLevel))-(1+techLevel)));
+goods.setNarcotics(10+(rand.nextInt(2*(1+techLevel))-(1+techLevel)));
+goods.setMachines(10+(rand.nextInt(2*(1+techLevel))-(1+techLevel)));
+goods.setRobots(10+(rand.nextInt(2*(1+techLevel))-(1+techLevel)));
+goods.setGames(10+(rand.nextInt(2*(1+techLevel))-(1+techLevel)));
+goods.setOre(10+(rand.nextInt(2*(1+techLevel))-(1+techLevel)));
 
+}
+/**
+ * Getter, get the goods
+ * @return goods
+ */
+public Goods getGoods(){
+	return goods;
 }
 /**
  * getter, return planet name
