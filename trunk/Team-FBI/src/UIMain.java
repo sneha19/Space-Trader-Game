@@ -30,6 +30,8 @@ public class UIMain {
 	private Universe universe;
 	private Trade trade;
 	private Planet[] planetlist;
+	//private JMenuBar menuBar;
+	//private JMenuItem mntmFile;
 	/**
 	 * Constructor
 	 */
@@ -46,7 +48,13 @@ public class UIMain {
 		
 		frame = new JFrame("Star Trader");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setPreferredSize(new Dimension(800,900));
+		frame.setPreferredSize(new Dimension(450,450));
+		
+		//menuBar = new JMenuBar();
+		//frame.setJMenuBar(menuBar);
+		
+		//mntmFile = new JMenuItem("file");
+		//menuBar.add(mntmFile);
 		frame.setContentPane(tabPane);
 		frame.pack();
 		frame.setVisible(true);
@@ -109,6 +117,7 @@ public class UIMain {
 		 * Method must be implemented from ActionListener interface  
 		 */
 		public void actionPerformed (ActionEvent e){
+			frame.setSize(new Dimension(800,800));
 			universe = new Universe(player);
 			map=new MapPanel(universe,player);
 			tabPane.addTab("Map",map);

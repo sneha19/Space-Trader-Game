@@ -159,7 +159,7 @@ public class Goods {
 	 * @param robots
 	 */
 	public void setRobots(int robots) {
-		this.robots = robots;
+		this.robots += robots;
 	}
 	/**
 	 * getter, get the total amount
