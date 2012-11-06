@@ -1,6 +1,9 @@
 import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Point;
 import javax.swing.*;
+
 import net.miginfocom.swing.MigLayout;
 import javax.swing.GroupLayout.Alignment;
 import java.awt.Color;
@@ -373,6 +376,11 @@ public class Stats extends JPanel {
 	 */
 	public int averageSell(int index){
 		return (sellHighRange(index)+sellLowRange(index))/2;
+	}
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		Image bg = new ImageIcon("img/bricks.jpg").getImage();
+		g.drawImage(bg, 0, 0,getWidth(),getHeight(), this);
 	}
 	
 	
