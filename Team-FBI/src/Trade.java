@@ -174,7 +174,7 @@ public class Trade extends JPanel{
 		
 		
 		lblTrade = new JLabel("$ "+currPlayer.getCash());
-		lblTrade.setForeground(Color.BLACK);
+		lblTrade.setForeground(Color.WHITE);
 		
 		JPanel WaterPanel = new JPanel();
 		WaterPanel.setBackground(new Color(0, 0, 0));
@@ -878,19 +878,19 @@ public class Trade extends JPanel{
 		setLayout(new MigLayout("", "[82px][6px][73px][5px][82px][6px][8px][][][][][][36px][35px][6px][][8px][19px][50px][28px][][16px][6px][][5px][12px][125px]", "[16px][42px][42px][42px][42px][42px][42px][42px][42px][42px][42px][16px][][29px][]"));
 		
 				JLabel lblNewLabel = new JLabel("Current CargoBay:");
-				lblNewLabel.setForeground(Color.BLACK);
+				lblNewLabel.setForeground(Color.WHITE);
 				add(lblNewLabel, "cell 8 0,alignx left,aligny top");
 		
 		currentAmountOfGoods = new JLabel(currShip.getCurrentGoods().getTotal()+"");
-		currentAmountOfGoods.setForeground(Color.BLACK);
+		currentAmountOfGoods.setForeground(Color.WHITE);
 		add(currentAmountOfGoods, "cell 9 0,growx,aligny top");
 		
 		JLabel label_1 = new JLabel("|");
-		label_1.setForeground(Color.BLACK);
+		label_1.setForeground(Color.WHITE);
 		add(label_1, "cell 10 0,alignx left,aligny top");
 		
 		totalAmountOfGoods = new JLabel(currShip.getCargoCapacity()+"");
-		totalAmountOfGoods.setForeground(Color.BLACK);
+		totalAmountOfGoods.setForeground(Color.WHITE);
 		add(totalAmountOfGoods, "cell 11 0,alignx left,aligny top");
 		JLabel lblWbp = new JLabel(waterBuyPrice+"");
 		lblWbp.setForeground(new Color(255, 255, 255));
