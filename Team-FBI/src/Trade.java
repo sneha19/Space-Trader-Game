@@ -960,27 +960,27 @@ public class Trade extends JPanel{
 		add(NarcoticesPanel, "cell 0 9 27 1,growx,aligny top");
 		
 		JLabel lblPlanetName = new JLabel("Planet Name:");
-		lblPlanetName.setForeground(Color.BLACK);
+		lblPlanetName.setForeground(Color.WHITE);
 		add(lblPlanetName, "cell 0 12,alignx left,aligny top");
 		
 		JLabel lblPlanetName_1 = new JLabel(planet.getPlanetName());
-		lblPlanetName_1.setForeground(Color.BLACK);
+		lblPlanetName_1.setForeground(Color.WHITE);
 		add(lblPlanetName_1, "cell 2 12,alignx left,aligny top");
 		
 		JLabel lblTechLevel = new JLabel("Tech level:");
-		lblTechLevel.setForeground(Color.BLACK);
+		lblTechLevel.setForeground(Color.WHITE);
 		add(lblTechLevel, "cell 4 12,alignx right,aligny top");
 		
 		JLabel lblNewLabel_2 = new JLabel(planet.getTechLevel() + "");
-		lblNewLabel_2.setForeground(Color.BLACK);
+		lblNewLabel_2.setForeground(Color.WHITE);
 		add(lblNewLabel_2, "cell 7 12,alignx left,aligny top");
 		
 		JLabel lblZone = new JLabel("Zone:");
-		lblZone.setForeground(Color.BLACK);
+		lblZone.setForeground(Color.WHITE);
 		add(lblZone, "cell 13 12,alignx left,aligny top");
 		
 		JLabel lblNewLabel_1 = new JLabel(planet.getZone().getZone() +"");
-		lblNewLabel_1.setForeground(Color.BLACK);
+		lblNewLabel_1.setForeground(Color.WHITE);
 		add(lblNewLabel_1, "cell 15 12,alignx left,aligny top");
 		
 		btnFinished = new JButton("Finish");
