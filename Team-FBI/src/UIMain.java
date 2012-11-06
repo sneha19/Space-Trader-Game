@@ -217,7 +217,9 @@ public class UIMain {
 	            {
 	            	  int reply = JOptionPane.showConfirmDialog(null, "Unfortunatly your ship ran out of fuel, play again?", "SHIP BLEW UP!", JOptionPane.YES_NO_OPTION);
 	                  if (reply == JOptionPane.YES_OPTION) {
-	                    JOptionPane.showConfirmDialog(null, new UIMain(), "", 0);
+	                    //JOptionPane.showConfirmDialog(null, new UIMain(), "", 0);
+	                	  UIMain newGame= new UIMain();
+	                	  frame.dispose();
 	                  }
 	                  else {
 	                     JOptionPane.showMessageDialog(null, "GOODBYE");
