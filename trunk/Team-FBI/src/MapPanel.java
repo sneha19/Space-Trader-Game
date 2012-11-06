@@ -4,10 +4,13 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -91,7 +94,9 @@ public class MapPanel extends JPanel {
 		setVisible( true );
 		this.requestFocusInWindow();
 		repaint();
-
+		
+		
+		this.addMouseListener(new StatsListener());
 
 
 	}
@@ -173,5 +178,38 @@ public class MapPanel extends JPanel {
 	public boolean setKeyListener(KeyListener k){
 		this.addKeyListener(k);
 		return true;
+	}
+	
+	private class StatsListener implements MouseListener{
+		public void mouseClicked(MouseEvent e){
+			Point p = e.getPoint();
+			Point targetLocation = new Point((int)Math.ceil(p.x/30),(int)Math.ceil(p.y/30));
+			Planet[][] list = universe.getPlanetWithLocation();
+			
+			for(int i=0;i<25;i++){
+				for(int j=0;j<20;j++){
+					if(list[i][j]!=null&&list[i][j].getLocation().equals(targetLocation)){
+						int distance =Math.abs(list[i][j].getLocation().x-currPlayer.getPosition().x)+Math.abs(list[i][j].getLocation().y-currPlayer.getPosition().y);
+						if(distance<=10){
+							Stats stats = new Stats(list[i][j],currPlayer);
+							JFrame statsFrame = new JFrame();
+							statsFrame.add(stats);
+							statsFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+							statsFrame.setPreferredSize(new Dimension(330,440));
+							statsFrame.pack();
+							statsFrame.setVisible(true);
+						}
+					}
+				}
+			}
+			
+			
+			
+			
+		}
+		public void mouseEntered(MouseEvent e){};
+		public void mouseExited(MouseEvent e){};
+		public void mousePressed(MouseEvent e){};
+		public void mouseReleased(MouseEvent e){};
 	}
 }
