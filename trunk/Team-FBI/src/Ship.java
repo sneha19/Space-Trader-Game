@@ -1,16 +1,22 @@
+
 import java.awt.Image;
+import java.awt.image.RenderedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 import java.text.DecimalFormat;
 
+import javax.imageio.IIOImage;
 import javax.imageio.ImageIO;
+import javax.imageio.ImageWriteParam;
+import javax.imageio.ImageWriter;
 
 /**
  * This is a ship class that holds the critical information of a ship
  * 
  * @author Sneha, Guang
  */
-public class Ship {
+public class Ship implements Serializable{
 	private int hull;
 	private int cargoCapacity;
 	private int fuelCapacity;
@@ -23,6 +29,17 @@ public class Ship {
 	private double currentFuel;
 	private double fuelPerMove;
 	private double maxHull;
+//	
+//	private void writeObject(java.io.ObjectOutputStream out) throws IOException {
+//		out.writeObject(new String("shipimg"));
+//		ImageWriter writer = (ImageWriter) ImageIO.getImageWritersBySuffix("jpg").next();
+//	        writer.setOutput(ImageIO.createImageOutputStream(out));
+//	        ImageWriteParam param = writer.getDefaultWriteParam();
+//	        param.setCompressionMode(ImageWriteParam.MODE_EXPLICIT);
+//	        param.setCompressionQuality(0.85f);
+//	        writer.write(null, new IIOImage((RenderedImage) shipImage, null, null), param);
+//	}
+
 
 	/**
 	 * A constructor that takes a shiptype

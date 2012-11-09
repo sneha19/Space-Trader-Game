@@ -3,6 +3,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.Serializable;
 import java.text.DecimalFormat;
 
 import javax.swing.DefaultComboBoxModel;
@@ -26,7 +27,7 @@ import javax.swing.JSpinner;
  * @author Haytham Abutair
  *
  */
-public class StarDock extends JPanel {
+public class StarDock extends JPanel  implements Serializable{
 	public Zone _unnamed_Zone_;
 	public PlanetScreen _unnamed_PlanetScreen_;
 	public Equipment _unnamed_Equipment_;

@@ -1,9 +1,11 @@
+import java.io.Serializable;
+
 /**
  * The zone class representing a solar system
  * @author Guang Lu
  *
  */
-public class Zone {
+public class Zone implements Serializable {
 	int zoneLevel;
 	/**
 	 * Constructor of the zone class

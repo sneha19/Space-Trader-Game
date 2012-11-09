@@ -1,20 +1,37 @@
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Point;
+import java.awt.image.RenderedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 
+import javax.imageio.IIOImage;
 import javax.imageio.ImageIO;
+import javax.imageio.ImageWriteParam;
+import javax.imageio.ImageWriter;
 
 /**
  * Stardock info class, infoholder only
  * @author haytham abutair
  *
  */
-public class StarDockInfo {
+public class StarDockInfo  implements Serializable{
 	Point point;
 	Player player;
 	Image stardockImage;
+	
+	
+	
+	private void writeObject(java.io.ObjectOutputStream out) throws IOException {
+		out.writeObject(new String("sdImg"));
+		ImageWriter writer = (ImageWriter) ImageIO.getImageWritersBySuffix("jpg").next();
+	        writer.setOutput(ImageIO.createImageOutputStream(out));
+	        ImageWriteParam param = writer.getDefaultWriteParam();
+	        param.setCompressionMode(ImageWriteParam.MODE_EXPLICIT);
+	        param.setCompressionQuality(0.85f);
+	        writer.write(null, new IIOImage((RenderedImage) stardockImage, null, null), param);
+	}
 	/**
 	 * pass in point and player to keep updated for position on grid and current player status
 	 * @param p point
