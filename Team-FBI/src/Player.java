@@ -2,6 +2,7 @@ import java.awt.Image;
 import java.awt.Point;
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 
 import javax.imageio.ImageIO;
 
@@ -11,7 +12,7 @@ import javax.imageio.ImageIO;
  *
  */
 
-public class Player {
+public class Player implements Serializable {
 	private String name;
 	private Point position;
 	private int cash;

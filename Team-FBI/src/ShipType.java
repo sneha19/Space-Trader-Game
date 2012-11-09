@@ -1,9 +1,11 @@
+import java.io.Serializable;
+
 /**
  * This is the enum type that holds all the ship and their specifications.	
  * @author Sneha, Guang
  *
  */
-public enum ShipType {
+public enum ShipType  implements Serializable{
 		
 		fighter("Fighter",100,20,100,100),hauler("Hauler",120,100,80,700),bullDog("Bulldog",200,50,50,300),carrier("Carrier",60,150,80,350),yellowJacket("Yellow Jacket",140,30,150,300),destroyer("Destroyer",500,50,100,700),heat("Heat",100,100,100,400);
 		private final int hull;

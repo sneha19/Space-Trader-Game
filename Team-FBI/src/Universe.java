@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 /**
@@ -13,7 +14,7 @@ import java.util.Random;
  * @author Guang
  *
  */
-public class Universe {
+public class Universe  implements Serializable {
 	//public static final Universe universe = new Universe();
 
 	private String[] planetNames;

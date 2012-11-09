@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.Random;
 
 import javax.imageio.ImageIO;
@@ -9,7 +10,7 @@ import javax.imageio.ImageIO;
  * @author team-fbi
  *
  */
-public class Planet {
+public class Planet  implements Serializable{
 private String planetName;
 private Governments governments;
 private Point location;
