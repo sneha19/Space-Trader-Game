@@ -3,22 +3,27 @@ import java.io.Serializable;
 
 public class SaveTemp implements Serializable{
 
-	private Player p;
-	private Universe u;
+
+	private Planet[][] plist;
+	private StarDockInfo[][] slist;
+	private Player player;
+	public SaveTemp(Planet[][] plist, StarDockInfo[][] slist, Player player){
+		this.plist=plist;
+		this.slist=slist;
+		this.player=player;
+	}
 	
-	public SaveTemp(Player p, Universe u){
-		
-		this.p=p;
-		this.u=u;
-		
+	
+	public Planet[][] getPlanet(){
+		return plist;
+	}
+	
+	public StarDockInfo[][] getStarDock(){
+		return slist;
 	}
 	
 	public Player getPlayer(){
-		return p;
+		return player;
 	}
 	
-	
-	public Universe getUniverse(){
-		return u;
-	}
 }

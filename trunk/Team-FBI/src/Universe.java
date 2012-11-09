@@ -14,9 +14,10 @@ import java.util.Random;
  * @author Guang
  *
  */
-public class Universe  implements Serializable {
-	//public static final Universe universe = new Universe();
+public class Universe implements Serializable {
 
+	
+	
 	private String[] planetNames;
 	private Planet[] planet;
 	private Random rand;
@@ -24,7 +25,7 @@ public class Universe  implements Serializable {
 	private Planet[][] tempPlanets = new Planet[25][20];
 	private StarDockInfo[][] tempStarDock = new StarDockInfo[25][20];
 
-	static Player currPlayer;
+	private Player currPlayer;
 	//StarDockInfo stdi = new StarDockInfo(null);
 	/**
 	 * The constructor of the universe
@@ -47,21 +48,9 @@ public class Universe  implements Serializable {
 	}
 	
 	rand = new Random();
-//	Planet p []= new Planet[122];
-//	int counter = 122;
-//	for(int i=0;i<122;i++){
-//		int index = rand.nextInt(counter);
-//		p[i]=planet[index];
-//		counter--;
-//		System.out.println(p[i].getPlanetName());
-//	}
-//	
-//	planet = p;
-//	
-//	
-	
-	positionList = new ArrayList<Point>();
+
 	//create all the positions
+	positionList = new ArrayList<Point>();
 	for(int x=0;x<25;x++){
 		for(int y=0;y<20;y++){
 			positionList.add(new Point(x,y));
@@ -80,6 +69,7 @@ public class Universe  implements Serializable {
 	positionList.remove(index);
 	m--;
 	}
+	
 	for(int i = 0; i < 5; i++)
 	{
 		int index = rand.nextInt(m-5);
@@ -153,21 +143,11 @@ public class Universe  implements Serializable {
     				tempPlanets[i][j].draw(g, null);
     			if(tempStarDock[i][j] != null)
     				tempStarDock[i][j].draw(g, new Point(i,j));
-    	//		else{
-    	//			g.setColor(Color.gray);
-    	//			g.drawRect(30*i, 30*j, 30, 30);
-    	//		}
     		}
-    	
-    	
-    	
-    	g.drawImage(currPlayer.getShip().getPic(), 30*currPlayer.getPosition().x, 30*currPlayer.getPosition().y, null);
-    //	g.fillOval(15*currPlayer.getPosition().x, 15*currPlayer.getPosition().y, 15, 15);
-//    
-//    	for (Planet p : planet) {
-//    			p.draw(g, null);
-//    	}
+    	//g.drawImage(currPlayer.getShip().getPic(), 30*currPlayer.getPosition().x, 30*currPlayer.getPosition().y, null);
+    
     }
+    
     /**
      * Getter for a temp holder for planers
      * @return tempPlanets
@@ -184,5 +164,12 @@ public class Universe  implements Serializable {
      * Getter for the planet array
      * @return planet
      */
+    
+    public void setPS(Planet[][] p,StarDockInfo[][] s){
+    	tempPlanets=p;
+    	tempStarDock=s;
+    }
+    
+    
 
 }

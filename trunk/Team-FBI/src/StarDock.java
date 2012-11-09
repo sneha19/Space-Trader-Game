@@ -20,7 +20,8 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import net.miginfocom.swing.MigLayout;
-import javax.swing.JSpinner;
+
+import org.omg.CORBA.TRANSIENT;
 
 /**
  * stardock gui side to allow users to interact with game
@@ -44,6 +45,7 @@ public class StarDock extends JPanel  implements Serializable{
 	JSlider fuelSlider;
 	JLabel maxFuelLbl = new JLabel("");
 	JLabel maxHullLbl = new JLabel("");
+	transient Image bg;
 
 	int i = 0;
 	/**
@@ -282,8 +284,12 @@ public class StarDock extends JPanel  implements Serializable{
 	 */
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		Image bg = new ImageIcon("img/bricks.jpg").getImage();
+		bg = new ImageIcon("img/bricks.jpg").getImage();
 		g.drawImage(bg, 0, 0,getWidth(),getHeight(), this);
+	}
+	public void afterLoad()
+	{
+		bg = new ImageIcon("img/bricks.jpg").getImage();
 	}
 
 	/**

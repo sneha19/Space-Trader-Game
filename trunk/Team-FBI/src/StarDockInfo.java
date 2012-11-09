@@ -19,7 +19,7 @@ import javax.imageio.ImageWriter;
 public class StarDockInfo  implements Serializable{
 	Point point;
 	Player player;
-	Image stardockImage;
+	transient Image stardockImage;
 	
 	
 	
@@ -41,6 +41,13 @@ public class StarDockInfo  implements Serializable{
 	{
 		point = p;
 		this.player = player;
+		try {
+			stardockImage = ImageIO.read(new File("img/OneStop.png"));
+		} catch (IOException e) {
+		}
+	}
+	public void afterLoad()
+	{
 		try {
 			stardockImage = ImageIO.read(new File("img/OneStop.png"));
 		} catch (IOException e) {
