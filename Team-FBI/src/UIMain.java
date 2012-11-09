@@ -10,8 +10,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.util.zip.GZIPInputStream;
-import java.util.zip.GZIPOutputStream;
+import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -41,7 +40,6 @@ public class UIMain implements Serializable {
 	private MapPanel map;
 	private JButton btnStart;
 	private StarDock stardock;
-	
 	private Universe universe;
 	private Trade trade;
 	private Planet[] planetlist;
@@ -134,7 +132,10 @@ public class UIMain implements Serializable {
 		 */
 		public void actionPerformed (ActionEvent e){
 			frame.setSize(new Dimension(800,800));
+
 			universe = new Universe(player);
+						
+			
 			map=new MapPanel(universe,player);
 			tabPane.addTab("Map",map);
 			tabPane.setSelectedIndex(1);
@@ -303,22 +304,30 @@ public class UIMain implements Serializable {
 		//FileDialog f = new FileDialog(frame, "Save", FileDialog.SAVE); 
 		//f.show(); // Display the dialog and block. 
 		 //String filename = f.getFile(); // Get the user's response 
-		//SaveTemp st = new SaveTemp(player,universe);
 		
 		int a =1;
 		 if (a==1) { // If user didn't click "Cancel". 
-			try { // Create the necessary output streams to save the scribble. 
-				FileOutputStream fos = new FileOutputStream("nicename.ser"); // Save to file 
-				//GZIPOutputStream gzos = new GZIPOutputStream(fos); // Compressed 
-				ObjectOutputStream out = new ObjectOutputStream(fos); // Save objects 
-				
-				
-				out.writeObject(player);
-				out.writeObject(universe);
-				
-				out.flush(); // Always flush the output. 
-				out.close(); // And close the stream. 
+			try { 
+				FileOutputStream fos = new FileOutputStream("player.ser"); 
+				ObjectOutputStream out = new ObjectOutputStream(fos);  
+				out.writeObject(player);		
+				out.flush(); 
+				fos.flush();
+				out.close(); 
 				fos.close();
+				
+				
+				FileOutputStream fos2 = new FileOutputStream("universe.ser"); // Save to file 
+				//GZIPOutputStream gzos = new GZIPOutputStream(fos); // Compressed 
+				ObjectOutputStream out2 = new ObjectOutputStream(fos2); // Save objects 
+				out2.writeObject(universe);		
+				out2.flush(); // Always flush the output. 
+				out2.close(); // And close the stream. 
+				fos2.flush();
+				fos2.close();
+			
+				
+				
 				} // Print out exceptions. We should really display them in a dialog... 
 			catch (IOException e) { System.out.println(e); } 
 			} 
@@ -330,22 +339,27 @@ public class UIMain implements Serializable {
 		//FileDialog f = new FileDialog(frame, "Load Scribble", FileDialog.LOAD); 
 		//f.show(); // Display the dialog and block. 
 		//String filename = f.getFile(); // Get the user's response 
+		
+		
+		
+		
 		int b =1;
 		if (b==1) { 
 			try { // Create necessary input streams 
-				FileInputStream fis = new FileInputStream("nicename.ser"); // Read from file 
-				//GZIPInputStream gzis = new GZIPInputStream(fis); // Uncompress 
+				FileInputStream fis = new FileInputStream("player.ser");
 				ObjectInputStream in = new ObjectInputStream(fis);
-				
-				//SaveTemp st = (SaveTemp)a;
-				//player=st.getPlayer();
-				//niverse=st.getUniverse();
-
+				player  =(Player)in.readObject();
 				in.close(); 
 				fis.close();
+				player.getShip().afterLoad();
 				
-				map.repaint();
-				frame.repaint();
+				FileInputStream fis2 = new FileInputStream("universe.ser");
+				ObjectInputStream in2 = new ObjectInputStream(fis2);
+				universe  =(Universe)in.readObject();
+				in2.close(); 
+				fis2.close();
+				
+				
 				
 				}
 			catch (Exception e) { System.out.println(e); 
@@ -365,6 +379,13 @@ public class UIMain implements Serializable {
 		public void actionPerformed(ActionEvent e){
 			
 				load();
+				
+				tabPane.remove(1);
+				map = new MapPanel(universe,player);
+				map.setKeyListener(new KeyController());
+			
+				tabPane.addTab("Map",map);
+			
 		}
 	}
 	

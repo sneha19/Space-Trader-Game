@@ -25,10 +25,11 @@ public class Ship implements Serializable{
 	private String name;
 	private ShipType st;
 	private Goods currentGoods;
-	private Image shipImage;
+	private transient Image shipImage;
 	private double currentFuel;
 	private double fuelPerMove;
 	private double maxHull;
+	
 //	
 //	private void writeObject(java.io.ObjectOutputStream out) throws IOException {
 //		out.writeObject(new String("shipimg"));
@@ -401,5 +402,13 @@ public class Ship implements Serializable{
 	{
 		return shipImage;
 	}
+	
+	public void afterLoad(){
+		try {
+			shipImage = ImageIO.read(new File("img/shiptest.png"));
+		} catch (IOException e) {
+		}
+	}
+	
 
 }

@@ -118,6 +118,8 @@ public class MapPanel extends JPanel {
 	public void draw(Graphics g)
 	{
 		universe.draw(g);
+    	g.drawImage(currPlayer.getShip().getPic(), 30*currPlayer.getPosition().x, 30*currPlayer.getPosition().y, null);
+
 
 	}
 	/**
