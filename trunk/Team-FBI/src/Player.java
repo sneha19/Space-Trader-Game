@@ -62,10 +62,9 @@ public class Player implements Serializable {
 	 * @param change + or - points
 	 * @return true if set was successful
 	 */
-	public boolean setAvailableSkillPoints(int change){
+	public void setAvailableSkillPoints(int change){
 		availableSkillPoints+=change;
-		return true;
-	}
+		}
 	/**
 	 * Setter, set the health of the player
 	 * @param health new health
