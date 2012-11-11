@@ -12,6 +12,7 @@ import javax.swing.JTextField;
 import javax.swing.JProgressBar;
 import javax.swing.JLabel;
 
+// set action listeners for hit, missie,surrender...
 public class BattleOptions extends JPanel
 {
 	private JButton Hit;
@@ -130,27 +131,72 @@ public class BattleOptions extends JPanel
 		
 		
 	}
-	public int hitDamage(int aHit) {
+	public int hitDamage(Player playerint aHit) {
+		int a = player.getShip().getHull();
+		player.getShip.setHull(a-aHit);
 		
 	}
 
-	public boolean isDead() {
+	public boolean isDead(Player player) {
+		if(player.getShip.getHull() <= 0){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+
+	public void useMissile(Player player, Player opponent) {
+		Equipment e = player.getShip().getEquipment();
+		if(e.getMissiles() >0){
+			opponent.getShip().setHull(-20);
+			e.setMissiles(-1);
+		}
+		else{
+			;
+		}
 		
 	}
 
-	public void useMissile() {
+	public void surrender(Player player) {
+		player.setCash((player.getCash()/2)*(-1));
+		Goods g = player.getShip().getGoods();
+		g.setWater((g.getWater()/2)*(-1));
+		g.setFurs((g.getFurs()/2)*(-1));
+		g.setFood((g.getFood()/2)*(-1));
+		g.setOre((g.getOre()/2)*(-1));
+		g.setGames((g.getGames())*(-1));
+		g.setFirearms((g.getFirearms()/2)*(-1));
+		g.setMedicines((g.getMedicines()/2)*(-1));
+		g.setMachines((g.getMachines()/2)*(-1));
+		g.setNarcotics((g.getNarcotics()/2)*(-1));
+		g.setRobots((g.getRobots()/2)*(-1));
 		
 	}
 
-	public void surrender() {
-		
+	public int addGoods(Player player) {
+		Goods g = player.getShip().getGoods();
+		Goods now = Player.getShip().getCargo();
+		now.setWater(g.getWater());
+		now.setFurs(g.getFurs());
+		now.setFood(g.getFood());
+		now.setOre(g.getOre());
+		now.setGames(g.getGames());
+		now.setFirearms(g.getFirearms());
+		now.setMedicines(g.getMedicines());
+		now.setMachines(g.getMachines());
+		now.setNarcotics(g.getNarcotics());
+		now.setRobots(g.getRobots());
 	}
 
-	public int addGoods() {
-		
-	}
-
-	public boolean checkWin() {
+	public boolean checkWin(Player player,Player opponent) {
+		if(opponent.getShip().getHull <= 0){
+			return true;
+		}
+		else{
+			return false;
+		}
+		}
 		
 	}
 }
