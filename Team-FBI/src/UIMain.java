@@ -1,3 +1,4 @@
+// $codepro.audit.disable com.instantiations.assist.eclipse.analysis.audit.rule.effectivejava.alwaysOverridetoString.alwaysOverrideToString
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
@@ -32,20 +33,30 @@ public class UIMain implements Serializable {
 	//public Police _unnamed_Police_;
 
 	private Player player;
+
 	private Start start;
+
 	private Skills skills;
+
 	private SkillsInterface skillsGUI;
+
 	private JFrame frame;
+
 	private JTabbedPane tabPane;
+
 	private MapPanel map;
+
 	private JButton btnStart;
+
 	private StarDock stardock;
+
 	private Universe universe;
+
 	private Trade trade;
+
 	private Planet[] planetlist;
+
 	private SettingPanel sp;
-	//private JMenuBar menuBar;
-	//private JMenuItem mntmFile;
 	/**
 	 * Constructor
 	 */
@@ -55,11 +66,6 @@ public class UIMain implements Serializable {
 		start.setbtnStartActionListener(new StartListener());
 		tabPane = new JTabbedPane();
 		tabPane.addTab("Welcome",start);
-		
-		
-		
-		
-		
 		frame = new JFrame("Star Trader");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setPreferredSize(new Dimension(450,450));
@@ -75,19 +81,7 @@ public class UIMain implements Serializable {
 		
 		
 	}
-	
-	
-	
-	
-	
-	/*public void switchScreen(JPanel off,JPanel on){
-		off.setVisible(false);
-		on.setVisible(true);
-		curPanel=on;
-		
-	}*/
-	
-	
+
 	/**
 	 * Main method that will run the program
 	 * @param args input command
@@ -121,6 +115,7 @@ public class UIMain implements Serializable {
 			  } 
 	     }
 	  }
+
 	/**
 	 * This is the action listener class for initial skill setting screen
 	 * @author Guang Lu
@@ -151,6 +146,7 @@ public class UIMain implements Serializable {
 			
 		}
 	}
+
 	/**
 	 * This is the action listener class for the btnFinished in Trade class
 	 * @author Guang Lu
@@ -168,6 +164,7 @@ public class UIMain implements Serializable {
 			
 		}
 	}
+
 	/**
 	 * This is the key listener class for map screen to move the player around
 	 * @author Haytham
@@ -296,10 +293,7 @@ public class UIMain implements Serializable {
 			}
 	    
 	}
-		
-	
-	
-	
+
 	public void save() { // Create a file dialog to query the user for a filename. 
 		//FileDialog f = new FileDialog(frame, "Save", FileDialog.SAVE); 
 		//f.show(); // Display the dialog and block. 
@@ -367,8 +361,7 @@ public class UIMain implements Serializable {
 		}
 		
 	}
-	
-	
+
 	private class SaveListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
 			save();

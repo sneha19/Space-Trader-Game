@@ -1,3 +1,5 @@
+// $codepro.audit.disable whiteSpaceUsage, lineLength
+//import all packages needed for trade // $codepro.audit.disable tooManyViolations // $codepro.audit.disable fileComment
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.GroupLayout;
@@ -20,106 +22,157 @@ import net.miginfocom.swing.MigLayout;
  *
  */
 public class Trade extends JPanel{
-	private Zone zone;
-	private PlanetScreen PlanetScreen;
-	private Merchant merchant;
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private Player currPlayer;
+
 	private  Planet currPlanet;
+	
 	private  Ship currShip;
+	
 	private int level;
+	
 	private JButton fursBuy;
+	
 	private JButton fursSell;
+	
 	private JButton waterBuy;
+	
 	private JButton waterSell;
+	
 	private JButton foodBuy;
+	
 	private JButton foodSell;
+	
 	private JButton oreBuy;
+	
 	private JButton oreSell;
+	
 	private JButton gamesBuy;
+	
 	private JButton gamesSell;
+	
 	private JButton firearmsBuy;
+	
 	private JButton firearmsSell;
+	
 	private JButton medicineBuy;
+	
 	private JButton medicineSell;
+	
 	private JButton machinesBuy;
+	
 	private JButton machinesSell;
+	
 	private JButton narcoticesBuy;
+	
 	private JButton narcoticesSell;
+	
 	private JButton robotsBuy;
+	
 	private JButton robotsSell;
+	
 	private JButton btnFinished;
 	
 	private JLabel lblFurs;
+	
 	private JLabel foodAmount;
+	
 	private JLabel oreAmount;
+	
 	private JLabel label_16;
+	
 	private JLabel firearmsAmount;
-	private JLabel MachinesAmount;
+	
+	private JLabel machinesAmount;
+	
 	private JLabel narcoticesAmount;
+	
 	private JLabel robotsAmount;
+	
 	private JLabel waterAmount;
+	
 	private JLabel MedicineAmount;
+	
 	private JLabel fursAmount;
+	
 	private JLabel lblTrade;
+	
 	private JLabel currentAmountOfGoods;
+	
 	private JLabel totalAmountOfGoods;
 	
 	private JLabel lblWatreAvi;
+	
 	private JLabel lblFoodAvi;
+	
 	private JLabel lblFursAvi;
+	
 	private JLabel lblOreAvi;
+	
 	private JLabel lblGamesAvi;
+	
 	private JLabel lblFirearmsAvi;
+	
 	private JLabel lblNarcoticsAvi;
+	
 	private JLabel lblMedAvi;
+	
 	private JLabel lblMacAvi;
+	
 	private JLabel lblRobotsAvi;
 	
+	protected int[] basePrice = new int[]{30, 250, 100, 350, 250, 1250, 650, 900, 3500, 5000}; // $codepro.audit.disable numericLiterals
 	
+	protected int[] priceIncreasePerTechLevel = new int[]{3, 10, 5, 20, -10, -75, -20, -30, -125, -150}; // $codepro.audit.disable lineLength, numericLiterals
 	
+	protected int[] minLevelToProduceResource = new int[]{0, 0, 1, 2, 3, 3, 4, 4, 5, 6};
 	
-	int[] basePrice = new int[]{30,250,100,350,250,1250,650,900,3500,5000};
-	int[] priceIncreasePerTechLevel = new int[]{3,10,5,20,-10,-75,-20,-30,-125,-150};
-	int[] minLevelToProduceResource = new int[]{0,0,1,2,3,3,4,4,5,6};
-	int[] variance = new int[]{4,10,5,10,5,100,10,5,150,100};
-	int[] allBuy = new int[10];
-	int[] allSell= new int[10];
+	protected int[] variance = new int[]{4, 10, 5, 10, 5, 100, 10, 5, 150, 100};
+	
+	protected int[] allBuy = new int[10];
+	
+	protected int[] allSell= new int[10];
 	
 	/**
 	 * Calculate the buy price for an item
 	 * @param location item index number
 	 * @return the buy price
 	 */
-	public int calculatorBuy(int location)
-	{
-		Random r = new Random();
+	public int calculatorBuy(int location){ // $codepro.audit.disable bracePosition
+		Random random = new Random();
 		int temp = variance[location];
-		int flipCoin = r.nextInt(2);
+		int flipCoin = random.nextInt(2);
 		int coinResults;
-		if(flipCoin == 0)
+		if(flipCoin == 0){
 			coinResults = 1;
-		else coinResults = -1;
-		int variance = r.nextInt(temp);
+		}
+		else {coinResults = -1;}
+		int variance = random.nextInt(temp); // $codepro.audit.disable lineLength
 		int total = basePrice[location] + 
 				(priceIncreasePerTechLevel[location] * (currPlanet.getTechLevel() - minLevelToProduceResource[location])) +
-				basePrice[location]*(variance/100)*coinResults;
+				basePrice[location] * (variance / 100) * coinResults;
 		return total;
 	}
+
 	/**
 	 * Calculate the sell price for an item based on its buy price
 	 * @param buyPrice 
 	 * @return sellPrice
 	 */
-	public int calculatorSell(int buyPrice)
-	{	
+	public int calculatorSell(int buyPrice){ // $codepro.audit.disable bracePosition
 		
-		Random r = new Random();
+		Random random = new Random();
 		
-		int sellPrice = (int) ((buyPrice*(1-r.nextInt(26)*0.01)))/1;
+		int sellPrice = (int) ((buyPrice * (1 - random.nextInt(26) * 0.01))) / 1;
 		return sellPrice;
 		
 	}
+
 	/**
 	 * Constructor for Trade
 	 * @param p current player
@@ -164,16 +217,8 @@ public class Trade extends JPanel{
 		  narcoticesSell.addActionListener(new NarcoticsSellListener());
 		  robotsBuy.addActionListener(new RobotsBuyListener());
 		  robotsSell.addActionListener(new RobotsSellListener());	
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		lblTrade = new JLabel("$ "+currPlayer.getCash());
+
+		lblTrade = new JLabel("$ " + currPlayer.getCash());
 		lblTrade.setForeground(Color.WHITE);
 		
 		JPanel WaterPanel = new JPanel();
@@ -194,8 +239,7 @@ public class Trade extends JPanel{
 		NarcoticesPanel.setBackground(new Color(0, 0, 0));
 		JPanel RobotsPanel = new JPanel();
 		RobotsPanel.setBackground(new Color(0, 0, 0));
-		
-		
+
 		lblFurs = new JLabel("Furs");
 		lblFurs.setForeground(new Color(255, 255, 255));
 		
@@ -204,25 +248,22 @@ public class Trade extends JPanel{
 		
 		JLabel label_3 = new JLabel("Sell Price:");
 		label_3.setForeground(new Color(255, 255, 255));
-		
-					
-		
-						
-		fursAmount = new JLabel(currShip.getCurrentGoods().getFurs()+"");
+
+		fursAmount = new JLabel(currShip.getCurrentGoods().getFurs() + "");
 		fursAmount.setForeground(new Color(255, 255, 255));
 		
 		int fursBuyPrice=calculatorBuy(1);
 		int fursSellPrice=calculatorSell(fursBuyPrice);
-		JLabel lblFbp = new JLabel(fursBuyPrice+"");
+		JLabel lblFbp = new JLabel(fursBuyPrice + "");
 		lblFbp.setForeground(new Color(255, 255, 255));
 		
-		JLabel lblFsp = new JLabel(fursSellPrice+"");
+		JLabel lblFsp = new JLabel(fursSellPrice + "");
 		lblFsp.setForeground(new Color(255, 255, 255));
 		
 		JLabel label = new JLabel("Avi.");
 		label.setForeground(Color.WHITE);
 		
-		lblFursAvi = new JLabel(planet.getGoods().getFurs()+"");
+		lblFursAvi = new JLabel(planet.getGoods().getFurs() + "");
 		lblFursAvi.setForeground(Color.WHITE);
 		
 		//Chunck
@@ -238,8 +279,7 @@ public class Trade extends JPanel{
 					.addComponent(lblFbp)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(label_3)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(lblFsp)
+					.addPreferredGap(ComponentPlacement.RELATED).addComponent(lblFsp)
 					.addGap(18)
 					.addComponent(label, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
@@ -270,8 +310,7 @@ public class Trade extends JPanel{
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		FursPanel.setLayout(gl_FursPanel);
-		
-		
+
 		JLabel lblFood = new JLabel("Food");
 		lblFood.setForeground(new Color(255, 255, 255));
 		
@@ -280,23 +319,22 @@ public class Trade extends JPanel{
 		
 		JLabel label_7 = new JLabel("Sell Price:");
 		label_7.setForeground(new Color(255, 255, 255));
-		
-				
+
 		foodAmount = new JLabel(Integer.toString(currShip.getCurrentGoods().getFood()));
 		foodAmount.setForeground(new Color(255, 255, 255));
 		foodAmount.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
 		int foodBuyPrice=calculatorBuy(2);
 		int foodSellPrice=calculatorSell(foodBuyPrice);
-		JLabel lblFoobp = new JLabel(foodBuyPrice+"");
+		JLabel lblFoobp = new JLabel(foodBuyPrice + "");
 		lblFoobp.setForeground(new Color(255, 255, 255));
 		
-		JLabel lblFoosp = new JLabel(foodSellPrice+"");
+		JLabel lblFoosp = new JLabel(foodSellPrice + "");
 		lblFoosp.setForeground(new Color(255, 255, 255));
 		
 		JLabel label_4 = new JLabel("Avi.");
 		label_4.setForeground(Color.WHITE);
 		
-		lblFoodAvi = new JLabel(planet.getGoods().getFood()+"");
+		lblFoodAvi = new JLabel(planet.getGoods().getFood() + "");
 		lblFoodAvi.setForeground(Color.WHITE);
 		GroupLayout gl_FoodPanel = new GroupLayout(FoodPanel);
 		gl_FoodPanel.setHorizontalGroup(
@@ -310,8 +348,7 @@ public class Trade extends JPanel{
 					.addComponent(lblFoobp)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(label_7)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(lblFoosp)
+					.addPreferredGap(ComponentPlacement.RELATED).addComponent(lblFoosp)
 					.addGap(18)
 					.addComponent(label_4, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
@@ -342,8 +379,7 @@ public class Trade extends JPanel{
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		FoodPanel.setLayout(gl_FoodPanel);
-		
-		
+
 		JLabel lblOre = new JLabel("Ore");
 		lblOre.setForeground(new Color(255, 255, 255));
 		
@@ -352,17 +388,16 @@ public class Trade extends JPanel{
 		
 		JLabel label_11 = new JLabel("Sell Price:");
 		label_11.setForeground(new Color(255, 255, 255));
-		
-	  		
+
 		oreAmount = new JLabel(Integer.toString(currShip.getCurrentGoods().getOre()));
 		oreAmount.setForeground(new Color(255, 255, 255));
 		
 		int oreBuyPrice=calculatorBuy(3);
 		int oreSellPrice=calculatorSell(oreBuyPrice);
-		JLabel lblObp = new JLabel(oreBuyPrice+"");
+		JLabel lblObp = new JLabel(oreBuyPrice + "");
 		lblObp.setForeground(new Color(255, 255, 255));
 		
-		JLabel lblOsp = new JLabel(oreSellPrice+"");
+		JLabel lblOsp = new JLabel(oreSellPrice + "");
 		lblOsp.setForeground(new Color(255, 255, 255));
 		
 		JLabel label_8 = new JLabel("Avi.");
@@ -382,7 +417,7 @@ public class Trade extends JPanel{
 					.addComponent(lblObp)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(label_11)
-					.addPreferredGap(ComponentPlacement.RELATED)
+					.addPreferredGap(ComponentPlacement.RELATED)//$codepro.audit.disable lineLength
 					.addComponent(lblOsp)
 					.addGap(18)
 					.addComponent(label_8, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
@@ -426,8 +461,7 @@ public class Trade extends JPanel{
 		
 		JLabel label_15 = new JLabel("Sell Price:");
 		label_15.setForeground(new Color(255, 255, 255));
-		
-				
+
 		label_16 = new JLabel(Integer.toString(currShip.getCurrentGoods().getGames()));
 		label_16.setForeground(new Color(255, 255, 255));
 		
@@ -456,7 +490,7 @@ public class Trade extends JPanel{
 					.addComponent(lblGbp)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(label_15)
-					.addPreferredGap(ComponentPlacement.RELATED)
+					.addPreferredGap(ComponentPlacement.RELATED) // $codepro.audit.disable lineLength
 					.addComponent(lblGsp)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(label_12, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
@@ -488,18 +522,16 @@ public class Trade extends JPanel{
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		GamesPanel.setLayout(gl_GamesPanel);
-		
-		
+
 		JLabel lblFirearms = new JLabel("Firearms");
 		lblFirearms.setForeground(new Color(255, 255, 255));
 		
 		JLabel label_18 = new JLabel("Buy Price:");
 		label_18.setForeground(new Color(255, 255, 255));
 		
-		JLabel label_19 = new JLabel("Sell Price:");
+		JLabel label_19 = new JLabel("Sell Price:"); // $codepro.audit.disable lineLength
 		label_19.setForeground(new Color(255, 255, 255));
-		
-		
+
 		firearmsAmount = new JLabel(Integer.toString(currShip.getCurrentGoods().getFirearms()));
 		firearmsAmount.setForeground(new Color(255, 255, 255));
 		
@@ -528,7 +560,7 @@ public class Trade extends JPanel{
 					.addComponent(lblFibp)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(label_19)
-					.addPreferredGap(ComponentPlacement.RELATED)
+					.addPreferredGap(ComponentPlacement.RELATED) // $codepro.audit.disable lineLength
 					.addComponent(lblFisp)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(label_13, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
@@ -546,7 +578,7 @@ public class Trade extends JPanel{
 			gl_FirearmsPanel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_FirearmsPanel.createSequentialGroup()
 					.addGroup(gl_FirearmsPanel.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_FirearmsPanel.createSequentialGroup()
+						.addGroup(gl_FirearmsPanel.createSequentialGroup() // $codepro.audit.disable lineLength
 							.addContainerGap()
 							.addGroup(gl_FirearmsPanel.createParallelGroup(Alignment.BASELINE)
 								.addComponent(lblFirearms)
@@ -555,7 +587,7 @@ public class Trade extends JPanel{
 								.addComponent(lblFibp)
 								.addComponent(lblFisp)
 								.addComponent(label_13)
-								.addComponent(lblFirearmsAvi)))
+								.addComponent(lblFirearmsAvi))) // $codepro.audit.disable lineLength
 						.addGroup(gl_FirearmsPanel.createSequentialGroup()
 							.addGap(5)
 							.addGroup(gl_FirearmsPanel.createParallelGroup(Alignment.BASELINE)
@@ -565,18 +597,16 @@ public class Trade extends JPanel{
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		FirearmsPanel.setLayout(gl_FirearmsPanel);
-		
-		
+
 		JLabel lblMedicine = new JLabel("Medicine");
 		lblMedicine.setForeground(new Color(255, 255, 255));
 		
 		JLabel label_22 = new JLabel("Buy Price:");
 		label_22.setForeground(new Color(255, 255, 255));
 		
-		JLabel label_23 = new JLabel("Sell Price:");
+		JLabel label_23 = new JLabel("Sell Price:"); // $codepro.audit.disable lineLength
 		label_23.setForeground(new Color(255, 255, 255));
-		
-				
+
 		MedicineAmount = new JLabel(Integer.toString(currShip.getCurrentGoods().getMedicines()));
 		MedicineAmount.setForeground(new Color(255, 255, 255));
 		
@@ -605,7 +635,7 @@ public class Trade extends JPanel{
 					.addComponent(lblMbp)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(label_23)
-					.addPreferredGap(ComponentPlacement.RELATED)
+					.addPreferredGap(ComponentPlacement.RELATED) // $codepro.audit.disable lineLength
 					.addComponent(lblMsp)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(label_17, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
@@ -637,23 +667,19 @@ public class Trade extends JPanel{
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		MedicinePanel.setLayout(gl_MedicinePanel);
-		
-		
+
 		JLabel lblMachines = new JLabel("Machines");
 		lblMachines.setForeground(new Color(255, 255, 255));
 		
 		JLabel label_26 = new JLabel("Buy Price:");
 		label_26.setForeground(new Color(255, 255, 255));
 		
-		JLabel label_27 = new JLabel("Sell Price:");
+		JLabel label_27 = new JLabel("Sell Price:"); // $codepro.audit.disable lineLength
 		label_27.setForeground(new Color(255, 255, 255));
-		
-		
-		
-		MachinesAmount = new JLabel(Integer.toString(currShip.getCurrentGoods().getMachines()));
-		MachinesAmount.setForeground(new Color(255, 255, 255));
-		
-		
+
+		machinesAmount = new JLabel(Integer.toString(currShip.getCurrentGoods().getMachines()));
+		machinesAmount.setForeground(new Color(255, 255, 255));
+
 		int macBuyPrice=calculatorBuy(7);
 		int macSellPrice=calculatorSell(macBuyPrice);
 		JLabel lblMabp = new JLabel(macBuyPrice+"");
@@ -678,7 +704,7 @@ public class Trade extends JPanel{
 					.addComponent(lblMabp)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(label_27)
-					.addPreferredGap(ComponentPlacement.RELATED)
+					.addPreferredGap(ComponentPlacement.RELATED) // $codepro.audit.disable lineLength
 					.addComponent(lblMasp)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(label_20, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
@@ -686,10 +712,10 @@ public class Trade extends JPanel{
 					.addComponent(lblMacAvi)
 					.addPreferredGap(ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
 					.addComponent(machinesBuy)
-					.addPreferredGap(ComponentPlacement.RELATED)
+					.addPreferredGap(ComponentPlacement.RELATED) // $codepro.audit.disable lineLength
 					.addComponent(machinesSell)
 					.addGap(30)
-					.addComponent(MachinesAmount, GroupLayout.PREFERRED_SIZE, 13, GroupLayout.PREFERRED_SIZE)
+					.addComponent(machinesAmount, GroupLayout.PREFERRED_SIZE, 13, GroupLayout.PREFERRED_SIZE)
 					.addGap(21))
 		);
 		gl_MachinesPanel.setVerticalGroup(
@@ -702,7 +728,7 @@ public class Trade extends JPanel{
 						.addComponent(label_27)
 						.addComponent(lblMabp)
 						.addComponent(lblMasp)
-						.addComponent(MachinesAmount)
+						.addComponent(machinesAmount)
 						.addComponent(machinesSell)
 						.addComponent(machinesBuy)
 						.addComponent(label_20)
@@ -710,19 +736,16 @@ public class Trade extends JPanel{
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		MachinesPanel.setLayout(gl_MachinesPanel);
-		
-		
+
 		JLabel lblNarcotices = new JLabel("Narcotices");
 		lblNarcotices.setForeground(new Color(255, 255, 255));
-		
-		
+
 		JLabel label_30 = new JLabel("Buy Price:");
 		label_30.setForeground(new Color(255, 255, 255));
 		
-		JLabel label_31 = new JLabel("Sell Price:");
+		JLabel label_31 = new JLabel("Sell Price:"); // $codepro.audit.disable lineLength
 		label_31.setForeground(new Color(255, 255, 255));
-		
-				
+
 		narcoticesAmount = new JLabel(Integer.toString(currShip.getCurrentGoods().getNarcotics()));
 		narcoticesAmount.setForeground(new Color(255, 255, 255));
 		int narBuyPrice=calculatorBuy(8);
@@ -750,7 +773,7 @@ public class Trade extends JPanel{
 					.addComponent(lblNabp)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(label_31)
-					.addPreferredGap(ComponentPlacement.RELATED)
+					.addPreferredGap(ComponentPlacement.RELATED) // $codepro.audit.disable lineLength
 					.addComponent(lblNasp)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(label_21, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
@@ -767,14 +790,14 @@ public class Trade extends JPanel{
 		gl_NarcoticesPanel.setVerticalGroup(
 			gl_NarcoticesPanel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_NarcoticesPanel.createSequentialGroup()
-					.addContainerGap()
+					.addContainerGap() // $codepro.audit.disable lineLength
 					.addGroup(gl_NarcoticesPanel.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_NarcoticesPanel.createParallelGroup(Alignment.BASELINE)
 							.addComponent(lblNarcotices)
 							.addComponent(label_30)
 							.addComponent(label_31)
 							.addComponent(lblNabp)
-							.addComponent(lblNasp)
+							.addComponent(lblNasp) // $codepro.audit.disable lineLength
 							.addComponent(label_21)
 							.addComponent(lblNarcoticsAvi))
 						.addGroup(gl_NarcoticesPanel.createParallelGroup(Alignment.BASELINE)
@@ -784,18 +807,16 @@ public class Trade extends JPanel{
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		NarcoticesPanel.setLayout(gl_NarcoticesPanel);
-		
-		
+
 		JLabel lblRobots = new JLabel("Robots");
 		lblRobots.setForeground(new Color(255, 255, 255));
 		
 		JLabel label_5 = new JLabel("Buy Price:");
 		label_5.setForeground(new Color(255, 255, 255));
 		
-		JLabel label_9 = new JLabel("Sell Price:");
+		JLabel label_9 = new JLabel("Sell Price:"); // $codepro.audit.disable lineLength
 		label_9.setForeground(new Color(255, 255, 255));
-		
-		
+
 		robotsAmount = new JLabel(Integer.toString(currShip.getCurrentGoods().getRobots()));
 		robotsAmount.setForeground(new Color(255, 255, 255));
 		
@@ -867,10 +888,7 @@ public class Trade extends JPanel{
 		
 		JLabel lblSellPrice = new JLabel("Sell Price:");
 		lblSellPrice.setForeground(new Color(255, 255, 255));
-		
-		
-		
-		
+
 		waterAmount = new JLabel(Integer.toString(currShip.getCurrentGoods().getWater()));
 		waterAmount.setForeground(new Color(255, 255, 255));
 		int waterBuyPrice=calculatorBuy(0);
@@ -1012,9 +1030,7 @@ public class Trade extends JPanel{
 		allSell[9]=robSellPrice;
 		
 	}
-	
-	
-	
+
 	/**
 	 * Set water buy/sell button visibility based on the tech level of the planet
 	 */
@@ -1026,6 +1042,7 @@ public class Trade extends JPanel{
 		waterSell.setEnabled(true);
 
 	}
+
 	/**
 	 * Set fur buy/sell button visibility based on the tech level of the planet
 	 */
@@ -1037,6 +1054,7 @@ public class Trade extends JPanel{
 		fursSell.setEnabled(true);
 
 	}
+
 	/**
 	 * Set food buy/sell button visibility based on the tech level of the planet
 	 */
@@ -1050,6 +1068,7 @@ public class Trade extends JPanel{
 	}
 		 foodSell.setEnabled(true);	
 	}
+
 	/**
 	 * Set ore buy/sell button visibility based on the tech level of the planet
 	 */
@@ -1066,10 +1085,6 @@ public class Trade extends JPanel{
 			oreSell.setEnabled(true);
 		}
 	}
-	
-
-
-
 
 	/**
 	 * Set game buy/sell button visibility based on the tech level of the planet
@@ -1087,6 +1102,7 @@ if(level>0){
 			gamesSell.setEnabled(true);
 }
 	}
+
 /**
  * Set firearms buy/sell button visibility based on the tech level of the planet
  */
@@ -1103,6 +1119,7 @@ if(level>0){
 			firearmsSell.setEnabled(true);
 }
 	}
+
 	/**
 	 * Set medicine buy/sell button visibility based on the tech level of the planet
 	 */
@@ -1119,6 +1136,7 @@ if(level>0){
 			medicineSell.setEnabled(true);
 }
 	}
+
 	/**
 	 * Set machines buy/sell button visibility based on the tech level of the planet
 	 */
@@ -1135,6 +1153,7 @@ if(level>2){
 			machinesSell.setEnabled(true);
 }
 	}
+
 	/**
 	 * Set narcotics buy/sell button visibility based on the tech level of the planet
 	 */
@@ -1153,6 +1172,7 @@ if(level>2){
 
 
 	}
+
 	/**
 	 * Set robot buy/sell button visibility based on the tech level of the planet
 	 */
@@ -1169,6 +1189,7 @@ if(level>2){
 			robotsSell.setEnabled(true);
 }
 	}
+
 	/**
 	 * processing the buy request of the trade
 	 * @param index of the item being bought
@@ -1215,6 +1236,7 @@ if(level>2){
 		}
 		return true;
 	}
+
 	/**
 	 * processing the sell request of the trade
 	 * @param index of the item being sold
@@ -1260,8 +1282,7 @@ if(level>2){
 			}
 		return true;
 	}
-	
-	
+
 	/**
 	 * Check is player has enough money after buy is pressed
 	 * @param index number of the item
@@ -1296,6 +1317,7 @@ if(level>2){
 			return false;
 		}
 	}
+
 	/**
 	 * UPdate all the labels after buy/sell
 	 * @return whether the update is successful
@@ -1308,7 +1330,7 @@ if(level>2){
 		oreAmount.setText(currShip.getCurrentGoods().getOre()+"");
 		label_16.setText(currShip.getCurrentGoods().getGames()+"");
 		firearmsAmount.setText(currShip.getCurrentGoods().getFirearms()+"");
-		MachinesAmount.setText(currShip.getCurrentGoods().getMachines()+"");
+		machinesAmount.setText(currShip.getCurrentGoods().getMachines()+"");
 		narcoticesAmount.setText(currShip.getCurrentGoods().getNarcotics()+"");
 		robotsAmount.setText(currShip.getCurrentGoods().getRobots()+"");
 		waterAmount.setText(currShip.getCurrentGoods().getWater()+"");
@@ -1329,6 +1351,7 @@ if(level>2){
 		lblRobotsAvi.setText(currPlanet.getGoods().getRobots()+"");
 		return true;
 	}
+
 	/**
 	 * Check if the player has the item to sell
 	 * @param index number of the item
@@ -1390,6 +1413,7 @@ if(level>2){
 			update();
 		}
 	}
+
 	/**
 	 * Private listener class for furs buy button
 	 * @author Guang Lu
@@ -1403,6 +1427,7 @@ if(level>2){
 			update();
 		}
 	}
+
 	/**
 	 * Private listener class for food buy button
 	 * @author Guang Lu
@@ -1416,6 +1441,7 @@ if(level>2){
 			update();
 		}
 	}
+
 	/**
 	 * Private listener class for ore buy button
 	 * @author Guang Lu
@@ -1429,6 +1455,7 @@ if(level>2){
 			update();
 		}
 	}
+
 	/**
 	 * Private listener class for game buy button
 	 * @author Guang Lu
@@ -1442,6 +1469,7 @@ if(level>2){
 			update();
 		}
 	}
+
 	/**
 	 * Private listener class for firearms buy button
 	 * @author Guang Lu
@@ -1455,6 +1483,7 @@ if(level>2){
 			update();
 		}
 	}
+
 	/**
 	 * Private listener class for medicine buy button
 	 * @author Guang Lu
@@ -1468,6 +1497,7 @@ if(level>2){
 			update();
 		}
 	}
+
 	/**
 	 * Private listener class for machines buy button
 	 * @author Guang Lu
@@ -1481,6 +1511,7 @@ if(level>2){
 			update();
 		}
 	}
+
 	/**
 	 * Private listener class for narcotics buy button
 	 * @author Guang Lu
@@ -1494,6 +1525,7 @@ if(level>2){
 			update();
 		}
 	}
+
 	/**
 	 * Private listener class for robot buy button
 	 * @author Guang Lu
@@ -1507,9 +1539,7 @@ if(level>2){
 			update();
 		}
 	}
-	
-	
-	
+
 	/**
 	 * Private listener class for water sell button
 	 * @author Guang Lu
@@ -1523,6 +1553,7 @@ if(level>2){
 			update();
 		}
 	}
+
 	/**
 	 * Private listener class for fur sell button
 	 * @author Guang Lu
@@ -1536,6 +1567,7 @@ if(level>2){
 			update();
 		}
 	}
+
 	/**
 	 * Private listener class for food sell button
 	 * @author Guang Lu
@@ -1549,6 +1581,7 @@ if(level>2){
 			update();
 		}
 	}
+
 	/**
 	 * Private listener class for ore sell button
 	 * @author Guang Lu
@@ -1562,6 +1595,7 @@ if(level>2){
 			update();
 		}
 	}
+
 	/**
 	 * Private listener class for games sell button
 	 * @author Guang Lu
@@ -1575,6 +1609,7 @@ if(level>2){
 			update();
 		}
 	}
+
 	/**
 	 * Private listener class for firearms sell button
 	 * @author Guang Lu
@@ -1588,6 +1623,7 @@ if(level>2){
 			update();
 		}
 	}
+
 	/**
 	 * Private listener class for medicine sell button
 	 * @author Guang Lu
@@ -1601,6 +1637,7 @@ if(level>2){
 			update();
 		}
 	}
+
 	/**
 	 * Private listener class for machines sell button
 	 * @author Guang Lu
@@ -1614,6 +1651,7 @@ if(level>2){
 			update();
 		}
 	}
+
 	/**
 	 * Private listener class for narcotics sell button
 	 * @author Guang Lu
@@ -1627,6 +1665,7 @@ if(level>2){
 			update();
 		}
 	}
+
 	/**
 	 * Private listener class for robot sell button
 	 * @author Guang Lu
@@ -1640,6 +1679,7 @@ if(level>2){
 			update();
 		}
 	}
+
 	/**
 	 * Set the btnlistener for the finished button
 	 * @param a a button listener in the UIMain class
@@ -1649,6 +1689,7 @@ if(level>2){
 		btnFinished.addActionListener(a);
 		return true;
 	}
+
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Image bg = new ImageIcon("img/bricks.jpg").getImage();
