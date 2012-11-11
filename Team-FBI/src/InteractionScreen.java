@@ -11,19 +11,40 @@ import javax.swing.JTextField;
 import javax.swing.JProgressBar;
 import javax.swing.JLabel;
 
+/** This is the interactions class
+ * All random interactions and interactions on planets with pirates or merchants take place here
+ * You can trade and fight with merchants
+ * You can fight with pirates
+ * 
+ * @author Sneha,Samarth
+ * @version 1.0
+ *
+ */
+
+//make a createBattle method in BattleOptions that makes a panel for battle
+//BattleOptions.createBattle(player);
 public class InteractionScreen extends JPanel
 {
+	private Player player;
 	private JButton trade;
 	private JButton battle;
 	private JButton ignore;
 	private JButton flee;
 	public BattleOptions BattleOptions;
+	public UIMain ui;
+	public MapPanel mp;
+	public Universe uni;
 
-	public InteractionScreen()
+	public InteractionScreen(Player player)
 	{
 		
+		this.player = player;
+		ui = new UIMain();
+		uni = new Universe(player);
+		//mp = new MapPanel(uni,player);
+		
 		trade = new JButton("Trade");
-		trade.addActionListener(new ActionListener()
+		trade.addActionListener(new TradeListener()
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
@@ -31,7 +52,7 @@ public class InteractionScreen extends JPanel
 		});
 		
 		battle = new JButton("Battle");
-		battle.addActionListener(new ActionListener()
+		battle.addActionListener(new BattleListener()
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
@@ -39,7 +60,7 @@ public class InteractionScreen extends JPanel
 		});
 		
 		ignore = new JButton("Ignore");
-		ignore.addActionListener(new ActionListener() 
+		ignore.addActionListener(new IgnoreListener() 
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
@@ -47,7 +68,7 @@ public class InteractionScreen extends JPanel
 		});
 		
 		flee = new JButton("Flee");
-		flee.addActionListener(new ActionListener() 
+		flee.addActionListener(new FleeListener() 
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
@@ -120,35 +141,122 @@ public class InteractionScreen extends JPanel
 		);
 		setLayout(groupLayout);
 		
+		BattleOptions = new BattleOptions(player);
+		
 		
 	}
-	public int hitDamage(int aHit) 
-	{
-		
-	}
-
-	public boolean isDead() 
-	{
-		
-	}
-
-	public void useMissile() 
-	{
+	
+	public int hitDamage(Player player,int aHit) {
+		int a = player.getShip().getHull();
+		player.getShip.setHull(a-aHit);
 		
 	}
 
-	public void surrender() 
-	{
+	public boolean isDead(Player player) {
+		if(player.getShip.getHull() <= 0){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+
+	public void useMissile(Player player, Player opponent) {
+		Equipment e = player.getShip().getEquipment();
+		if(e.getMissiles() >0){
+			opponent.getShip().setHull(-20);
+		}
+		else{
+			;
+		}
 		
 	}
 
-	public int addGoods() 
-	{
+	public void surrender(Player player) {
+		player.setCash((player.getCash()/2)*(-1));
+		Goods g = player.getShip().getGoods();
+		g.setWater((g.getWater()/2)*(-1));
+		g.setFurs((g.getFurs()/2)*(-1));
+		g.setFood((g.getFood()/2)*(-1));
+		g.setOre((g.getOre()/2)*(-1));
+		g.setGames((g.getGames())*(-1));
+		g.setFirearms((g.getFirearms()/2)*(-1));
+		g.setMedicines((g.getMedicines()/2)*(-1));
+		g.setMachines((g.getMachines()/2)*(-1));
+		g.setNarcotics((g.getNarcotics()/2)*(-1));
+		g.setRobots((g.getRobots()/2)*(-1));
 		
 	}
 
-	public boolean checkWin() 
-	{
-		
+	public int addGoods(Player player) {
+		Goods g = player.getShip().getGoods();
+		Goods now = Player.getShip().getCargo();
+		now.setWater(g.getWater());
+		now.setFurs(g.getFurs());
+		now.setFood(g.getFood());
+		now.setOre(g.getOre());
+		now.setGames(g.getGames());
+		now.setFirearms(g.getFirearms());
+		now.setMedicines(g.getMedicines());
+		now.setMachines(g.getMachines());
+		now.setNarcotics(g.getNarcotics());
+		now.setRobots(g.getRobots());
 	}
+
+	public boolean checkWin(Player player,Player opponent) {
+		if(opponent.getShip().getHull <= 0){
+			return true;
+		}
+		else{
+			return false;
+		}
+		}
+	
+	private class TradeListener implements ActionListener{
+		public void actionPerformed (ActionEvent event){
+			if((player.getName()).equals("merchant"){
+				ui.createTrade(player);	
+			}
+			else{
+				trade.setEnabled(false);
+			}
+		}
+	}
+	
+	private class BattleListener implements ActionListener{
+		public void actionPerformed (ActionEvent event){
+			BattleOptions.createBattle(player);
+		}
+	}
+	
+	private class IgnoreListener implements ActionListener{
+		public void actionPerformed (ActionEvent event){
+			if((player.getName()).equals("merchant"){ 
+				mp = new MapPanel(uni,player);
+			}
+			else{
+				ignore.setEnabled(false);
+			}
+				
+		}
+	}
+	
+	private class FleeListener implements ActionListener{
+		public void actionPerformed (ActionEvent event){
+			if((player.getName()).equals("pirate"){ 
+				int a = player.getShip().getHull();
+				player.getShip().setHull((int)(a/4)*(-1)); // reduces hull a little 
+				// penalty for fleeing
+				//return to map
+				mp = new MapPanel(uni,player);
+			}
+			else{
+				flee.setEnabled(false);
+			}
+				
+		}
+	}
+	
+	
+			
 }
