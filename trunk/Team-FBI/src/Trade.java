@@ -1161,7 +1161,6 @@ if(level>2){
 	{
 		narcoticesBuy = new JButton("Buy");
 		narcoticesSell = new JButton("Sell");
-		narcoticesSell.setSelectedIcon(new ImageIcon("/Users/haysam_121/Pictures/iPhoto Library/Originals/2010/Aug 29, 2010/DSCN0187.JPG"));
 		narcoticesBuy.setEnabled(false);
 		
 		if(level>4){
@@ -1197,40 +1196,54 @@ if(level>2){
 	 */
 	public boolean buy(int index) {
 		currPlayer.setCash(-allBuy[index]);
-		currShip.increase(index);
+		//currShip.increase(index);
 		
 		switch(index){
 		
 		
 		case 0:
 			currPlanet.getGoods().setWater(-1);
+			currShip.getCurrentGoods().setWater(1);
 			break;
 		case 1:
 			currPlanet.getGoods().setFurs(-1);
+			currShip.getCurrentGoods().setFurs(1);
 			break;
 		case 2:
 			currPlanet.getGoods().setFood(-1);
+			currShip.getCurrentGoods().setFood(1);
 			break;
 		case 3:
 			currPlanet.getGoods().setOre(-1);
+			currShip.getCurrentGoods().setOre(1);
 			break;
 		case 4:
 			currPlanet.getGoods().setGames(-1);
+			currShip.getCurrentGoods().setGames(1);
+
 			break;
 		case 5:
 			currPlanet.getGoods().setFirearms(-1);
+			currShip.getCurrentGoods().setFirearms(1);
 			break;
 		case 6:
 			currPlanet.getGoods().setMedicines(-1);
+			currShip.getCurrentGoods().setMedicines(1);
 			break;
 		case 7:
 			currPlanet.getGoods().setMachines(-1);
+			currShip.getCurrentGoods().setMachines(1);
+
 			break;
 		case 8:
 			currPlanet.getGoods().setNarcotics(-1);
+			currShip.getCurrentGoods().setNarcotics(1);
+
 			break;
 		case 9:
 			currPlanet.getGoods().setRobots(-1);
+			currShip.getCurrentGoods().setRobots(1);
+
 			break;
 		
 		}
@@ -1244,39 +1257,49 @@ if(level>2){
 	 */
 	public boolean sell(int index) {
 		currPlayer.setCash(allSell[index]);
-		currShip.decrease(index);
+		//currShip.decrease(index);
 		
 		
 	switch(index){
 			case 0:
 				currPlanet.getGoods().setWater(1);
+				currShip.getCurrentGoods().setWater(-1);
 				break;
 			case 1:
 				currPlanet.getGoods().setFurs(1);
+				currShip.getCurrentGoods().setFurs(-1);
 				break;
 			case 2:
 				currPlanet.getGoods().setFood(1);
+				currShip.getCurrentGoods().setFood(-1);
 				break;
 			case 3:
 				currPlanet.getGoods().setOre(1);
+				currShip.getCurrentGoods().setOre(-1);
 				break;
 			case 4:
 				currPlanet.getGoods().setGames(1);
+				currShip.getCurrentGoods().setGames(-1);
 				break;
 			case 5:
 				currPlanet.getGoods().setFirearms(1);
+				currShip.getCurrentGoods().setFirearms(-1);
 				break;
 			case 6:
 				currPlanet.getGoods().setMedicines(1);
+				currShip.getCurrentGoods().setMedicines(-1);
 				break;
 			case 7:
 				currPlanet.getGoods().setMachines(1);
+				currShip.getCurrentGoods().setMachines(-1);
 				break;
 			case 8:
 				currPlanet.getGoods().setNarcotics(1);
+				currShip.getCurrentGoods().setNarcotics(-1);
 				break;
 			case 9:
 				currPlanet.getGoods().setRobots(1);
+				currShip.getCurrentGoods().setRobots(-1);
 				break;
 			
 			}

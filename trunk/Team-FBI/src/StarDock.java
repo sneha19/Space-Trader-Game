@@ -30,24 +30,41 @@ import org.omg.CORBA.TRANSIENT;
  */
 public class StarDock extends JPanel  implements Serializable{
 	public Zone _unnamed_Zone_;
+
 	public PlanetScreen _unnamed_PlanetScreen_;
+
 	public Equipment _unnamed_Equipment_;
+
 	private int fuel = 25;
+
 	private int hull = 75;
+
 	private Player currPlayer;
+
 	JButton btnContinue;
+
 	JComboBox comboBox;
+
 	JLabel currentHullLbl = new JLabel("");
+
 	JLabel currShiplbl = new JLabel("");
+
 	JLabel cashLabel = new JLabel("");
+
 	JLabel currFuelLbl = new JLabel("");
+
 	JSlider hullSlider;
+
 	JSlider fuelSlider;
+
 	JLabel maxFuelLbl = new JLabel("");
+
 	JLabel maxHullLbl = new JLabel("");
+
 	transient Image bg;
 
 	int i = 0;
+
 	/**
 	 * Create the panel.
 	 */
@@ -254,6 +271,7 @@ public class StarDock extends JPanel  implements Serializable{
 		add(maxFuelLbl, "cell 9 9");		
 
 	}
+
 	/**
 	 * formater for doubles to only 2 decimal places
 	 * @param longDouble amount passed in
@@ -264,6 +282,7 @@ public class StarDock extends JPanel  implements Serializable{
 		DecimalFormat df = new DecimalFormat("#.##");
 		return Double.valueOf(df.format(longDouble));
 	}
+
 	/**
 	 * updates the labels on screen
 	 */
@@ -279,6 +298,7 @@ public class StarDock extends JPanel  implements Serializable{
 		hullSlider.setMaximum((int) (currPlayer.getShip().getMaxHull() - currPlayer.getShip().getHull()));
 
 	}
+
 	/**
 	 * paint method for gui
 	 */
@@ -297,7 +317,7 @@ public class StarDock extends JPanel  implements Serializable{
 	 * @param a a button listener in the UIMain class
 	 * @return whether the set is successful
 	 */
-	public boolean setBtnFinished(ActionListener a){
+	public boolean setBtnFinished(ActionListener a){ // $codepro.audit.disable accessorMethodNamingConvention
 		btnContinue.addActionListener(a);
 		return true;
 	}
