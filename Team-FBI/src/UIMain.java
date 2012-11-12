@@ -165,6 +165,7 @@ public class UIMain implements Serializable {
 			tabPane.setSelectedIndex(1);
 			tabPane.setEnabledAt(0,true);
 			tabPane.setEnabledAt(1,true);
+			tabPane.setEnabledAt(2, true);
 			
 		}
 	}
@@ -311,6 +312,7 @@ public class UIMain implements Serializable {
 				tabPane.setSelectedIndex(2);
 				tabPane.setEnabledAt(0,false);
 				tabPane.setEnabledAt(1,false);
+				tabPane.setEnabledAt(3,false);
 			}
 		}
 		public void createStarDock()
@@ -318,10 +320,11 @@ public class UIMain implements Serializable {
 			JFrame f = new JFrame("Star Dock");
 			stardock = new StarDock(player);
 			stardock.setBtnFinished(new BtnFinishedListener());
-			tabPane.add(stardock,"StarDock");
+			tabPane.add(stardock,"StarDock",2);
 			tabPane.setSelectedIndex(2);
 			tabPane.setEnabledAt(0,false);
 			tabPane.setEnabledAt(1,false);
+			tabPane.setEnabledAt(3,false);
 
 		}
 
