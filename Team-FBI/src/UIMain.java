@@ -5,13 +5,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.PrintWriter;
 import java.io.Serializable;
-import java.util.Vector;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -26,11 +32,7 @@ import javax.swing.JTabbedPane;
  *
  */
 public class UIMain implements Serializable {
-	//private Random _rand;
-	//public Player_ _unnamed_Player__;
-	//public Merchant _unnamed_Merchant_;
-	//public Pirate _unnamed_Pirate_;
-	//public Police _unnamed_Police_;
+	
 
 	private Player player;
 
@@ -63,12 +65,12 @@ public class UIMain implements Serializable {
 	public UIMain(){
 		
 		start = new Start();
-		start.setbtnStartActionListener(new StartListener());
+		start.setbtnActionListener(new StartListener(),new ContinueListener());
 		tabPane = new JTabbedPane();
 		tabPane.addTab("Welcome",start);
 		frame = new JFrame("Star Trader");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setPreferredSize(new Dimension(450,450));
+		frame.setPreferredSize(new Dimension(800,800));
 		
 		//menuBar = new JMenuBar();
 		//frame.setJMenuBar(menuBar);
@@ -294,92 +296,179 @@ public class UIMain implements Serializable {
 	    
 	}
 
-	public void save() { // Create a file dialog to query the user for a filename. 
-		//FileDialog f = new FileDialog(frame, "Save", FileDialog.SAVE); 
-		//f.show(); // Display the dialog and block. 
-		 //String filename = f.getFile(); // Get the user's response 
+	public void save(int i) {
 		
-		int a =1;
-		 if (a==1) { // If user didn't click "Cancel". 
-			try { 
-				FileOutputStream fos = new FileOutputStream("player.ser"); 
+		Planet[][] plist=universe.getPlanetWithLocation();
+		StarDockInfo[][] slist=universe.getStarDocksWithLocation();
+		
+		
+		
+			 try { 
+				FileOutputStream fos = new FileOutputStream("game"+i+".ser"); 
 				ObjectOutputStream out = new ObjectOutputStream(fos);  
-				out.writeObject(player);		
+				out.writeObject(player);
+				out.writeObject(plist);
+				out.writeObject(slist);
 				out.flush(); 
 				fos.flush();
 				out.close(); 
 				fos.close();
+	
 				
-				
-				FileOutputStream fos2 = new FileOutputStream("universe.ser"); // Save to file 
-				//GZIPOutputStream gzos = new GZIPOutputStream(fos); // Compressed 
-				ObjectOutputStream out2 = new ObjectOutputStream(fos2); // Save objects 
-				out2.writeObject(universe);		
-				out2.flush(); // Always flush the output. 
-				out2.close(); // And close the stream. 
-				fos2.flush();
-				fos2.close();
-			
-				
-				
-				} // Print out exceptions. We should really display them in a dialog... 
+				}
 			catch (IOException e) { System.out.println(e); } 
 			} 
 			
 		
-	}
+	//}
 	
-	public void load(){ // Create a file dialog to query the user for a filename. 
-		//FileDialog f = new FileDialog(frame, "Load Scribble", FileDialog.LOAD); 
-		//f.show(); // Display the dialog and block. 
-		//String filename = f.getFile(); // Get the user's response 
-		
-		
-		
-		
-		int b =1;
-		if (b==1) { 
-			try { // Create necessary input streams 
-				FileInputStream fis = new FileInputStream("player.ser");
+	public boolean load(int i){ 
+
+			try {
+				FileInputStream fis = new FileInputStream("game"+i+".ser");
 				ObjectInputStream in = new ObjectInputStream(fis);
 				player  =(Player)in.readObject();
+				Planet[][] plist  =(Planet[][])in.readObject();
+				StarDockInfo[][] slist  =(StarDockInfo[][])in.readObject();
 				in.close(); 
 				fis.close();
-				player.getShip().afterLoad();
-				
-				FileInputStream fis2 = new FileInputStream("universe.ser");
-				ObjectInputStream in2 = new ObjectInputStream(fis2);
-				universe  =(Universe)in.readObject();
-				in2.close(); 
-				fis2.close();
 				
 				
+				player.getShip().afterLoad();				
+				universe.setPS(plist, slist);
+				universe.afterLoad();
+				skills = new Skills(player);
+				skillsGUI = new SkillsInterface(skills);
+				
+				map=new MapPanel(universe,player);
+				map.setKeyListener(new KeyController());
+				return true;
 				
 				}
-			catch (Exception e) { System.out.println(e); 
+			catch (Exception e) { 
+				System.out.println(e); 
+				return false;
 			}
-		}
+			
 		
 	}
 
 	private class SaveListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
-			save();
+			SaveLoadPanel slp = new SaveLoadPanel(0);
+			slp.setButtonListener(new SaveInfo());
 		}
 	}
 	
 	private class LoadListener implements ActionListener{
-		public void actionPerformed(ActionEvent e){
-			
-				load();
-				
-				tabPane.remove(1);
-				map = new MapPanel(universe,player);
-				map.setKeyListener(new KeyController());
-			
-				tabPane.addTab("Map",map);
-			
+		public void actionPerformed(ActionEvent e){	
+			SaveLoadPanel slp = new SaveLoadPanel(1);
+			slp.setButtonListener(new LoadInfo());
 		}
 	}
 	
+	private class SaveInfo implements ActionListener{
+		String s;
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		Calendar cal = Calendar.getInstance();
+		public void actionPerformed(ActionEvent e) {
+			if(e.getActionCommand().equals("Save1")){
+				save(1);
+				try {
+					writeInfo(1);
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+			}else if(e.getActionCommand().equals("Save2")){
+				save(2);
+				try {
+					writeInfo(2);
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+			}else{
+				save(3);
+				try {
+					writeInfo(3);
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+			}
+		}
+		
+		public void writeInfo(int i) throws IOException{
+			if(i==1){
+				s ="src/save1.txt";
+			}else if(i==2){
+				s ="src/save2.txt";
+			}else{
+				s="src/save3.txt";
+			}
+			
+			File f = new File(s);
+			PrintWriter pw = new PrintWriter(new BufferedWriter( new FileWriter(f)));
+			pw.write(player.getName());
+			pw.write("--"+dateFormat.format(cal.getTime()));
+			pw.flush();
+			pw.close();
+		}
+	}
+	
+	private class LoadInfo implements ActionListener{
+		public void actionPerformed(ActionEvent e) {
+			 frame.setSize(new Dimension(800,800));
+			 boolean i=false;
+			if(e.getActionCommand().equals("Load1")){
+				i=load(1);
+				
+			}else if(e.getActionCommand().equals("Load2")){
+				i=load(2);
+				
+			}else if(e.getActionCommand().equals("Load3")){
+				i=load(3);
+				
+			}
+			
+			if(i){
+			if(tabPane.getTitleAt(0).equals("Start")){
+				tabPane.removeTabAt(0);
+			}
+			
+			tabPane.setComponentAt(0,skillsGUI);
+			tabPane.setTitleAt(0,"Skills");
+			
+			if(tabPane.getTabCount()>=2){
+				tabPane.setComponentAt(1, map);
+			}else{
+				tabPane.addTab("Map", map);
+			}
+			
+			tabPane.setSelectedIndex(1);
+			if(tabPane.getTabCount()==2){
+				sp=new SettingPanel();
+				sp.setSaveListener(new SaveListener());
+				sp.setLoadListener(new LoadListener());
+				tabPane.addTab("Setting", sp);
+			}
+			
+			map.requestFocus();
+			}
+		}
+	}
+	
+	private class ContinueListener implements ActionListener{
+		public void actionPerformed(ActionEvent arg0) {
+			 player = new Player("default");
+			 universe = new Universe(player); 
+			 skills = new Skills(player);
+			 skillsGUI= new SkillsInterface(skills);
+			 
+			 
+			
+			 SaveLoadPanel slp = new SaveLoadPanel(1);
+			 slp.setButtonListener(new LoadInfo());
+			 
+			
+		}
+	}
 }

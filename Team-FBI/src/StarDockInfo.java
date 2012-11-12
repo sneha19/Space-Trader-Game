@@ -23,15 +23,16 @@ public class StarDockInfo  implements Serializable{
 	
 	
 	
-	private void writeObject(java.io.ObjectOutputStream out) throws IOException {
-		out.writeObject(new String("sdImg"));
-		ImageWriter writer = (ImageWriter) ImageIO.getImageWritersBySuffix("jpg").next();
-	        writer.setOutput(ImageIO.createImageOutputStream(out));
-	        ImageWriteParam param = writer.getDefaultWriteParam();
-	        param.setCompressionMode(ImageWriteParam.MODE_EXPLICIT);
-	        param.setCompressionQuality(0.85f);
-	        writer.write(null, new IIOImage((RenderedImage) stardockImage, null, null), param);
-	}
+//	private void writeObject(java.io.ObjectOutputStream out) throws IOException {
+//		out.writeObject(new String("sdImg"));
+//		ImageWriter writer = (ImageWriter) ImageIO.getImageWritersBySuffix("jpg").next();
+//	        writer.setOutput(ImageIO.createImageOutputStream(out));
+//	        ImageWriteParam param = writer.getDefaultWriteParam();
+//	        param.setCompressionMode(ImageWriteParam.MODE_EXPLICIT);
+//	        param.setCompressionQuality(0.85f);
+//	        writer.write(null, new IIOImage((RenderedImage) stardockImage, null, null), param);
+//	}
+	
 	/**
 	 * pass in point and player to keep updated for position on grid and current player status
 	 * @param p point

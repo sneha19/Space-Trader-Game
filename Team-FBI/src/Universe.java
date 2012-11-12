@@ -170,6 +170,15 @@ public class Universe implements Serializable {
     	tempStarDock=s;
     }
     
+    public void afterLoad(){
+    	for(int i = 0; i <25; i++)
+    		for(int j = 0; j < 20; j++)
+    		{
+    			if(tempStarDock[i][j] != null)
+    				tempStarDock[i][j].afterLoad();
+    		}
+    }
+    
     
 
 }

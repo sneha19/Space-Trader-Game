@@ -57,6 +57,7 @@ public class MapPanel extends JPanel {
 		lblLocation = new JLabel("Location:");
 
 		lblCurrLocation = new JLabel("[" +currPlayer.getPosition().x + " , " + currPlayer.getPosition().y + "]");
+		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 				groupLayout.createParallelGroup(Alignment.LEADING)
@@ -117,6 +118,7 @@ public class MapPanel extends JPanel {
 	 */
 	public void draw(Graphics g)
 	{
+		
 		universe.draw(g);
     	g.drawImage(currPlayer.getShip().getPic(), 30*currPlayer.getPosition().x, 30*currPlayer.getPosition().y, null);
 
@@ -177,9 +179,8 @@ public class MapPanel extends JPanel {
 	 * @param k user keylistener
 	 * @return true if allowed, false otherwise
 	 */
-	public boolean setKeyListener(KeyListener k){
+	public void setKeyListener(KeyListener k){
 		this.addKeyListener(k);
-		return true;
 	}
 	
 	private class StatsListener implements MouseListener{
@@ -204,14 +205,12 @@ public class MapPanel extends JPanel {
 					}
 				}
 			}
-			
-			
-			
-			
 		}
 		public void mouseEntered(MouseEvent e){};
 		public void mouseExited(MouseEvent e){};
 		public void mousePressed(MouseEvent e){};
 		public void mouseReleased(MouseEvent e){};
 	}
+	
+	
 }

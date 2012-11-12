@@ -1,8 +1,10 @@
 
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionListener;
-
 import java.io.Serializable;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -10,11 +12,7 @@ import net.miginfocom.swing.MigLayout;
 
 
 public class SettingPanel extends JPanel implements Serializable {
-/*	
- * 	
- * 
- * 
- */
+
 	
 	
 	/**
@@ -48,7 +46,11 @@ public class SettingPanel extends JPanel implements Serializable {
 		btnLoad.addActionListener(a);
 	}
 
-	
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		Image bg = new ImageIcon("img/bricks.jpg").getImage();
+		g.drawImage(bg, 0, 0,getWidth(),getHeight(), this);
+	}
 	
 	
 
