@@ -24,6 +24,7 @@ public class Start extends JPanel {
 	private int difficulty;
 	private JButton btnStart;
 	private boolean isDiffed;
+	private JButton btnContinue;
 	public Start() {
 		setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		
@@ -32,8 +33,8 @@ public class Start extends JPanel {
 		JLabel lblDifficulty = new JLabel("Difficulty");
 		lblDifficulty.setForeground(new Color(255, 255, 255));
 		isDiffed = false;
-		setLayout(new MigLayout("", "[134px][112px][113px]", "[16px][16px][][][16px][][][12px][][1px][][][6px][29px][29px][29px][29px]"));
-		add(lblYoungSailorStart, "cell 0 0 3 1,alignx center,aligny top");
+		setLayout(new MigLayout("", "[134px][][112px][113px]", "[16px][16px][][][16px][][][][12px][][1px][][][6px][29px][29px][29px][29px]"));
+		add(lblYoungSailorStart, "cell 0 0 4 1,alignx center,aligny top");
 		JButton btnBeginner = new JButton("Beginner");
 		btnBeginner.addActionListener(new DiffListener());
 		JLabel lblEnterName = new JLabel("Enter Name");
@@ -41,23 +42,26 @@ public class Start extends JPanel {
 		add(lblEnterName, "cell 0 1,alignx center,aligny top");
 		textField = new JTextField();
 		textField.setColumns(10);
-		add(textField, "cell 0 2,alignx left,aligny top");
-		add(btnBeginner, "flowy,cell 2 2,growx,aligny top");
-		add(lblDifficulty, "cell 2 1,alignx left,aligny top");
+		add(textField, "cell 0 2 2 1,alignx left,aligny top");
+		add(btnBeginner, "flowy,cell 3 2,growx,aligny top");
+		add(lblDifficulty, "cell 3 1,alignx left,aligny top");
 		JButton btnEasy = new JButton("Easy");
 		btnEasy.addActionListener(new DiffListener());
-		add(btnEasy, "cell 2 2,growx,aligny top");
+		add(btnEasy, "cell 3 2,growx,aligny top");
 		JButton btnNormal = new JButton("Normal");
 		btnNormal.addActionListener(new DiffListener());
-		add(btnNormal, "cell 2 2,growx,aligny top");
+		add(btnNormal, "cell 3 2,growx,aligny top");
 		JButton btnHard = new JButton("Hard");
 		btnHard.addActionListener(new DiffListener());
-		add(btnHard, "cell 2 2,growx,aligny top");
+		add(btnHard, "cell 3 2,growx,aligny top");
 		JButton btnImpossib = new JButton("Impossible");
 		btnImpossib.addActionListener(new DiffListener());
-		add(btnImpossib, "cell 2 2,alignx left,aligny top");
+		add(btnImpossib, "cell 3 2,alignx left,aligny top");
 		btnStart = new JButton("START");
-		add(btnStart, "cell 1 15,alignx center,aligny top");
+		add(btnStart, "cell 1 6,alignx center,aligny top");
+		
+		btnContinue = new JButton("CONTINUE");
+		add(btnContinue, "cell 2 6");
 		//groupLayout codes end
 	}
 	
@@ -71,8 +75,9 @@ public class Start extends JPanel {
 		return playerName;
 	}
 	   
-	public void setbtnStartActionListener(ActionListener al){
-		btnStart.addActionListener(al);
+	public void setbtnActionListener(ActionListener startListener,ActionListener continueListener){
+		btnStart.addActionListener(startListener);
+		btnContinue.addActionListener(continueListener);
 	}
 	   
 	public String getName(){
@@ -107,7 +112,7 @@ public class Start extends JPanel {
 	   }
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		Image bg = new ImageIcon("img/bricks.jpg").getImage();
+		Image bg = new ImageIcon("img/bg.jpg").getImage();
 		g.drawImage(bg, 0, 0,getWidth(),getHeight(), this);
 	}
 }
