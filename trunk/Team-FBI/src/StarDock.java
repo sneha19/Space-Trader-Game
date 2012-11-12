@@ -37,7 +37,7 @@ public class StarDock extends JPanel  implements Serializable{
 
 	private int fuel = 25;
 
-	private int hull = 75;
+	private int hull = 10;
 
 	private Player currPlayer;
 
@@ -140,7 +140,7 @@ public class StarDock extends JPanel  implements Serializable{
 		});
 		add(btnGo, "cell 11 1");
 
-		JLabel lblRepairHull = new JLabel("Repair Hull: @ $75/e");
+		JLabel lblRepairHull = new JLabel("Repair Hull: @ $10/e");
 		lblRepairHull.setForeground(new Color(255, 255, 255));
 		add(lblRepairHull, "cell 1 2");
 		//hullSpinner.

@@ -18,6 +18,7 @@ import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Random;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -33,7 +34,8 @@ import javax.swing.JTabbedPane;
  */
 public class UIMain implements Serializable {
 	
-
+	private Random random = new Random();
+	
 	private Player player;
 
 	private Start start;
@@ -173,128 +175,257 @@ public class UIMain implements Serializable {
 	 *
 	 */
 	private class KeyController implements KeyListener {
+
+
 		/**
 		 * Set the panel to be focusable 
 		 */
 		public KeyController()
-		 {
-			 map.setFocusable(true);
+		{
+			map.setFocusable(true);
 			// addKeyListener(this);
-		 }
-		 	/**
-			 * Method must be implemented from ActionListener interface  
-			 */
-	        public void keyPressed(final KeyEvent key) {
-	            if (player != null) {
+		}
+		/**
+		 * Method must be implemented from ActionListener interface  
+		 */
+		public void keyPressed(final KeyEvent key) {
+			if (player != null) {
+				int letsSeeIfWeGetRandom;
+				int randomation = 0;
+				int oldX = player.getPosition().x;
+				int oldY = player.getPosition().y;
+				switch (key.getKeyCode()) {
+				case KeyEvent.VK_RIGHT:
+					if(oldX+1 < map.WIDTH && map.checkIfMoveIsValid()){
+						//checkIfPlanetIsPresent(currPlayer.getPosition()) 
+						player.setPosition(new Point(oldX+1, oldY)); //move right
+						player.getShip().setCurrentFuel(map.getfuelPerMove());
+						if(map.checkIfPlanetIsPresent(player.getPosition()))
+							createTrade();  
+						else if(map.checkIfStarDockIsPresent(player.getPosition())){
+							createStarDock();  
+						}
+						else
+						{
+							randomation = random.nextInt(100);
+							if(randomation < 25){
+								letsSeeIfWeGetRandom = random.nextInt(2);
+								randomEventOccured(letsSeeIfWeGetRandom);
+							}
+						}
+					}
+					break;
+				case KeyEvent.VK_LEFT:
+					if(oldX-1 >=0  && map.checkIfMoveIsValid()){
+						//checkIfPlanetIsPresent(currPlayer.getPosition()) 
+						player.setPosition(new Point(oldX-1, oldY)); //move left
+						player.getShip().setCurrentFuel(map.getfuelPerMove());
+						if(map.checkIfPlanetIsPresent(player.getPosition()))
+							createTrade();  
+						else if(map.checkIfStarDockIsPresent(player.getPosition())){
+							createStarDock();  
+						}
 
-	                int oldX = player.getPosition().x;
-	                int oldY = player.getPosition().y;
-	                switch (key.getKeyCode()) {
-	                    case KeyEvent.VK_RIGHT:
-	                    	if(oldX+1 < map.WIDTH && map.checkIfMoveIsValid()){
-	                    		//checkIfPlanetIsPresent(currPlayer.getPosition()) 
-	                      player.setPosition(new Point(oldX+1, oldY)); //move right
-	                      if(map.checkIfPlanetIsPresent(player.getPosition()))
-	                    	  createTrade();  
-	                      if(map.checkIfStarDockIsPresent(player.getPosition()))
-	                    	  createStarDock();  
-	                      player.getShip().setCurrentFuel(map.getfuelPerMove());
-	                    	}
-	                        break;
-	                    case KeyEvent.VK_LEFT:
-	                    	if(oldX-1 >=0  && map.checkIfMoveIsValid()){
-	                    		//checkIfPlanetIsPresent(currPlayer.getPosition()) 
-	                      player.setPosition(new Point(oldX-1, oldY)); //move left
-	                      if(map.checkIfPlanetIsPresent(player.getPosition()))
-	                    	  createTrade();  
-	                      if(map.checkIfStarDockIsPresent(player.getPosition()))
-	                    	  createStarDock();  
-	                      player.getShip().setCurrentFuel(map.getfuelPerMove());
-	                    	}
-	                        break;
-	                    case KeyEvent.VK_DOWN:
-	                    	if(oldY+1 < map.HEIGHT && map.checkIfMoveIsValid()){
-	                    		//checkIfPlanetIsPresent(currPlayer.getPosition()) 
-	                      player.setPosition(new Point(oldX, oldY+1)); //move down
-	                      if(map.checkIfPlanetIsPresent(player.getPosition()))
-	                    	  createTrade();  
-	                      if(map.checkIfStarDockIsPresent(player.getPosition()))
-	                    	  createStarDock();  
-	                      player.getShip().setCurrentFuel(map.getfuelPerMove());
-	                    	}
-	                    	break;
-	                    case KeyEvent.VK_UP:
-	                    	if(oldY-1 >= 0 && map.checkIfMoveIsValid()){
-	                      player.setPosition(new Point(oldX, oldY-1)); //move up
-	                      System.out.println(player.getPosition());
-	                      if(map.checkIfPlanetIsPresent(player.getPosition()))
-	                    	  createTrade();  
-	                      if(map.checkIfStarDockIsPresent(player.getPosition()))
-	                    	  createStarDock();  
-	                    	  player.getShip().setCurrentFuel(map.getfuelPerMove());
-	                    	}
-	                    	break;
-	                }
+						else
+						{
+							randomation = random.nextInt(100);
+							if(randomation < 25){
+								letsSeeIfWeGetRandom = random.nextInt(2);
+								randomEventOccured(letsSeeIfWeGetRandom);
+							}
+						}
+					}
+					break;
 
-	            }
-	            if(player.getShip().getCurrentFuel() < player.getShip().getFuelPerMove())
-	            {
-	            	  int reply = JOptionPane.showConfirmDialog(null, "Unfortunatly your ship ran out of fuel, play again?", "SHIP BLEW UP!", JOptionPane.YES_NO_OPTION);
-	                  if (reply == JOptionPane.YES_OPTION) {
-	                    //JOptionPane.showConfirmDialog(null, new UIMain(), "", 0);
-	                	  UIMain newGame= new UIMain();
-	                	  frame.dispose();
-	                  }
-	                  else {
-	                     JOptionPane.showMessageDialog(null, "GOODBYE");
-	                     System.exit(0);
-	                  }
-	            }
-               map.updateLables();
-	           map. repaint();
-	        }
-	        /**
-	         * This method will create a trade screen when player agree to trade
-	         */
-	        public void createTrade()
-	        {
-	        	
-	        	JFrame f = new JFrame("Trade");
-	        	int answer = JOptionPane.showConfirmDialog(f, "Trade?");
-	            if (answer == JOptionPane.YES_OPTION) {
-	            Trade t = new Trade(player, map.planetGrid[player.getPosition().x][player.getPosition().y]);
-	        	t.setBtnFinished(new BtnFinishedListener());
-	            tabPane.add(t,"Trade",2);
-	        	tabPane.setSelectedIndex(2);
-	        	tabPane.setEnabledAt(0,false);
-	        	tabPane.setEnabledAt(1,false);
-	            }
-	        }
-	        public void createStarDock()
-	        {
-	        	JFrame f = new JFrame("Star Dock");
-	        	stardock = new StarDock(player);
-	        	stardock.setBtnFinished(new BtnFinishedListener());
-		            tabPane.add(stardock,"StarDock");
-		        	tabPane.setSelectedIndex(2);
-		        	tabPane.setEnabledAt(0,false);
-		        	tabPane.setEnabledAt(1,false);
-		        	
-		            }
-	        
-	        /**
-			 * Method must be implemented from ActionListener interface  
-			 */
-			public void keyReleased(KeyEvent e) {
+				case KeyEvent.VK_DOWN:
+					if(oldY+1 < map.HEIGHT && map.checkIfMoveIsValid()){
+						//checkIfPlanetIsPresent(currPlayer.getPosition()) 
+						player.setPosition(new Point(oldX, oldY+1)); //move down
+						player.getShip().setCurrentFuel(map.getfuelPerMove());
+						if(map.checkIfPlanetIsPresent(player.getPosition()))
+							createTrade();  
+						else if(map.checkIfStarDockIsPresent(player.getPosition())){
+							createStarDock();  
+						}
+						else
+						{
+							randomation = random.nextInt(100);
+							if(randomation < 25){
+								letsSeeIfWeGetRandom = random.nextInt(2);
+								randomEventOccured(letsSeeIfWeGetRandom);
+							}
+						}
+					}
+					break;
+				case KeyEvent.VK_UP:
+					if(oldY-1 >= 0 && map.checkIfMoveIsValid()){
+						player.setPosition(new Point(oldX, oldY-1)); //move up
+						player.getShip().setCurrentFuel(map.getfuelPerMove());
+						if(map.checkIfPlanetIsPresent(player.getPosition())){
+							createTrade();  
+						}
+						else if(map.checkIfStarDockIsPresent(player.getPosition())){
+							createStarDock();  
+						}
+						else
+						{
+							randomation = random.nextInt(100);
+							if(randomation < 25){
+								letsSeeIfWeGetRandom = random.nextInt(2);
+								randomEventOccured(letsSeeIfWeGetRandom);
+							}
+						}
+					}
+					break;
+				}
+
 			}
-			/**
-			 * Method must be implemented from ActionListener interface  
-			 */
-			public void keyTyped(KeyEvent e) {
-				//System.out.println("typeeeddd");
+			if(player.getShip().getCurrentFuel() < player.getShip().getFuelPerMove())
+			{
+				int reply = JOptionPane.showConfirmDialog(null, "Unfortunatly your ship ran out of fuel, play again?", "SHIP BLEW UP!", JOptionPane.YES_NO_OPTION);
+				if (reply == JOptionPane.YES_OPTION) {
+					//JOptionPane.showConfirmDialog(null, new UIMain(), "", 0);
+					UIMain newGame= new UIMain();
+					frame.dispose();
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "GOODBYE");
+					System.exit(0);
+				}
 			}
-	    
+			map.updateLables();
+			map. repaint();
+		}
+		/**
+		 * This method will create a trade screen when player agree to trade
+		 */
+		public void createTrade()
+		{
+
+			JFrame f = new JFrame("Trade");
+			int answer = JOptionPane.showConfirmDialog(f, "Trade?");
+			if (answer == JOptionPane.YES_OPTION) {
+				Trade t = new Trade(player, map.planetGrid[player.getPosition().x][player.getPosition().y]);
+				t.setBtnFinished(new BtnFinishedListener());
+				tabPane.add(t,"Trade",2);
+				tabPane.setSelectedIndex(2);
+				tabPane.setEnabledAt(0,false);
+				tabPane.setEnabledAt(1,false);
+			}
+		}
+		public void createStarDock()
+		{
+			JFrame f = new JFrame("Star Dock");
+			stardock = new StarDock(player);
+			stardock.setBtnFinished(new BtnFinishedListener());
+			tabPane.add(stardock,"StarDock");
+			tabPane.setSelectedIndex(2);
+			tabPane.setEnabledAt(0,false);
+			tabPane.setEnabledAt(1,false);
+
+		}
+
+		/**
+		 * Method must be implemented from ActionListener interface  
+		 */
+		public void keyReleased(KeyEvent e) {
+		}
+		/**
+		 * Method must be implemented from ActionListener interface  
+		 */
+		public void keyTyped(KeyEvent e) {
+			//System.out.println("typeeeddd");
+		}
+
 	}
+
+	public void randomEventOccured(int num)
+	{
+		//Random random = new Random();
+		//int calculateRate;
+		// 1 is for trader came and gave you something for free
+		String item = null;
+		if(num == 0)
+		{
+			int whichItem = random.nextInt(5)+1;
+			System.out.println(whichItem);
+			if(player.getShip().getCargoCapacity() - player.getShip().getCurrentGoods().getTotal() < whichItem)
+				whichItem = player.getShip().getCargoCapacity() - player.getShip().getCurrentGoods().getTotal();
+			if(player.getShip().getCargoCapacity() - player.getShip().getCurrentGoods().getTotal() == 0)
+				whichItem = -1;
+		//	if(player.getShip().getCargoCapacity() >= player.getShip().getCurrentGoods().getTotal() + whichItem){
+				switch(whichItem){
+				case 0:
+					player.getShip().getCurrentGoods().setFirearms(whichItem);
+					item = "firearms";
+					break;
+				case 1:
+					player.getShip().getCurrentGoods().setFood(whichItem);
+					item = "food";
+					break;
+				case 2:
+					player.getShip().getCurrentGoods().setFurs(whichItem);
+					item = "furs";
+					break;
+				case 3:
+					player.getShip().getCurrentGoods().setGames(whichItem);
+					item = "games";
+					break;
+				case 4:
+					player.getShip().getCurrentGoods().setMachines(whichItem);
+					item = "machines";
+					break;
+				case 5:
+					player.getShip().getCurrentGoods().setMedicines(whichItem);
+					item = "medicine";
+					break;
+				case 6:
+					player.getShip().getCurrentGoods().setNarcotics(whichItem);
+					item = "narcotics";
+					break;
+				case 7:
+					player.getShip().getCurrentGoods().setOre(whichItem);
+					item = "ore";
+					break;
+				case 8:
+					player.getShip().getCurrentGoods().setRobots(whichItem);
+					item = "robots";
+					break;
+				case 9:
+					player.getShip().getCurrentGoods().setWater(whichItem);
+					item = "water";
+					break;
+				}
+				
+				//if(player.getShip().getCurrentGoods().)
+				//calculateRate = random.nextInt(5);
+				if(whichItem != -1)
+				JOptionPane.showMessageDialog (null, "A trader came and gave you " + whichItem + " " + item, "Trader", JOptionPane.INFORMATION_MESSAGE);
+
+			}
+		
+
+
+		else if(num == 1)
+		{
+			int hit  = random.nextInt(14);
+			player.getShip().setHull(player.getShip().getHull() - hit);
+			JOptionPane.showMessageDialog (null, "A pirate came and attacked your ship causing " + hit  + " damage leaving your hull to: " + player.getShip().getHull() , "Pirate", JOptionPane.INFORMATION_MESSAGE);
+			if(player.getShip().isDead())
+			{
+				int reply = JOptionPane.showConfirmDialog(null, "Unfortunatly your ships hull was destroyed, play again?", "SHIP BLEW UP!", JOptionPane.YES_NO_OPTION);
+				if (reply == JOptionPane.YES_OPTION) {
+					//JOptionPane.showConfirmDialog(null, new UIMain(), "", 0);
+					UIMain newGame= new UIMain();
+					frame.dispose();
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "GOODBYE");
+					System.exit(0);
+				}
+			}
+		}
+	}	
 
 	public void save(int i) {
 		
