@@ -59,7 +59,9 @@ public class UIMain implements Serializable {
 	private Trade trade;
 
 	private Planet[] planetlist;
-
+	
+	private Inventory inventory;
+	
 	private SettingPanel sp;
 	/**
 	 * Constructor
@@ -133,11 +135,13 @@ public class UIMain implements Serializable {
 			frame.setSize(new Dimension(800,800));
 
 			universe = new Universe(player);
+			inventory= new Inventory(player);
 						
 			
 			map=new MapPanel(universe,player);
+			tabPane.addTab("Inventory",inventory);
 			tabPane.addTab("Map",map);
-			tabPane.setSelectedIndex(1);
+			tabPane.setSelectedIndex(2);
 			skillsGUI.disablebtnNext();
 			map.setKeyListener(new KeyController());
 			
@@ -161,11 +165,14 @@ public class UIMain implements Serializable {
 		 * Method must be implemented from ActionListener interface  
 		 */
 		public void actionPerformed(ActionEvent e){
-			tabPane.remove(2);
-			tabPane.setSelectedIndex(1);
+			tabPane.remove(3);
+			tabPane.setSelectedIndex(2);
 			tabPane.setEnabledAt(0,true);
 			tabPane.setEnabledAt(1,true);
 			tabPane.setEnabledAt(2, true);
+			tabPane.setEnabledAt(3, true);
+			inventory.update();
+			
 			
 		}
 	}
@@ -296,6 +303,7 @@ public class UIMain implements Serializable {
 			}
 			map.updateLables();
 			map. repaint();
+			inventory.update();
 		}
 		/**
 		 * This method will create a trade screen when player agree to trade
@@ -308,11 +316,12 @@ public class UIMain implements Serializable {
 			if (answer == JOptionPane.YES_OPTION) {
 				Trade t = new Trade(player, map.planetGrid[player.getPosition().x][player.getPosition().y]);
 				t.setBtnFinished(new BtnFinishedListener());
-				tabPane.add(t,"Trade",2);
-				tabPane.setSelectedIndex(2);
+				tabPane.add(t,"Trade",3);
+				tabPane.setSelectedIndex(3);
 				tabPane.setEnabledAt(0,false);
 				tabPane.setEnabledAt(1,false);
-				tabPane.setEnabledAt(3,false);
+				tabPane.setEnabledAt(2,false);
+				tabPane.setEnabledAt(4,false);
 			}
 		}
 		/**
@@ -323,11 +332,12 @@ public class UIMain implements Serializable {
 			JFrame f = new JFrame("Star Dock");
 			stardock = new StarDock(player);
 			stardock.setBtnFinished(new BtnFinishedListener());
-			tabPane.add(stardock,"StarDock",2);
-			tabPane.setSelectedIndex(2);
+			tabPane.add(stardock,"StarDock",3);
+			tabPane.setSelectedIndex(3);
 			tabPane.setEnabledAt(0,false);
 			tabPane.setEnabledAt(1,false);
-			tabPane.setEnabledAt(3,false);
+			tabPane.setEnabledAt(2,false);
+			tabPane.setEnabledAt(4, false);
 
 		}
 
@@ -489,6 +499,7 @@ public class UIMain implements Serializable {
 				
 				map=new MapPanel(universe,player);
 				map.setKeyListener(new KeyController());
+				inventory=new Inventory(player);
 				return true;
 				
 				}
@@ -621,13 +632,15 @@ public class UIMain implements Serializable {
 			tabPane.setTitleAt(0,"Skills");
 			
 			if(tabPane.getTabCount()>=2){
-				tabPane.setComponentAt(1, map);
+				tabPane.setComponentAt(1,inventory);
+				tabPane.setComponentAt(2, map);
 			}else{
+				tabPane.addTab("Inventory",inventory);
 				tabPane.addTab("Map", map);
 			}
 			
-			tabPane.setSelectedIndex(1);
-			if(tabPane.getTabCount()==2){
+			tabPane.setSelectedIndex(2);
+			if(tabPane.getTabCount()==3){
 				sp=new SettingPanel();
 				sp.setSaveListener(new SaveListener());
 				sp.setLoadListener(new LoadListener());

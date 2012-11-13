@@ -11,7 +11,7 @@ public class Goods  implements Serializable{
 	 */
 	public Goods()
 	{
-		 water =0;
+		water =0;
 		furs = 0;
 		food = 0;
 		ore = 0;

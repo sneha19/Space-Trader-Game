@@ -34,7 +34,7 @@ public class Player implements Serializable {
 	public Player(String name){
 		
 		this.name=name;
-		cash=1000;
+		cash=3000;
 		position= new Point(0,0);
 		score=0;
 		health=100;
