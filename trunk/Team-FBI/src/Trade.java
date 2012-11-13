@@ -23,9 +23,6 @@ import net.miginfocom.swing.MigLayout;
  */
 public class Trade extends JPanel{
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	private Player currPlayer;

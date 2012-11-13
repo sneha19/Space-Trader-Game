@@ -169,7 +169,9 @@ public class Universe implements Serializable {
     	tempPlanets=p;
     	tempStarDock=s;
     }
-    
+    /**
+     * reset the image for stardock after load
+     */
     public void afterLoad(){
     	for(int i = 0; i <25; i++)
     		for(int j = 0; j < 20; j++)

@@ -15,7 +15,11 @@ import javax.swing.JPanel;
 
 import net.miginfocom.swing.MigLayout;
 
-
+/**
+ * This is a GUI that give the option to user to choose a slot to save
+ * @author Guang Lu
+ *
+ */
 public class SaveLoadPanel extends JPanel {
 	private String title;
 	private String btnName;
@@ -30,7 +34,10 @@ public class SaveLoadPanel extends JPanel {
 	private JLabel lblSave1;
 	private JLabel lblSave2;
 	private JLabel lblSave3;
-	
+	/**
+	 * constructor
+	 * @param i
+	 */
 	public SaveLoadPanel(int i) {
 		slSwitch =i;
 		if(i==0){
@@ -87,7 +94,10 @@ public class SaveLoadPanel extends JPanel {
 		frame.setVisible(true);
 		
 	}
-	
+	/**
+	 * Read the saved info from source file
+	 * @throws IOException
+	 */
 	public void readFile() throws IOException
 	{
 		File file = new File("src/save1.txt");
@@ -112,7 +122,9 @@ public class SaveLoadPanel extends JPanel {
 			
 			
 	}
-	
+	/**
+	 * make no-data strings
+	 */
 	public void noFile(){
 		if(info1.equals("")){
 			info1="No Data";
@@ -124,14 +136,25 @@ public class SaveLoadPanel extends JPanel {
 			info3="No Data";
 		}
 	}
-	
+	/**
+	 * Setter, set button listener to the save/load button
+	 * @param a
+	 */
 	public void setButtonListener(ActionListener a){
 		btnSave1.addActionListener(a);
 		btnSave2.addActionListener(a);
 		btnSave3.addActionListener(a);
 	}
-	
+	/**
+	 * private class implements ActionListener, make sure the GUI will dispose when button is clicked
+	 * @author Guang Lu
+	 *
+	 */
 	private class BtnListener implements ActionListener{
+		/**
+		 * Implemented method
+		 * @param e action event
+		 */
 		public void actionPerformed(ActionEvent e) {
 			if(slSwitch==1){
 				frame.dispose();
@@ -148,6 +171,10 @@ public class SaveLoadPanel extends JPanel {
 		}
 		
 	}
+	/**
+	 * Draw the backgroud
+	 * @param g a Graphics instance
+	 */
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Image bg = new ImageIcon("img/spacebackground.gif").getImage();

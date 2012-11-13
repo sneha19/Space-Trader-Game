@@ -14,7 +14,7 @@ public class Pirate {
 	//public UIMain _unnamed_UIMain_;
 	//public Goverments _unnamed_Goverments_;
 	
-	Pirate(){
+	public Pirate(){
 		pirate = new Player("Pirate");
 		pirate.setCash((int)Math.random(2000)+1);
 		int a = Math.random(6)+1;

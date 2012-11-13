@@ -14,10 +14,11 @@ import javax.swing.JButton;
 import net.miginfocom.swing.MigLayout;
 import java.awt.Color;
 import javax.swing.border.EtchedBorder;
-
-
-
-
+/**
+ * This is a GUI that shows the start screen
+ * @author Guang Lu
+ *
+ */
 public class Start extends JPanel {
 	private JTextField textField;
 	private String playerName;
@@ -25,6 +26,9 @@ public class Start extends JPanel {
 	private JButton btnStart;
 	private boolean isDiffed;
 	private JButton btnContinue;
+	/**
+	 * constructor
+	 */
 	public Start() {
 		setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		
@@ -64,30 +68,56 @@ public class Start extends JPanel {
 		add(btnContinue, "cell 2 6");
 		//groupLayout codes end
 	}
-	
+	/**
+	 * getter, get the difficulty
+	 * @return difficulty
+	 */
 	public int getDifficulty(){
 	   return difficulty;
 	}
 	   
 	  
-	   
+	/**
+	 * getter, get the player name   
+	 * @return playerName
+	 */
 	public String getPlayerName(){
 		return playerName;
 	}
-	   
+	/**
+	 * setter, set the action listener for two buttons  
+	 * @param startListener
+	 * @param continueListener
+	 */
 	public void setbtnActionListener(ActionListener startListener,ActionListener continueListener){
 		btnStart.addActionListener(startListener);
 		btnContinue.addActionListener(continueListener);
 	}
-	   
+	/**
+	 * getter, get the name of the player
+	 * @return name of the player   
+	 */
 	public String getName(){
 		return textField.getText();
 	}
+	/**
+	 * check if difficulty is selected
+	 * @return whether the difficulty is selected
+	 */
 	public boolean isDiffed(){
 		return isDiffed;
 	}
+	/**
+	 * Private class, a button listener
+	 * @author Guang Lu
+	 *
+	 */
 	private class DiffListener implements ActionListener{
 		   private String diffString;
+		   /**
+		    * implemented method
+		    * @param e ActionEvent
+		    */
 		   public void actionPerformed(ActionEvent e){
 			   diffString=e.getActionCommand();
 			   System.out.println(diffString);
@@ -110,6 +140,10 @@ public class Start extends JPanel {
 			   }
 		   }
 	   }
+	/**
+	 * draw the background
+	 * @param g a Graphics instance
+	 */
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Image bg = new ImageIcon("img/bg.jpg").getImage();

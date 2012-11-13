@@ -29,19 +29,6 @@ public class Ship implements Serializable{
 	private double currentFuel;
 	private double fuelPerMove;
 	private double maxHull;
-	
-//	
-//	private void writeObject(java.io.ObjectOutputStream out) throws IOException {
-//		out.writeObject(new String("shipimg"));
-//		ImageWriter writer = (ImageWriter) ImageIO.getImageWritersBySuffix("jpg").next();
-//	        writer.setOutput(ImageIO.createImageOutputStream(out));
-//	        ImageWriteParam param = writer.getDefaultWriteParam();
-//	        param.setCompressionMode(ImageWriteParam.MODE_EXPLICIT);
-//	        param.setCompressionQuality(0.85f);
-//	        writer.write(null, new IIOImage((RenderedImage) shipImage, null, null), param);
-//	}
-
-
 	/**
 	 * A constructor that takes a shiptype
 	 * @param st Ship type that specify which ship to create
@@ -63,10 +50,18 @@ public class Ship implements Serializable{
 		currentGoods = new Goods();
 		maxHull = st.getHull();
 	}
+	/**
+	 * getter, get the max hull
+	 * @return maxHull
+	 */
 	public double getMaxHull()
 	{
 		return maxHull;
 	}
+	/**
+	 * calculate fuel needed per move
+	 * @return fuelPerMove
+	 */
 	public double fuelPerMove()
 	{
 
@@ -402,7 +397,9 @@ public class Ship implements Serializable{
 	{
 		return shipImage;
 	}
-	
+	/**
+	 * reset the image after load
+	 */
 	public void afterLoad(){
 		try {
 			shipImage = ImageIO.read(new File("img/shiptest.png"));
