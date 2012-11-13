@@ -182,8 +182,16 @@ public class MapPanel extends JPanel {
 	public void setKeyListener(KeyListener k){
 		this.addKeyListener(k);
 	}
-	
+	/**
+	 * This is a private class that implements the mouse listener interface. It shows the stats of a planet when clicked
+	 * @author Guang Lu
+	 * @version 1.0
+	 */
 	private class StatsListener implements MouseListener{
+		/**
+		 * implemented method
+		 * @param e a MouseEvent
+		 */
 		public void mouseClicked(MouseEvent e){
 			Point p = e.getPoint();
 			Point targetLocation = new Point((int)Math.ceil(p.x/30),(int)Math.ceil(p.y/30));
@@ -206,9 +214,25 @@ public class MapPanel extends JPanel {
 				}
 			}
 		}
+		/**
+		 * implemented method
+		 * @param e a MouseEvent
+		 */
 		public void mouseEntered(MouseEvent e){};
+		/**
+		 * implemented method
+		 * @param e a MouseEvent
+		 */
 		public void mouseExited(MouseEvent e){};
+		/**
+		 * implemented method
+		 * @param e a MouseEvent
+		 */
 		public void mousePressed(MouseEvent e){};
+		/**
+		 * implemented method
+		 * @param e a MouseEvent
+		 */
 		public void mouseReleased(MouseEvent e){};
 	}
 	

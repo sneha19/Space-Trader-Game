@@ -264,6 +264,10 @@ public class SkillsInterface extends JPanel {
 	public void disablebtnNext(){
 		btnNext.setVisible(false);
 	}
+	/**
+	 * draw background
+	 * @param g a Graphics instance
+	 */
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Image bg = new ImageIcon("img/bricks.jpg").getImage();

@@ -377,6 +377,10 @@ public class Stats extends JPanel {
 	public int averageSell(int index){
 		return (sellHighRange(index)+sellLowRange(index))/2;
 	}
+	/**
+	 * draw background
+	 * @param g a Graphics instance
+	 */
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Image bg = new ImageIcon("img/bricks.jpg").getImage();

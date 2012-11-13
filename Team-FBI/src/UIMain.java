@@ -315,6 +315,9 @@ public class UIMain implements Serializable {
 				tabPane.setEnabledAt(3,false);
 			}
 		}
+		/**
+		 * create stardock
+		 */
 		public void createStarDock()
 		{
 			JFrame f = new JFrame("Star Dock");
@@ -341,7 +344,10 @@ public class UIMain implements Serializable {
 		}
 
 	}
-
+	/**
+	 * Randomly generate a event after player move
+	 * @param num
+	 */
 	public void randomEventOccured(int num)
 	{
 		//Random random = new Random();
@@ -429,7 +435,10 @@ public class UIMain implements Serializable {
 			}
 		}
 	}	
-
+	/**
+	 * save the game
+	 * @param i slot number
+	 */
 	public void save(int i) {
 		
 		Planet[][] plist=universe.getPlanetWithLocation();
@@ -454,8 +463,12 @@ public class UIMain implements Serializable {
 			} 
 			
 		
-	//}
 	
+	/**
+	 * load the game
+	 * @param i slot number
+	 * @return whether the load is successful
+	 */
 	public boolean load(int i){ 
 
 			try {
@@ -486,25 +499,49 @@ public class UIMain implements Serializable {
 			
 		
 	}
-
+	/**
+	 * Action listener for save button in UIMaim
+	 * @author Guang Lu
+	 *
+	 */
 	private class SaveListener implements ActionListener{
+		/**
+		 * implemented method
+		 * @param e ActionEvent
+		 */
 		public void actionPerformed(ActionEvent e){
 			SaveLoadPanel slp = new SaveLoadPanel(0);
 			slp.setButtonListener(new SaveInfo());
 		}
 	}
-	
+	/**
+	 * Action Listener for load button in UIMain
+	 * @author Guang Lu
+	 *
+	 */
 	private class LoadListener implements ActionListener{
+		/**
+		 * implemented method
+		 * @param e ActionEvent
+		 */
 		public void actionPerformed(ActionEvent e){	
 			SaveLoadPanel slp = new SaveLoadPanel(1);
 			slp.setButtonListener(new LoadInfo());
 		}
 	}
-	
+	/**
+	 * Action Listener for choosing save slot
+	 * @author Guang Lu
+	 *
+	 */
 	private class SaveInfo implements ActionListener{
 		String s;
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		Calendar cal = Calendar.getInstance();
+		/**
+		 * implemented method
+		 * @param e ActionEvent
+		 */
 		public void actionPerformed(ActionEvent e) {
 			if(e.getActionCommand().equals("Save1")){
 				save(1);
@@ -529,7 +566,11 @@ public class UIMain implements Serializable {
 				}
 			}
 		}
-		
+		/**
+		 * Write the player info out to a text file
+		 * @param i
+		 * @throws IOException
+		 */
 		public void writeInfo(int i) throws IOException{
 			if(i==1){
 				s ="src/save1.txt";
@@ -547,8 +588,16 @@ public class UIMain implements Serializable {
 			pw.close();
 		}
 	}
-	
+	/**
+	 * Action Listener for load and choosing load slot
+	 * @author Guang Lu
+	 *
+	 */
 	private class LoadInfo implements ActionListener{
+		/**
+		 * implemented method
+		 * @param e ActionEvent
+		 */
 		public void actionPerformed(ActionEvent e) {
 			 frame.setSize(new Dimension(800,800));
 			 boolean i=false;
@@ -589,16 +638,21 @@ public class UIMain implements Serializable {
 			}
 		}
 	}
-	
+	/**
+	 * Action Listener for Continue button
+	 * @author Guang Lu
+	 *
+	 */
 	private class ContinueListener implements ActionListener{
+		/**
+		 * implemented method
+		 * @param e ActionEvent
+		 */
 		public void actionPerformed(ActionEvent arg0) {
 			 player = new Player("default");
 			 universe = new Universe(player); 
 			 skills = new Skills(player);
 			 skillsGUI= new SkillsInterface(skills);
-			 
-			 
-			
 			 SaveLoadPanel slp = new SaveLoadPanel(1);
 			 slp.setButtonListener(new LoadInfo());
 			 

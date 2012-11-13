@@ -46,6 +46,9 @@ public class StarDockInfo  implements Serializable{
 		} catch (IOException e) {
 		}
 	}
+	/**
+	 * reset the image of stardock after load
+	 */
 	public void afterLoad()
 	{
 		try {

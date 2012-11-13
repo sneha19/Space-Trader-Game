@@ -107,8 +107,6 @@ public class Skills{
  {
   return playerPoints;
  }
- 
- 
  /**
   * retrieves the player
   * @return current player
