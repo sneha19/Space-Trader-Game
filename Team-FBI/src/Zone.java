@@ -1,13 +1,17 @@
-// $codepro.audit.disable com.instantiations.assist.eclipse.analysis.audit.rule.effectivejava.alwaysOverridetoString.alwaysOverrideToString
+// $codepro.audit.disable com.instantiations.assist.eclipse.analysis.audit.rule.effectivejava.alwaysOverridetoString.alwaysOverrideToString, fileComment, variableShouldBeFinal
 import java.io.Serializable;
 
 /**
  * The zone class representing a solar system
  * @author Guang Lu
- *
+ * @version 1
  */
 public class Zone implements Serializable {
-	int zoneLevel;
+	/**
+	 * field zoneLevel
+	 */
+	private int zoneLevel;
+	
 	/**
 	 * Constructor of the zone class
 	 * @param i the zone number
@@ -15,12 +19,12 @@ public class Zone implements Serializable {
 	public Zone(int i){
 		zoneLevel = i;
 	}
+	
 	/**
 	 * Getter for zone number
 	 * @return zoneLevel representing zone number
 	 */
-	public int getZone()
-	{
+	public int getZone(){
 		return zoneLevel;
 	}
 }
