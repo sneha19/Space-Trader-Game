@@ -37,7 +37,8 @@ public class Inventory extends JPanel{
 		
 		this.player=player;
 		this.setPreferredSize(new Dimension(800,800));
-		setLayout(new MigLayout("", "[][][][][][][][][][][][][][][]", "[][][][][][][][][][][][][][][][][][][]"));
+		setLayout(new MigLayout("", "[][][][][][][][][][][][][][][]", 
+				"[][][][][][][][][][][][][][][][][][][]"));
 		
 		JLabel lblInventory = new JLabel("Inventory");
 		lblInventory.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
@@ -65,7 +66,8 @@ public class Inventory extends JPanel{
 		lblHull.setForeground(Color.WHITE);
 		add(lblHull, "cell 12 4");
 		
-		lblPlayerhull = new JLabel(player.getShip().getHull()+"/"+player.getShip().getMaxHull());
+		lblPlayerhull = new JLabel(player.getShip().getHull()+"/"+
+		player.getShip().getMaxHull());
 		lblPlayerhull.setForeground(Color.WHITE);
 		add(lblPlayerhull, "cell 14 4");
 		

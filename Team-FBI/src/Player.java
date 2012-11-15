@@ -1,3 +1,4 @@
+// $codepro.audit.disable accessorMethodNamingConvention, com.instantiations.assist.eclipse.analysis.audit.rule.effectivejava.alwaysOverridetoString.alwaysOverrideToString
 import java.awt.Image;
 import java.awt.Point;
 import java.io.File;

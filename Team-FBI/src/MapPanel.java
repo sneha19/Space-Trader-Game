@@ -1,3 +1,4 @@
+// $codepro.audit.disable com.instantiations.assist.eclipse.analysis.audit.rule.effectivejava.alwaysOverridetoString.alwaysOverrideToString
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -193,8 +194,8 @@ public class MapPanel extends JPanel {
 		 * @param e a MouseEvent
 		 */
 		public void mouseClicked(MouseEvent e){
-			Point p = e.getPoint();
-			Point targetLocation = new Point((int)Math.ceil(p.x/30),(int)Math.ceil(p.y/30));
+			Point point = e.getPoint();
+			Point targetLocation = new Point((int)Math.ceil(point.x/30),(int)Math.ceil(point.y/30));
 			Planet[][] list = universe.getPlanetWithLocation();
 			
 			for(int i=0;i<25;i++){
