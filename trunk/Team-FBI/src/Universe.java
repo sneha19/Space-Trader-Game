@@ -1,3 +1,4 @@
+// $codepro.audit.disable com.instantiations.assist.eclipse.analysis.audit.rule.effectivejava.alwaysOverridetoString.alwaysOverrideToString, com.instantiations.assist.eclipse.arrayIsStoredWithoutCopying
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
@@ -124,7 +125,7 @@ public class Universe implements Serializable {
 		  String line;
 		  String[] record = new String[122];
 		  int i = 0;
-		  while ((line = in.readLine()) != null){
+		  while ((line = in.readLine()) != null){ // $codepro.audit.disable nullPointerDereference
 			  record[i] = line.trim();
 			  i++;
 		  }

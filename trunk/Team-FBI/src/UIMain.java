@@ -288,7 +288,7 @@ public class UIMain implements Serializable {
 				}
 
 			}
-			if(player.getShip().getCurrentFuel() < player.getShip().getFuelPerMove())
+			if(player.getShip().getCurrentFuel() < player.getShip().getFuelPerMove()) // $codepro.audit.disable nullPointerDereference
 			{
 				int reply = JOptionPane.showConfirmDialog(null, "Unfortunatly your ship ran out of fuel, play again?", "SHIP BLEW UP!", JOptionPane.YES_NO_OPTION);
 				if (reply == JOptionPane.YES_OPTION) {

@@ -1,3 +1,4 @@
+// $codepro.audit.disable com.instantiations.assist.eclipse.analysis.audit.rule.effectivejava.alwaysOverridetoString.alwaysOverrideToString
 
 import java.awt.Image;
 import java.awt.image.RenderedImage;
@@ -193,7 +194,7 @@ public class Ship implements Serializable{
 	 * @return boolean true if dead, false if alive
 	 */
 	public boolean isDead(){
-		if (hull <= 0)
+		if (hull <= 0 || currentFuel<=0 )
 			return true;
 		else
 			return false;

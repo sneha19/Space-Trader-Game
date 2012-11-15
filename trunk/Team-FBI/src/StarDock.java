@@ -33,8 +33,6 @@ public class StarDock extends JPanel  implements Serializable{
 
 	public PlanetScreen _unnamed_PlanetScreen_;
 
-	public Equipment _unnamed_Equipment_;
-
 	private int fuel = 25;
 
 	private int hull = 10;
