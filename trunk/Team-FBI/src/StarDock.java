@@ -31,8 +31,6 @@ import org.omg.CORBA.TRANSIENT;
 public class StarDock extends JPanel  implements Serializable{
 	public Zone _unnamed_Zone_;
 
-	public PlanetScreen _unnamed_PlanetScreen_;
-
 	private int fuel = 25;
 
 	private int hull = 10;

@@ -1,4 +1,4 @@
-import java.awt.Graphics;
+import java.awt.Graphics; // $codepro.audit.disable fileComment, com.instantiations.assist.eclipse.analysis.audit.rule.effectivejava.constructorsOnlyInvokeFinalMethods
 import java.awt.Image;
 import java.awt.event.ActionListener;
 import java.io.Serializable;
@@ -12,9 +12,16 @@ import net.miginfocom.swing.MigLayout;
  *
  */
 public class SettingPanel extends JPanel implements Serializable {
+/**
+ * save
+ */
+	public JButton btnSave;
 
-	JButton btnSave;
-	JButton btnLoad;
+/**
+ * load
+ */
+	public JButton btnLoad;
+
 	/**
 	 * Constructor
 	 */
@@ -32,8 +39,7 @@ public class SettingPanel extends JPanel implements Serializable {
 		
 		
 	}
-	
-	
+
 	/**
 	 * setter, set the action listener for save button
 	 * @param a
@@ -41,6 +47,7 @@ public class SettingPanel extends JPanel implements Serializable {
 	public void setSaveListener(ActionListener a){
 		btnSave.addActionListener(a);
 	}
+
 	/**
 	 * setter, set the action listener for load button
 	 * @param a
@@ -48,6 +55,7 @@ public class SettingPanel extends JPanel implements Serializable {
 	public void setLoadListener(ActionListener a){
 		btnLoad.addActionListener(a);
 	}
+
 	/**
 	 * draw the background
 	 * @param g a Graphics instance
@@ -55,7 +63,7 @@ public class SettingPanel extends JPanel implements Serializable {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Image bg = new ImageIcon("img/bricks.jpg").getImage();
-		g.drawImage(bg, 0, 0,getWidth(),getHeight(), this);
+		g.drawImage(bg, 0, 0, getWidth(), getHeight(), this);
 	}
 	
 	
