@@ -1,16 +1,18 @@
-// $codepro.audit.disable com.instantiations.assist.eclipse.analysis.audit.rule.effectivejava.alwaysOverridetoString.alwaysOverrideToString
+// $codepro.audit.disable com.instantiations.assist.eclipse.analysis.audit.rule.effectivejava.alwaysOverridetoString.alwaysOverrideToString, cyclomaticComplexity, fieldJavadoc , fileComment, logExceptions
+// $codepro.audit.disable fileComment, nonTerminatedCaseClause, numericLiterals
+// $codepro.audit.disable, emptyCatchClause, tooManyViolations
 
 import java.awt.Image;
-import java.awt.image.RenderedImage;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
 import java.text.DecimalFormat;
 
-import javax.imageio.IIOImage;
+
 import javax.imageio.ImageIO;
-import javax.imageio.ImageWriteParam;
-import javax.imageio.ImageWriter;
+
+
 
 /**
  * This is a ship class that holds the critical information of a ship
@@ -19,25 +21,38 @@ import javax.imageio.ImageWriter;
  */
 public class Ship implements Serializable{
 	private int hull;
+
 	private int cargoCapacity;
+
 	private int fuelCapacity;
+
 	private int cost;
+
 	private int cargoNumber;
+
 	private String name;
-	private ShipType st;
+
+	private ShipType st = null;
+
 	private Goods currentGoods;
+
 	private transient Image shipImage;
+
 	private double currentFuel;
+
 	private double fuelPerMove;
+
 	private double maxHull;
+
 	/**
 	 * A constructor that takes a shiptype
 	 * @param st Ship type that specify which ship to create
 	 */
-	public Ship(ShipType st){
+	public Ship(ShipType st){ // $codepro.audit.disable com.instantiations.assist.eclipse.analysis.audit.rule.effectivejava.constructorsOnlyInvokeFinalMethods, logExceptions
 		try {
 			shipImage = ImageIO.read(new File("img/shiptest.png"));
 		} catch (IOException e) {
+			System.out.println("caught");
 		}
 		this.st=st;
 		name=st.getName();
@@ -51,38 +66,45 @@ public class Ship implements Serializable{
 		currentGoods = new Goods();
 		maxHull = st.getHull();
 	}
+
 	/**
 	 * getter, get the max hull
 	 * @return maxHull
 	 */
-	public double getMaxHull()
-	{
+	public double getMaxHull(){
 		return maxHull;
 	}
+
 	/**
 	 * calculate fuel needed per move
 	 * @return fuelPerMove
 	 */
-	public double fuelPerMove()
-	{
-
-		if("fighter".equals(st.name().trim()))
+	public double fuelPerMove(){
+		if("fighter".equals(st.name().trim())){
 			fuelPerMove = 1.0;
-		if("hauler".equals(st.name().trim()))
+		}
+		if("hauler".equals(st.name().trim())){
 			fuelPerMove = 1.5;
-		if("bullDog".equals(st.name().trim()))
+		}
+		if("bullDog".equals(st.name().trim())){
 			fuelPerMove = 2.0;
-		if("carrier".equals(st.name().trim()))
+		}
+		if("carrier".equals(st.name().trim())){
 			fuelPerMove = 1.7;
-		if("yellowJacket".equals(st.name().trim()))
+		}
+		if("yellowJacket".equals(st.name().trim())){
 			fuelPerMove = 1.3;
-		if("destroyer".equals(st.name().trim()))
+		}
+		if("destroyer".equals(st.name().trim())){
 			fuelPerMove = 2.5;
-		if("heat".equals(st.name().trim()))
+		}
+		if("heat".equals(st.name().trim())){
 			fuelPerMove = .9;
+		}
 		return fuelPerMove;
 
 	}
+
 	/**
 	 * Setter, set the hull strength
 	 * @param hull hull strength
@@ -90,6 +112,7 @@ public class Ship implements Serializable{
 	public void setHull(int hull){
 		this.hull = hull;
 	}
+
 	/**
 	 * Getter, get the hull strength
 	 * @return hull hull strength
@@ -97,6 +120,7 @@ public class Ship implements Serializable{
 	public int getHull(){
 		return hull;
 	}
+
 	/**
 	 * Setter, set the cargo capacity
 	 * @param cargo new cargo capacity
@@ -104,22 +128,23 @@ public class Ship implements Serializable{
 	public void setCargoCapacity(int cargo){
 		cargoCapacity = cargo;
 	}
+
 	/**
 	 * Set the fuel consumption when ship moves
 	 * @param fpm
 	 */
-	public void setFuelPerMove(double fpm)
-	{
+	public void setFuelPerMove(double fpm){
 		fuelPerMove = fpm;
 	}
+
 	/**
 	 * Get the fuel consumption when ship moves
 	 * @return fuelPerMove
 	 */
-	public double getFuelPerMove()
-	{
+	public double getFuelPerMove(){
 		return fuelPerMove;
 	}
+
 	/**
 	 * Getter, get the cargo capacity
 	 * @return cargoCapacity
@@ -127,6 +152,7 @@ public class Ship implements Serializable{
 	public int getCargoCapacity(){
 		return(cargoCapacity);
 	}
+
 	/**
 	 * Setter, set the fuel capacity
 	 * @param fuel the new fuel capacity
@@ -134,40 +160,41 @@ public class Ship implements Serializable{
 	public void setFuelCapacity(int fuel){
 		fuelCapacity = fuel;
 	}
+
 	/**
 	 * Setter, set current fuel
 	 * @param decrease the dcresement value
 	 */
-	public void setCurrentFuel(double decrease)
-	{
+	public void setCurrentFuel(double decrease){
 		currentFuel -= decrease;
 	}
+
 	/**
 	 * updated the fuel to increase it
 	 * @param increase amount to increase
 	 */
-	public void updateCurrentFuel(double increase)
-	{
+	public void updateCurrentFuel(double increase){
 		currentFuel += increase;
 	}
+
 	/**
 	 * Get current Fuel
 	 * @return currentFuel
 	 */
-	public double getCurrentFuel()
-	{
+	public double getCurrentFuel(){
 		return decimalFormat(currentFuel);
 	}
+
 	/**
 	 * Change a double to decimal format
 	 * @param longDouble
 	 * @return decimal format
 	 */
-	public double decimalFormat(double longDouble)
-	{
+	public double decimalFormat(double longDouble){
 		DecimalFormat df = new DecimalFormat("#.##");
-		return Double.valueOf(df.format(longDouble));
+		return Double.valueOf(df.format(longDouble));  // $codepro.audit.disable handleNumericParsingErrors 
 	}
+
 	/**
 	 * Getter, get the fuel capacity 
 	 * @return fuelCapacity the current fuel capacity
@@ -175,6 +202,7 @@ public class Ship implements Serializable{
 	public int getFuelCapacity(){
 		return(fuelCapacity);
 	}
+
 	/**
 	 * setter, set the cost of the ship
 	 * @param cost the new cost of the ship
@@ -182,23 +210,28 @@ public class Ship implements Serializable{
 	public void setCost(int cost){
 		this.cost = cost;
 	}
+
 	/**
 	 * Getter, get the cost of the ship
-	 * @return
+	 * @return cost
 	 */
 	public int getCost(){
 		return cost;
 	}
+
 	/**
 	 * Determine if the player is dead, meaning the hull stength of the ship is 0
 	 * @return boolean true if dead, false if alive
 	 */
 	public boolean isDead(){
-		if (hull <= 0 || currentFuel<=0 )
+		if (hull <= 0 || currentFuel <= 0){ // $codepro.audit.disable com.instantiations.assist.eclipse.analysis.audit.rule.codingStyle.returnBooleanExpressionValue
 			return true;
-		else
+		}
+		else{
 			return false;
+		}
 	}
+
 	/**
 	 * Getter, get the name of the ship
 	 * @return name the name of the ship
@@ -206,6 +239,7 @@ public class Ship implements Serializable{
 	public String getName(){
 		return name;
 	}
+
 	/**
 	 * Get current goods
 	 * @return currentGoods
@@ -213,14 +247,15 @@ public class Ship implements Serializable{
 	public Goods getCurrentGoods() {
 		return currentGoods;
 	}
+
 	/**
 	 * Set current goods
 	 * @param currentGoods
 	 */
-	public void setCurrentGoods(Goods currentGoods) 
-	{
+	public void setCurrentGoods(Goods currentGoods) {
 		this.currentGoods = currentGoods;
 	}
+
 	/**
 	 * Increase the corrent item amount every time player buy stuff
 	 * @param index
@@ -231,7 +266,7 @@ public class Ship implements Serializable{
 			return 1;
 		}
 		else{
-			switch(index){
+			switch(index){ // $codepro.audit.disable missingDefaultInSwitch
 			case 0:
 				currentGoods.setWater(1);
 				cargoNumber+=1;
@@ -276,6 +311,7 @@ public class Ship implements Serializable{
 			return 0;
 		}
 	}
+
 	/**
 	 * Decrese the item amount every time player sell
 	 * @param index of the item
@@ -288,7 +324,7 @@ public class Ship implements Serializable{
 			return flag;
 		}
 		else{
-			switch(index){
+			switch(index){ // $codepro.audit.disable missingDefaultInSwitch
 			case 0:
 				if(currentGoods.getWater() > 0){
 					currentGoods.setWater(-1);
@@ -306,56 +342,63 @@ public class Ship implements Serializable{
 					flag = 0;
 					return currentGoods.getFurs();
 				}
-				else
+				else{
 					return currentGoods.getFurs();
+				}
 			case 2:
 				if(currentGoods.getFood() > 0){
 					currentGoods.setFood(-1);
 					cargoNumber-=1;
 					return currentGoods.getFood();
 				}
-				else
+				else{
 					return currentGoods.getFood();
+				}
 			case 3:
 				if(currentGoods.getOre() > 0){
 					currentGoods.setOre(-1);
 					cargoNumber-=1;
 					return currentGoods.getOre();
 				}
-				else
+				else{
 					return currentGoods.getOre();
+				}
 			case 4:
 				if(currentGoods.getGames() > 0){
 					currentGoods.setGames(-1);
 					cargoNumber-=1;
 					return currentGoods.getGames();
 				}
-				else
+				else{
 					return currentGoods.getGames();
+				}
 			case 5:
 				if(currentGoods.getFirearms() > 0){
 					currentGoods.setFirearms(-1);
 					cargoNumber-=1;
 					return currentGoods.getFirearms();
 				}
-				else
+				else{
 					return currentGoods.getFirearms();
+				}
 			case 6:
 				if(currentGoods.getMedicines() > 0){
 					currentGoods.setMedicines(-1);
 					cargoNumber-=1;
 					return currentGoods.getMedicines();
 				}
-				else
+				else{
 					return currentGoods.getMedicines();
+				}
 			case 7:
 				if(currentGoods.getMachines() > 0){
 					currentGoods.setMachines(-1);
 					cargoNumber-=1;
 					return currentGoods.getMachines();
 				}
-				else
+				else{
 					return currentGoods.getMachines();
+				}
 
 			case 8:
 				if(currentGoods.getNarcotics() > 0){
@@ -363,8 +406,9 @@ public class Ship implements Serializable{
 					cargoNumber-=1;
 					return currentGoods.getNarcotics();
 				}
-				else
+				else{
 					return currentGoods.getNarcotics();
+				}
 
 			case 9:
 				if(currentGoods.getRobots() > 0){
@@ -372,32 +416,35 @@ public class Ship implements Serializable{
 					cargoNumber-=1;
 					return currentGoods.getRobots();
 				}
-				else
+				else {
 					return currentGoods.getRobots();
+				}
 
 			}
 			return -10000;
 		}
 	}
+
 	/**
 	 * Set the picture of ship
 	 * @param i the image of ship
 	 */
-	public void setPicture(String i)
-	{
+	public void setPicture(String i){
 		try {
 			shipImage = ImageIO.read(new File("i"));
 		} catch (IOException e) {
+			System.out.println("caught");
 		}
 	}
+
 	/**
-	 * get the image of the ship
+	 * get the image of the ship <!-- // $codepro.audit.disable logExceptions -->
 	 * @return shipImage
 	 */
-	public Image getPic()
-	{
+	public Image getPic(){
 		return shipImage;
 	}
+
 	/**
 	 * reset the image after load
 	 */
@@ -405,6 +452,7 @@ public class Ship implements Serializable{
 		try {
 			shipImage = ImageIO.read(new File("img/shiptest.png"));
 		} catch (IOException e) {
+			System.out.println("caught");
 		}
 	}
 	

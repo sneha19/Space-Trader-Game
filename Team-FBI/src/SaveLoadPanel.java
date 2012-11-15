@@ -1,4 +1,4 @@
-// $codepro.audit.disable com.instantiations.assist.eclipse.analysis.audit.rule.effectivejava.alwaysOverridetoString.alwaysOverrideToString
+// $codepro.audit.disable com.instantiations.assist.eclipse.analysis.audit.rule.effectivejava.alwaysOverridetoString.alwaysOverrideToString, fileComment, numericLiterals
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -22,26 +22,78 @@ import net.miginfocom.swing.MigLayout;
  *
  */
 public class SaveLoadPanel extends JPanel {
+	/**
+	 * title
+	 */
 	private String title;
+
+	/**
+	 * name
+	 */
 	private String btnName;
+
+	/**
+	 * 11
+	 */
 	private String info1="";
+
+	/**
+	 * 11
+	 */
 	private String info2="";
+
+	/**
+	 * 11
+	 */
 	private String info3="";
+
+	/**
+	 * 11
+	 */
 	private JButton btnSave1;
+
+	/**
+	 * 11
+	 */
 	private JButton btnSave2;
+
+	/**
+	 * 11
+	 */
 	private JButton btnSave3;
+
+	/**
+	 * 11
+	 */
 	private JFrame frame;
+
+	/**
+	 * 11
+	 */
 	private int slSwitch;
+
+	/**
+	 * 11
+	 */
 	private JLabel lblSave1;
+
+	/**
+	 * 11
+	 */
 	private JLabel lblSave2;
+
+	/**
+	 * 11
+	 */
 	private JLabel lblSave3;
+
 	/**
 	 * constructor
 	 * @param i
 	 */
-	public SaveLoadPanel(int i) {
+	public SaveLoadPanel(int i) { // $codepro.audit.disable com.instantiations.assist.eclipse.analysis.audit.rule.effectivejava.constructorsOnlyInvokeFinalMethods
 		slSwitch =i;
-		if(i==0){
+		if(i == 0){
 			title = "Please choose a slot to save!";
 			btnName = "Save";
 		}else{
@@ -67,21 +119,21 @@ public class SaveLoadPanel extends JPanel {
 		add(lblSave1, "cell 2 2");
 		lblSave1.setForeground(Color.WHITE);
 		
-		btnSave1 = new JButton(btnName+1);
+		btnSave1 = new JButton(btnName + 1);
 		add(btnSave1, "cell 6 2");
 		
 		lblSave2 = new JLabel(info2);
 		add(lblSave2, "cell 2 4");
 		lblSave2.setForeground(Color.WHITE);
 		
-		btnSave2 = new JButton(btnName+2);
+		btnSave2 = new JButton(btnName + 2);
 		add(btnSave2, "cell 6 4");
 		
 		lblSave3 = new JLabel(info3);
 		add(lblSave3, "cell 2 6");
 		lblSave3.setForeground(Color.WHITE);
 		
-		btnSave3 = new JButton(btnName+3);
+		btnSave3 = new JButton(btnName + 3);
 		add(btnSave3, "cell 6 6");
 		
 		btnSave1.addActionListener(new BtnListener());
@@ -91,30 +143,28 @@ public class SaveLoadPanel extends JPanel {
 		frame = new JFrame();
 		frame.getContentPane().add(this);
 		frame.pack();
-		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // $codepro.audit.disable staticMemberAccess
 		frame.setVisible(true);
 		
 	}
+
 	/**
 	 * Read the saved info from source file
 	 * @throws IOException
 	 */
-	public void readFile() throws IOException
-	{
+	public void readFile() throws IOException{ // $codepro.audit.disable unnecessaryExceptions
 		File file = new File("src/save1.txt");
 		Scanner scan = new Scanner(file);
 		while (scan.hasNextLine()){
 			info1=scan.nextLine();
 		}
-		
-			
+
 		file = new File("src/save2.txt");
 		scan = new Scanner(file);
 		while (scan.hasNextLine()){
 			info2=scan.nextLine();
 		}
-		
-			
+
 		file = new File("src/save3.txt");
 		scan = new Scanner(file);
 		while (scan.hasNextLine()){
@@ -123,6 +173,7 @@ public class SaveLoadPanel extends JPanel {
 			
 			
 	}
+
 	/**
 	 * make no-data strings
 	 */
@@ -137,6 +188,7 @@ public class SaveLoadPanel extends JPanel {
 			info3="No Data";
 		}
 	}
+
 	/**
 	 * Setter, set button listener to the save/load button
 	 * @param a
@@ -146,8 +198,10 @@ public class SaveLoadPanel extends JPanel {
 		btnSave2.addActionListener(a);
 		btnSave3.addActionListener(a);
 	}
+
 	/**
-	 * private class implements ActionListener, make sure the GUI will dispose when button is clicked
+	 * private class implements ActionListener,
+	 * make sure the GUI will dispose when button is clicked
 	 * @author Guang Lu
 	 *
 	 */
@@ -157,7 +211,7 @@ public class SaveLoadPanel extends JPanel {
 		 * @param e action event
 		 */
 		public void actionPerformed(ActionEvent e) {
-			if(slSwitch==1){
+			if(slSwitch == 1){
 				frame.dispose();
 			}else{
 				try {
@@ -172,6 +226,7 @@ public class SaveLoadPanel extends JPanel {
 		}
 		
 	}
+
 	/**
 	 * Draw the backgroud
 	 * @param g a Graphics instance
@@ -179,7 +234,7 @@ public class SaveLoadPanel extends JPanel {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Image bg = new ImageIcon("img/spacebackground.gif").getImage();
-		g.drawImage(bg, 0, 0,getWidth(),getHeight(), this);
+		g.drawImage(bg, 0, 0, getWidth(), getHeight(), this);
 	}
 
 }

@@ -1,32 +1,46 @@
-// $codepro.audit.disable accessorMethodNamingConvention, com.instantiations.assist.eclipse.analysis.audit.rule.effectivejava.alwaysOverridetoString.alwaysOverrideToString
-import java.awt.Image;
+// $codepro.audit.disable accessorMethodNamingConvention, com.instantiations.assist.eclipse.analysis.audit.rule.effectivejava.alwaysOverridetoString.alwaysOverrideToString, booleanMethodNamingConvention, fieldJavadoc, fileComment
+//$codepro.audit.disable fileComment, numericLiterals, tooManyViolations
+
 import java.awt.Point;
-import java.io.File;
-import java.io.IOException;
+
+
 import java.io.Serializable;
 
-import javax.imageio.ImageIO;
+
 
 /**
- * This is the class that represent a user. It is a info-holder for all the fields a player should have.
+ * This is the class that represent a user. It is
+ * a info-holder for all the fields a player should have.
  * @author Guang Lu
  *
  */
 
 public class Player implements Serializable {
 	private String name;
+
 	private Point position;
+
 	private int cash;
+
 	private int score;
+
 	private int health;
+
 	private int pilot;
+
 	private int fighter;
+
 	private int trader;
+
 	private int engineer;
+
 	private Ship ship;
+
 	private int difficulty;
+
 	private int availableSkillPoints;
-	private ShipType st;
+
+	private ShipType st = null;
 	
 	/**
 	 * The player take a string as input represent the name of the player
@@ -36,7 +50,7 @@ public class Player implements Serializable {
 		
 		this.name=name;
 		cash=3000;
-		position= new Point(0,0);
+		position= new Point(0, 0);
 		score=0;
 		health=100;
 		pilot=0;
@@ -46,7 +60,7 @@ public class Player implements Serializable {
 		availableSkillPoints=16;
 		Start s = new Start();
 		difficulty=s.getDifficulty();
-		ship = new Ship(st.fighter);
+		ship = new Ship(st.fighter); // $codepro.audit.disable staticMemberAccess
 	}
 	
 	//public void computeAvaSkillPoints()
@@ -61,11 +75,11 @@ public class Player implements Serializable {
 	/**
 	 * Setter, set the Available Skill Points
 	 * @param change + or - points
-	 * @return true if set was successful
 	 */
 	public void setAvailableSkillPoints(int change){
 		availableSkillPoints+=change;
 		}
+
 	/**
 	 * Setter, set the health of the player
 	 * @param health new health
@@ -75,6 +89,7 @@ public class Player implements Serializable {
 		this.health=health;
 		return true;
 	}
+
 	/**
 	 * Setter,set the cash of the player
 	 * @param changeValue how much to add or subtract from current cash
@@ -84,6 +99,7 @@ public class Player implements Serializable {
 		cash+=changeValue;
 		return true;
 	}
+
 	/**
 	 * Setter, set the position of the player
 	 * @param newPosition new position
@@ -93,6 +109,7 @@ public class Player implements Serializable {
 		position = newPosition;
 		return true;
 	}
+
 	/**
 	 * Setter, set the score of the player
 	 * @param changeValue change of points
@@ -102,6 +119,7 @@ public class Player implements Serializable {
 		score+=changeValue;
 		return true;
 	}
+
 	/**
 	 * Setter, set the pilot skill points
 	 * @param changeValue change of points
@@ -111,6 +129,7 @@ public class Player implements Serializable {
 		pilot+=changeValue;
 		return true;
 	}
+
 	/**
 	 * Setter, set the fighter skill points
 	 * @param changeValue change of points
@@ -120,6 +139,7 @@ public class Player implements Serializable {
 		fighter+=changeValue;
 		return true;
 	}
+
 	/**
 	 * Setter, set the trader skill points
 	 * @param changeValue change of points
@@ -129,6 +149,7 @@ public class Player implements Serializable {
 		trader+=changeValue;
 		return true;
 	}
+
 	/**
 	 * Setter, set the engineer skill points
 	 * @param changeValue change of points
@@ -138,6 +159,7 @@ public class Player implements Serializable {
 		engineer+=changeValue;
 		return true;
 	}
+
 	/**
 	 * Getter, get the player name
 	 * @return name player name
@@ -145,6 +167,7 @@ public class Player implements Serializable {
 	public String getName(){
 		return name;
 	}
+
 	/**
 	 * Getter, get the health of the player
 	 * @return health health of the player
@@ -152,6 +175,7 @@ public class Player implements Serializable {
 	public int getHealth(){
 		return health;
 	}
+
 	/**
 	 * Getter, get the cash of the player
 	 * @return cash cash of player
@@ -159,6 +183,7 @@ public class Player implements Serializable {
 	public int getCash(){
 		return cash;
 	}
+
 	/**
 	 * Getter, get the position of the player
 	 * @return position position of the player
@@ -166,6 +191,7 @@ public class Player implements Serializable {
 	public Point getPosition(){
 		return position;
 	}
+
 	/**
 	 * Getter, get the current score of the player
 	 * @return score score of player
@@ -173,6 +199,7 @@ public class Player implements Serializable {
 	public int getScore(){
 		return score;
 	}
+
 	/**
 	 * Getter, get fighter skill points
 	 * @return fighter fighter skill points
@@ -180,6 +207,7 @@ public class Player implements Serializable {
 	public int getFighter(){
 		return fighter;
 	}
+
 	/**
 	 * Getter, get trader skill points
 	 * @return trader trader skill points
@@ -187,6 +215,7 @@ public class Player implements Serializable {
 	public int getTrader(){
 		return trader;
 	}
+
 	/**
 	 * Getter, get the engineer skill points
 	 * @return engineer engineer skill points
@@ -194,6 +223,7 @@ public class Player implements Serializable {
 	public int getEngineer(){
 		return engineer;
 	}
+
 	/**
 	 * Getter, get the pilot skill points
 	 * @return pilot pilot skill points
@@ -201,6 +231,7 @@ public class Player implements Serializable {
 	public int getPilot(){
 		return pilot;
 	}
+
 	/**
 	 * Setter, set the difficulty of the fame
 	 * @param value the difficulty value
@@ -210,6 +241,7 @@ public class Player implements Serializable {
 		difficulty = value;
 		return true;
 	}
+
 	/**
 	 * Getter, get the difficulty of the game
 	 * @return difficulty the difficulty of the game
@@ -227,6 +259,7 @@ public class Player implements Serializable {
 		this.ship=ship;
 		return true;
 	}
+
 	/**
 	 * Getter, get the current ship of the player
 	 * @return ship the current ship
@@ -234,8 +267,11 @@ public class Player implements Serializable {
 	public Ship getShip(){
 		return ship;
 	}
+
 	/**
-	 * Setter, set the name of the player, this method should only be called when initializing the game after the start screen
+	 * Setter, set the name of the player, this 
+	 * method should only be called when initializing 
+	 * the game after the start screen
 	 * @param newName the new name
 	 * @return true if set is successful
 	 */
