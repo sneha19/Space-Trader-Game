@@ -19,6 +19,7 @@ import net.miginfocom.swing.MigLayout;
 /**
  * This is a GUI that give the option to user to choose a slot to save
  * @author Guang Lu
+ * @version 1
  *
  */
 public class SaveLoadPanel extends JPanel {

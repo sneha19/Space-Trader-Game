@@ -1,5 +1,5 @@
 // $codepro.audit.disable com.instantiations.assist.eclipse.analysis.audit.rule.effectivejava.alwaysOverridetoString.alwaysOverrideToString, emptyMethod, numericLiterals, variableShouldBeFinal, lossOfPrecisionInCast, staticMemberAccess, com.instantiations.assist.eclipse.analysis.audit.rule.effectivejava.constructorsOnlyInvokeFinalMethods, booleanMethodNamingConvention, com.instantiations.assist.eclipse.analysis.unusedReturnValue, methodChainLength, com.instantiations.assist.eclipse.analysis.avoidSimilarNames
-import java.awt.Color;
+
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;

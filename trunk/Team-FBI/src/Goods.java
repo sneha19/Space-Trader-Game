@@ -1,6 +1,6 @@
 // $codepro.audit.disable com.instantiations.assist.eclipse.analysis.audit.rule.effectivejava.alwaysOverridetoString.alwaysOverrideToString
 import java.io.Serializable;
-import java.util.Vector;
+
 /**This class will hold all the goods and amount of goods player has
  * @author team-fbi
  * @version 1.0 */

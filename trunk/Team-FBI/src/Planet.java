@@ -5,6 +5,7 @@ import java.util.Random;
 /**
  * The is a class for planets
  * @author team-fbi
+ * @version 1
  *
  */
 public class Planet  implements Serializable{

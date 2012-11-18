@@ -11,6 +11,7 @@ import net.miginfocom.swing.MigLayout;
 /**
  * This is a GUI that shows the inventory and related information of the player
  * @author Guang Lu
+ * @version 1
  *
  */
 public class Inventory extends JPanel{

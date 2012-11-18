@@ -1,4 +1,4 @@
-// $codepro.audit.disable com.instantiations.assist.eclipse.analysis.audit.rule.effectivejava.alwaysOverridetoString.alwaysOverrideToString, fileComment, variableShouldBeFinal
+// $codepro.audit.disable com.instantiations.assist.eclipse.analysis.audit.rule.effectivejava.alwaysOverridetoString.alwaysOverrideToString
 import java.io.Serializable;
 
 /**
@@ -10,7 +10,7 @@ public class Zone implements Serializable {
 	/**
 	 * field zoneLevel
 	 */
-	private int zoneLevel;
+	private int zoneLevel; // $codepro.audit.disable variableShouldBeFinal -->
 	
 	/**
 	 * Constructor of the zone class

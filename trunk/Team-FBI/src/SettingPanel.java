@@ -9,6 +9,7 @@ import net.miginfocom.swing.MigLayout;
 /**
  * This is a GUI that shows the setting panel
  * @author Guang Lu
+ * @version 1
  *
  */
 public class SettingPanel extends JPanel implements Serializable {

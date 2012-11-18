@@ -1,4 +1,4 @@
-// $codepro.audit.disable com.instantiations.assist.eclipse.analysis.audit.rule.effectivejava.alwaysOverridetoString.alwaysOverrideToString
+// $codepro.audit.disable com.instantiations.assist.eclipse.analysis.audit.rule.effectivejava.alwaysOverridetoString.alwaysOverrideToString, numericLiterals
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -7,10 +7,10 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
+
+
 import javax.swing.JTextField;
-import javax.swing.LayoutStyle.ComponentPlacement;
+
 import javax.swing.JButton;
 import net.miginfocom.swing.MigLayout;
 import java.awt.Color;
@@ -18,15 +18,40 @@ import javax.swing.border.EtchedBorder;
 /**
  * This is a GUI that shows the start screen
  * @author Guang Lu
+ * @version 1
  *
  */
 public class Start extends JPanel {
+	/**
+	 * textField
+	 */
 	private JTextField textField;
-	private String playerName;
+
+	/**
+	 * player name
+	 */
+	private String playerName = null;
+
+	/**
+	 * difficulty
+	 */
 	private int difficulty;
+
+	/**
+	 * start button
+	 */
 	private JButton btnStart;
+
+	/**
+	 * is different?
+	 */
 	private boolean isDiffed;
+
+	/**
+	 * continue button
+	 */
 	private JButton btnContinue;
+
 	/**
 	 * constructor
 	 */
@@ -38,7 +63,9 @@ public class Start extends JPanel {
 		JLabel lblDifficulty = new JLabel("Difficulty");
 		lblDifficulty.setForeground(new Color(255, 255, 255));
 		isDiffed = false;
-		setLayout(new MigLayout("", "[134px][][112px][113px]", "[16px][16px][][][16px][][][][12px][][1px][][][6px][29px][29px][29px][29px]"));
+		setLayout(new MigLayout("", "[134px][][112px][113px]",
+				"[16px][16px][][][16px][][][][12px][]" +
+				"[1px][][][6px][29px][29px][29px][29px]"));
 		add(lblYoungSailorStart, "cell 0 0 4 1,alignx center,aligny top");
 		JButton btnBeginner = new JButton("Beginner");
 		btnBeginner.addActionListener(new DiffListener());
@@ -69,6 +96,7 @@ public class Start extends JPanel {
 		add(btnContinue, "cell 2 6");
 		//groupLayout codes end
 	}
+
 	/**
 	 * getter, get the difficulty
 	 * @return difficulty
@@ -76,8 +104,7 @@ public class Start extends JPanel {
 	public int getDifficulty(){
 	   return difficulty;
 	}
-	   
-	  
+
 	/**
 	 * getter, get the player name   
 	 * @return playerName
@@ -85,15 +112,18 @@ public class Start extends JPanel {
 	public String getPlayerName(){
 		return playerName;
 	}
+
 	/**
 	 * setter, set the action listener for two buttons  
 	 * @param startListener
 	 * @param continueListener
 	 */
-	public void setbtnActionListener(ActionListener startListener,ActionListener continueListener){
+	public void setbtnActionListener(ActionListener startListener,
+			ActionListener continueListener){
 		btnStart.addActionListener(startListener);
 		btnContinue.addActionListener(continueListener);
 	}
+
 	/**
 	 * getter, get the name of the player
 	 * @return name of the player   
@@ -101,6 +131,7 @@ public class Start extends JPanel {
 	public String getName(){
 		return textField.getText();
 	}
+
 	/**
 	 * check if difficulty is selected
 	 * @return whether the difficulty is selected
@@ -108,13 +139,18 @@ public class Start extends JPanel {
 	public boolean isDiffed(){
 		return isDiffed;
 	}
+
 	/**
 	 * Private class, a button listener
 	 * @author Guang Lu
 	 *
 	 */
 	private class DiffListener implements ActionListener{
-		   private String diffString;
+		/**
+		 * diff string   
+		 */
+		private String diffString;
+
 		   /**
 		    * implemented method
 		    * @param e ActionEvent
@@ -141,6 +177,7 @@ public class Start extends JPanel {
 			   }
 		   }
 	   }
+
 	/**
 	 * draw the background
 	 * @param g a Graphics instance
@@ -148,6 +185,6 @@ public class Start extends JPanel {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Image bg = new ImageIcon("img/bg.jpg").getImage();
-		g.drawImage(bg, 0, 0,getWidth(),getHeight(), this);
+		g.drawImage(bg, 0, 0, getWidth(), getHeight(), this);
 	}
 }

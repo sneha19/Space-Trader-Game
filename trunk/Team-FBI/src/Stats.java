@@ -1,26 +1,49 @@
+// $codepro.audit.disable numericLiterals, variableShouldBeFinal
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.Point;
-import javax.swing.*;
-
-import net.miginfocom.swing.MigLayout;
+import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import java.awt.Color;
-import java.util.Random;
-
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 /**
  * A class that shows summary of a chosen planet
  * @author Guang Lu
+ * @version 1
  *
  */
 public class Stats extends JPanel {
-	private Planet planet;
-	private Player player;
+	/**
+	 * planet
+	 */
+	private Planet planet = null;
+
+/**
+ * player
+ */
+	private Player player = null;
+
+/**
+ * planet name
+ */
 	private JLabel lblPlanetname;
+
+/**
+ * tech lvl
+ */
 	private JLabel lblTechleveld;
+
+/**
+ * distance lbl
+ */
 	private JLabel lblDistanced;
+
+/**
+ * zone lbl
+ */
 	private JLabel lblZoned;
 	
 	/**
@@ -33,8 +56,7 @@ public class Stats extends JPanel {
 		this.player=player;
 		this.setBackground(Color.BLACK);
 		this.setPreferredSize(new Dimension(330, 440));
-		
-		
+
 		JLabel lblInformationHub = new JLabel("Information Hub");
 		lblInformationHub.setForeground(Color.WHITE);
 		
@@ -47,23 +69,22 @@ public class Stats extends JPanel {
 		JLabel lblTechLevel = new JLabel("Tech Level :");
 		lblTechLevel.setForeground(Color.WHITE);
 		
-		lblTechleveld = new JLabel(planet.getTechLevel()+"");
+		lblTechleveld = new JLabel(planet.getTechLevel() + "");
 		lblTechleveld.setForeground(Color.WHITE);
 		
 		JLabel lblDistance = new JLabel("Distance :");
 		lblDistance.setForeground(Color.WHITE);
+
+		int s =Math.abs(planet.getLocation().x - player.getPosition().x)
+				 + Math.abs(planet.getLocation().y - player.getPosition().y);
 		
-		
-		
-		int s =Math.abs(planet.getLocation().x-player.getPosition().x)+Math.abs(planet.getLocation().y-player.getPosition().y);
-		
-		lblDistanced = new JLabel(""+s);
+		lblDistanced = new JLabel("" + s);
 		lblDistanced.setForeground(Color.WHITE);
 		
 		JLabel lblZone = new JLabel("Zone :");
 		lblZone.setForeground(Color.WHITE);
 		
-		lblZoned = new JLabel(planet.getZone().getZone()+"");
+		lblZoned = new JLabel(planet.getZone().getZone() + "");
 		lblZoned.setForeground(Color.WHITE);
 		
 		JLabel lblAverageBuyPrice = new JLabel("Avg Buy Price");
@@ -75,91 +96,91 @@ public class Stats extends JPanel {
 		JLabel lblWater = new JLabel("Water");
 		lblWater.setForeground(Color.WHITE);
 		
-		JLabel lblWaterBuy = new JLabel(averageBuy(0)+"");
+		JLabel lblWaterBuy = new JLabel(averageBuy(0) + "");
 		lblWaterBuy.setForeground(Color.WHITE);
 		
-		JLabel lblWaterSell = new JLabel(averageSell(0)+"");
+		JLabel lblWaterSell = new JLabel(averageSell(0) + "");
 		lblWaterSell.setForeground(Color.WHITE);
 		
 		JLabel lblFurs = new JLabel("Furs");
 		lblFurs.setForeground(Color.WHITE);
 		
-		JLabel lblFursBuy = new JLabel(averageBuy(1)+"");
+		JLabel lblFursBuy = new JLabel(averageBuy(1) + "");
 		lblFursBuy.setForeground(Color.WHITE);
 		
-		JLabel lblFursSell = new JLabel(averageSell(1)+"");
+		JLabel lblFursSell = new JLabel(averageSell(1) + "");
 		lblFursSell.setForeground(Color.WHITE);
 		
 		JLabel lblFood = new JLabel("Food");
 		lblFood.setForeground(Color.WHITE);
 		
-		JLabel lblFoodBuy = new JLabel(averageBuy(2)+"");
+		JLabel lblFoodBuy = new JLabel(averageBuy(2) + "");
 		lblFoodBuy.setForeground(Color.WHITE);
 		
-		JLabel lblFoodSell = new JLabel(averageSell(2)+"");
+		JLabel lblFoodSell = new JLabel(averageSell(2) + "");
 		lblFoodSell.setForeground(Color.WHITE);
 		
 		JLabel lblOre = new JLabel("Ore");
 		lblOre.setForeground(Color.WHITE);
 		
-		JLabel lblOreBuy = new JLabel(averageBuy(3)+"");
+		JLabel lblOreBuy = new JLabel(averageBuy(3) + "");
 		lblOreBuy.setForeground(Color.WHITE);
 		
-		JLabel lblOreSell = new JLabel(averageSell(3)+"");
+		JLabel lblOreSell = new JLabel(averageSell(3) + "");
 		lblOreSell.setForeground(Color.WHITE);
 		
 		JLabel lblGames = new JLabel("Games");
 		lblGames.setForeground(Color.WHITE);
 		
-		JLabel lblGamesBuy = new JLabel(averageBuy(4)+"");
+		JLabel lblGamesBuy = new JLabel(averageBuy(4) + "");
 		lblGamesBuy.setForeground(Color.WHITE);
 		
-		JLabel lblGamesSell = new JLabel(averageSell(4)+"");
+		JLabel lblGamesSell = new JLabel(averageSell(4) + "");
 		lblGamesSell.setForeground(Color.WHITE);
 		
 		JLabel lblFirearms = new JLabel("Firearms");
 		lblFirearms.setForeground(Color.WHITE);
 		
-		JLabel lblFireBuy = new JLabel(averageBuy(5)+"");
+		JLabel lblFireBuy = new JLabel(averageBuy(5) + "");
 		lblFireBuy.setForeground(Color.WHITE);
 		
-		JLabel lblFireSell = new JLabel(averageSell(5)+"");
+		JLabel lblFireSell = new JLabel(averageSell(5) + "");
 		lblFireSell.setForeground(Color.WHITE);
 		
 		JLabel lblMedicine = new JLabel("Medicine");
 		lblMedicine.setForeground(Color.WHITE);
 		
-		JLabel lblMedBuy = new JLabel(averageBuy(6)+"");
+		JLabel lblMedBuy = new JLabel(averageBuy(6) + "");
 		lblMedBuy.setForeground(Color.WHITE);
 		
-		JLabel lblMedSell = new JLabel(averageSell(6)+"");
+		JLabel lblMedSell = new JLabel(averageSell(6) + "");
 		lblMedSell.setForeground(Color.WHITE);
 		
 		JLabel lblMachines = new JLabel("Machines");
 		lblMachines.setForeground(Color.WHITE);
 		
-		JLabel lblMacBuy = new JLabel(averageBuy(7)+"");
+		JLabel lblMacBuy = new JLabel(averageBuy(7) + "");
 		lblMacBuy.setForeground(Color.WHITE);
 		
-		JLabel lblMacSell = new JLabel(averageSell(7)+"");
+		JLabel lblMacSell = new JLabel(averageSell(7) + "");
 		lblMacSell.setForeground(Color.WHITE);
 		
 		JLabel lblNarcotics = new JLabel("Narcotics");
 		lblNarcotics.setForeground(Color.WHITE);
 		
-		JLabel lblNarBuy = new JLabel(averageBuy(8)+"");
+		JLabel lblNarBuy = new JLabel(averageBuy(8) + "");
 		lblNarBuy.setForeground(Color.WHITE);
 		
-		JLabel lblNarSell = new JLabel(averageSell(8)+"");
+		JLabel lblNarSell = new JLabel(averageSell(8) + "");
 		lblNarSell.setForeground(Color.WHITE);
 		
 		JLabel lblRobots = new JLabel("Robots");
 		lblRobots.setForeground(Color.WHITE);
 		
-		JLabel lblRobBuy = new JLabel(averageBuy(9)+"");
+		JLabel lblRobBuy = new JLabel(averageBuy(9) + "");
 		lblRobBuy.setForeground(Color.WHITE);
 		
-		JLabel lblRobSell = new JLabel(averageSell(9)+"");
+		JLabel lblRobSell = new JLabel(averageSell(9) + "");
 		lblRobSell.setForeground(Color.WHITE);
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
@@ -312,11 +333,26 @@ public class Stats extends JPanel {
 		setLayout(groupLayout);
 		
 	}
-	
-	int[] basePrice = new int[]{30,250,100,350,250,1250,650,900,3500,5000};
-	int[] priceIncreasePerTechLevel = new int[]{3,10,5,20,-10,-75,-20,-30,-125,-150};
-	int[] minLevelToProduceResource = new int[]{0,0,1,2,3,3,4,4,5,6};
-	int[] variance = new int[]{4,10,5,10,5,100,10,5,150,100};
+
+	/**
+	 * base price
+	 */
+	protected int[] basePrice = new int[]{30, 250, 100, 350, 250, 1250, 650, 900, 3500, 5000};
+
+/**
+ * price increase per lvl
+ */
+	protected int[] priceIncreasePerTechLevel = new int[]{3, 10, 5, 20, -10, -75, -20, -30, -125, -150};
+
+/**
+ * min lvl
+ */
+	protected int[] minLevelToProduceResource = new int[]{0, 0, 1, 2, 3, 3, 4, 4, 5, 6};
+
+/**
+ * variance 
+ */
+	protected int[] variance = new int[]{4, 10, 5, 10, 5, 100, 10, 5, 150, 100};
 	
 	/**
 	 * Calculate the lowest buy price possible of an item
@@ -328,9 +364,10 @@ public class Stats extends JPanel {
 		int coinResults = -1;
 		int total = basePrice[index] + 
 				(priceIncreasePerTechLevel[index] * (planet.getTechLevel() - minLevelToProduceResource[index])) +
-				basePrice[index]*(temp/100)*coinResults;
+				basePrice[index] * (temp / 100) * coinResults;
 		return total;
 	}
+
 	/**
 	 * Calculate the highest buy price possible of an item
 	 * @param index index number of an item
@@ -341,9 +378,10 @@ public class Stats extends JPanel {
 		int coinResults = 1;
 		int total = basePrice[index] + 
 				(priceIncreasePerTechLevel[index] * (planet.getTechLevel() - minLevelToProduceResource[index])) +
-				basePrice[index]*(temp/100)*coinResults;
+				basePrice[index] * (temp / 100) * coinResults;
 		return total;
 	}
+
 	/**
 	 * Calculate the highest sell price possible of an item
 	 * @param index index number of an item
@@ -352,31 +390,35 @@ public class Stats extends JPanel {
 	public int sellHighRange(int index){
 		return buyHighRange(index);
 	}
+
 	/**
 	 * Calculate the lowest sell price possible of an item
 	 * @param index index number of an item
 	 * @return the lowest sell price possible
 	 */
 	public int sellLowRange(int index){
-		return (int)(buyLowRange(index)*0.75);
+		return (int) (buyLowRange(index) * 0.75); // $codepro.audit.disable lossOfPrecisionInCast
 	
 	}
+
 	/**
 	 * calculate the average buy price of an item in the planet
 	 * @param index
 	 * @return average buy price
 	 */
 	public int averageBuy(int index){
-		return (buyHighRange(index)+buyLowRange(index))/2;
+		return (buyHighRange(index)+buyLowRange(index))/2; // $codepro.audit.disable 
 	}
+
 	/**
 	 * calculate the average sell price of an item in the planet
 	 * @param index
 	 * @return average sell price
 	 */
 	public int averageSell(int index){
-		return (sellHighRange(index)+sellLowRange(index))/2;
+		return (sellHighRange(index)+sellLowRange(index))/2; // $codepro.audit.disable
 	}
+
 	/**
 	 * draw background
 	 * @param g a Graphics instance
@@ -384,7 +426,7 @@ public class Stats extends JPanel {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Image bg = new ImageIcon("img/bricks.jpg").getImage();
-		g.drawImage(bg, 0, 0,getWidth(),getHeight(), this);
+		g.drawImage(bg, 0, 0, getWidth(), getHeight(), this); // $codepro.audit.disable com.instantiations.assist.eclipse.analysis.unusedReturnValue
 	}
 	
 	
