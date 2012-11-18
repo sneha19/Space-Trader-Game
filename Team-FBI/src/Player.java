@@ -12,6 +12,7 @@ import java.io.Serializable;
  * This is the class that represent a user. It is
  * a info-holder for all the fields a player should have.
  * @author Guang Lu
+ * @version 1
  *
  */
 

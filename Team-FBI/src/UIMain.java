@@ -1,4 +1,4 @@
-// $codepro.audit.disable com.instantiations.assist.eclipse.analysis.audit.rule.effectivejava.alwaysOverridetoString.alwaysOverrideToString
+// $codepro.audit.disable com.instantiations.assist.eclipse.analysis.audit.rule.effectivejava.alwaysOverridetoString.alwaysOverrideToString, closeInFinally, closeWhereCreated, numericLiterals
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
@@ -20,7 +20,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Random;
 
-import javax.swing.JButton;
+
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
@@ -30,51 +30,82 @@ import javax.swing.JTabbedPane;
  * It forms a frame and holds all the necessary panels from other classes.
  * It is the main controller class for the program
  * @author Guang Lu
+ * @version 1
  *
  */
 public class UIMain implements Serializable {
-	
+	/**
+	 * random
+	 */
 	private Random random = new Random();
-	
-	private Player player;
 
+	/**
+	 * player
+	 */
+	private Player player = null;
+
+/**
+ * start
+ */
 	private Start start;
 
+/**
+ * skills
+ */
 	private Skills skills;
 
+/**
+ * skills gui
+ */
 	private SkillsInterface skillsGUI;
 
+/**
+ * frame
+ */
 	private JFrame frame;
 
+/**
+ * tab pane
+ */
 	private JTabbedPane tabPane;
 
+/**
+ * map
+ */
 	private MapPanel map;
 
-	private JButton btnStart;
+/**
+ * stardock
+ */
+	private StarDock stardock = null;
 
-	private StarDock stardock;
-
+/**
+ * universe
+ */
 	private Universe universe;
 
-	private Trade trade;
+	/**
+	 * inventory
+	 */
+	private Inventory inventory = null;
 
-	private Planet[] planetlist;
-	
-	private Inventory inventory;
-	
-	private SettingPanel sp;
+	/**
+	 * setting panel
+	 */
+	private SettingPanel sp = null;
+
 	/**
 	 * Constructor
 	 */
 	public UIMain(){
 		
 		start = new Start();
-		start.setbtnActionListener(new StartListener(),new ContinueListener());
+		start.setbtnActionListener(new StartListener(), new ContinueListener());
 		tabPane = new JTabbedPane();
-		tabPane.addTab("Welcome",start);
+		tabPane.addTab("Welcome", start);
 		frame = new JFrame("Star Trader");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setPreferredSize(new Dimension(800,800));
+		frame.setPreferredSize(new Dimension(800, 800));
 		
 		//menuBar = new JMenuBar();
 		//frame.setJMenuBar(menuBar);
@@ -93,7 +124,7 @@ public class UIMain implements Serializable {
 	 * @param args input command
 	 */
 	public static void main(String[] args){
-		UIMain uiMain = new UIMain();	
+		UIMain uiMain = new UIMain();
 	}
 	
 	/**
@@ -104,19 +135,19 @@ public class UIMain implements Serializable {
 	private class StartListener implements ActionListener{  
 		/**
 		 * Method must be implemented from ActionListener interface  
+		 * @param event
 		 */
-		public void actionPerformed (ActionEvent event){		 
+		public void actionPerformed (ActionEvent event){ 
 			  if(start.isDiffed()){
 			  player = new Player("default");
-			  player.setName(start.getName());
-			  player.setDifficulty(start.getDifficulty());
-			  
-			  
+			  player.setName(start.getName()); // $codepro.audit.disable com.instantiations.assist.eclipse.analysis.unusedReturnValue
+			  player.setDifficulty(start.getDifficulty()); // $codepro.audit.disable com.instantiations.assist.eclipse.analysis.unusedReturnValue
+
 			  tabPane.remove(0);
 			  skills = new Skills(player);
 			  skillsGUI= new SkillsInterface(skills);
 			  skillsGUI.setbtnNextListener(new NextListener());
-			  tabPane.addTab("Skills",skillsGUI);
+			  tabPane.addTab("Skills", skillsGUI);
 			  
 			  } 
 	     }
@@ -130,17 +161,17 @@ public class UIMain implements Serializable {
 	private class NextListener implements ActionListener{
 		/**
 		 * Method must be implemented from ActionListener interface  
+		 * @param e event
 		 */
 		public void actionPerformed (ActionEvent e){
-			frame.setSize(new Dimension(800,800));
+			frame.setSize(new Dimension(800, 800));
 
 			universe = new Universe(player);
 			inventory= new Inventory(player);
-						
-			
-			map=new MapPanel(universe,player);
-			tabPane.addTab("Inventory",inventory);
-			tabPane.addTab("Map",map);
+
+			map=new MapPanel(universe, player);
+			tabPane.addTab("Inventory", inventory);
+			tabPane.addTab("Map", map);
 			tabPane.setSelectedIndex(2);
 			skillsGUI.disablebtnNext();
 			map.setKeyListener(new KeyController());
@@ -148,7 +179,7 @@ public class UIMain implements Serializable {
 			sp=new SettingPanel();
 			sp.setSaveListener(new SaveListener());
 			sp.setLoadListener(new LoadListener());
-			tabPane.addTab("Setting",sp);
+			tabPane.addTab("Setting", sp);
 			
 
 			
@@ -162,13 +193,14 @@ public class UIMain implements Serializable {
 	 */
 	private class BtnFinishedListener implements ActionListener{
 		/**
-		 * Method must be implemented from ActionListener interface  
+		 * Method must be implemented from ActionListener interface 
+		 * @param e  event 
 		 */
 		public void actionPerformed(ActionEvent e){
 			tabPane.remove(3);
 			tabPane.setSelectedIndex(2);
-			tabPane.setEnabledAt(0,true);
-			tabPane.setEnabledAt(1,true);
+			tabPane.setEnabledAt(0, true);
+			tabPane.setEnabledAt(1, true);
 			tabPane.setEnabledAt(2, true);
 			tabPane.setEnabledAt(3, true);
 			inventory.update();
@@ -188,33 +220,34 @@ public class UIMain implements Serializable {
 		/**
 		 * Set the panel to be focusable 
 		 */
-		public KeyController()
-		{
+		public KeyController(){
 			map.setFocusable(true);
 			// addKeyListener(this);
 		}
+
 		/**
 		 * Method must be implemented from ActionListener interface  
+		 * @param key
 		 */
-		public void keyPressed(final KeyEvent key) {
+		public void keyPressed(final KeyEvent key) { // $codepro.audit.disable cyclomaticComplexity
 			if (player != null) {
 				int letsSeeIfWeGetRandom;
 				int randomation = 0;
 				int oldX = player.getPosition().x;
 				int oldY = player.getPosition().y;
-				switch (key.getKeyCode()) {
+				switch (key.getKeyCode()) { // $codepro.audit.disable missingDefaultInSwitch
 				case KeyEvent.VK_RIGHT:
-					if(oldX+1 < map.WIDTH && map.checkIfMoveIsValid()){
+					if(oldX +  1 < map.WIDTH && map.checkIfMoveIsValid()){ // $codepro.audit.disable staticMemberAccess
 						//checkIfPlanetIsPresent(currPlayer.getPosition()) 
-						player.setPosition(new Point(oldX+1, oldY)); //move right
+						player.setPosition(new Point(oldX + 1, oldY)); //move right // $codepro.audit.disable com.instantiations.assist.eclipse.analysis.unusedReturnValue
 						player.getShip().setCurrentFuel(map.getfuelPerMove());
-						if(map.checkIfPlanetIsPresent(player.getPosition()))
-							createTrade();  
-						else if(map.checkIfStarDockIsPresent(player.getPosition())){
+						if(map.checkIfPlanetIsPresent(player.getPosition())){
+							createTrade();
+						}
+						else if(map.checkIfStarDockIsPresent(player.getPosition())){ // $codepro.audit.disable danglingElse
 							createStarDock();  
 						}
-						else
-						{
+						else{
 							randomation = random.nextInt(100);
 							if(randomation < 25){
 								letsSeeIfWeGetRandom = random.nextInt(2);
@@ -224,18 +257,18 @@ public class UIMain implements Serializable {
 					}
 					break;
 				case KeyEvent.VK_LEFT:
-					if(oldX-1 >=0  && map.checkIfMoveIsValid()){
+					if(oldX - 1 >= 0  && map.checkIfMoveIsValid()){
 						//checkIfPlanetIsPresent(currPlayer.getPosition()) 
-						player.setPosition(new Point(oldX-1, oldY)); //move left
+						player.setPosition(new Point(oldX - 1, oldY)); //move left // $codepro.audit.disable com.instantiations.assist.eclipse.analysis.unusedReturnValue
 						player.getShip().setCurrentFuel(map.getfuelPerMove());
-						if(map.checkIfPlanetIsPresent(player.getPosition()))
-							createTrade();  
-						else if(map.checkIfStarDockIsPresent(player.getPosition())){
+						if(map.checkIfPlanetIsPresent(player.getPosition())){
+							createTrade();
+						}
+						else if(map.checkIfStarDockIsPresent(player.getPosition())){ // $codepro.audit.disable danglingElse
 							createStarDock();  
 						}
 
-						else
-						{
+						else{
 							randomation = random.nextInt(100);
 							if(randomation < 25){
 								letsSeeIfWeGetRandom = random.nextInt(2);
@@ -246,17 +279,17 @@ public class UIMain implements Serializable {
 					break;
 
 				case KeyEvent.VK_DOWN:
-					if(oldY+1 < map.HEIGHT && map.checkIfMoveIsValid()){
+					if(oldY + 1 < map.HEIGHT && map.checkIfMoveIsValid()){ // $codepro.audit.disable staticMemberAccess
 						//checkIfPlanetIsPresent(currPlayer.getPosition()) 
-						player.setPosition(new Point(oldX, oldY+1)); //move down
+						player.setPosition(new Point(oldX, oldY + 1)); //move down // $codepro.audit.disable com.instantiations.assist.eclipse.analysis.unusedReturnValue
 						player.getShip().setCurrentFuel(map.getfuelPerMove());
-						if(map.checkIfPlanetIsPresent(player.getPosition()))
-							createTrade();  
-						else if(map.checkIfStarDockIsPresent(player.getPosition())){
+						if(map.checkIfPlanetIsPresent(player.getPosition())){
+							createTrade();
+						}
+						else if(map.checkIfStarDockIsPresent(player.getPosition())){ // $codepro.audit.disable danglingElse
 							createStarDock();  
 						}
-						else
-						{
+						else{
 							randomation = random.nextInt(100);
 							if(randomation < 25){
 								letsSeeIfWeGetRandom = random.nextInt(2);
@@ -266,8 +299,8 @@ public class UIMain implements Serializable {
 					}
 					break;
 				case KeyEvent.VK_UP:
-					if(oldY-1 >= 0 && map.checkIfMoveIsValid()){
-						player.setPosition(new Point(oldX, oldY-1)); //move up
+					if(oldY - 1 >= 0 && map.checkIfMoveIsValid()){
+						player.setPosition(new Point(oldX, oldY - 1)); //move up // $codepro.audit.disable com.instantiations.assist.eclipse.analysis.unusedReturnValue
 						player.getShip().setCurrentFuel(map.getfuelPerMove());
 						if(map.checkIfPlanetIsPresent(player.getPosition())){
 							createTrade();  
@@ -275,8 +308,7 @@ public class UIMain implements Serializable {
 						else if(map.checkIfStarDockIsPresent(player.getPosition())){
 							createStarDock();  
 						}
-						else
-						{
+						else{
 							randomation = random.nextInt(100);
 							if(randomation < 25){
 								letsSeeIfWeGetRandom = random.nextInt(2);
@@ -288,9 +320,10 @@ public class UIMain implements Serializable {
 				}
 
 			}
-			if(player.getShip().getCurrentFuel() < player.getShip().getFuelPerMove()) // $codepro.audit.disable nullPointerDereference
-			{
-				int reply = JOptionPane.showConfirmDialog(null, "Unfortunatly your ship ran out of fuel, play again?", "SHIP BLEW UP!", JOptionPane.YES_NO_OPTION);
+			if(player.getShip().getCurrentFuel() < player.getShip().getFuelPerMove()){ // $codepro.audit.disable nullPointerDereference
+				int reply = JOptionPane.showConfirmDialog(null,
+						"Unfortunatly your ship ran out of fuel, play again?",
+						"SHIP BLEW UP!", JOptionPane.YES_NO_OPTION);
 				if (reply == JOptionPane.YES_OPTION) {
 					//JOptionPane.showConfirmDialog(null, new UIMain(), "", 0);
 					UIMain newGame= new UIMain();
@@ -305,75 +338,84 @@ public class UIMain implements Serializable {
 			map. repaint();
 			inventory.update();
 		}
+
 		/**
 		 * This method will create a trade screen when player agree to trade
 		 */
-		public void createTrade()
-		{
-
+		public void createTrade(){
 			JFrame f = new JFrame("Trade");
 			int answer = JOptionPane.showConfirmDialog(f, "Trade?");
 			if (answer == JOptionPane.YES_OPTION) {
-				Trade t = new Trade(player, map.planetGrid[player.getPosition().x][player.getPosition().y]);
-				t.setBtnFinished(new BtnFinishedListener());
-				tabPane.add(t,"Trade",3);
+				Trade trade = new Trade(player, map.planetGrid
+						[player.getPosition().x][player.getPosition().y]);
+				trade.setBtnFinished(new BtnFinishedListener()); // $codepro.audit.disable com.instantiations.assist.eclipse.analysis.unusedReturnValue
+				tabPane.add(trade, "Trade", 3);
 				tabPane.setSelectedIndex(3);
-				tabPane.setEnabledAt(0,false);
-				tabPane.setEnabledAt(1,false);
-				tabPane.setEnabledAt(2,false);
-				tabPane.setEnabledAt(4,false);
+				tabPane.setEnabledAt(0, false);
+				tabPane.setEnabledAt(1, false);
+				tabPane.setEnabledAt(2, false);
+				tabPane.setEnabledAt(4, false);
 			}
 		}
+
 		/**
 		 * create stardock
 		 */
-		public void createStarDock()
-		{
+		public void createStarDock(){
 			JFrame f = new JFrame("Star Dock");
 			stardock = new StarDock(player);
 			stardock.setBtnFinished(new BtnFinishedListener());
-			tabPane.add(stardock,"StarDock",3);
+			tabPane.add(stardock, "StarDock", 3);
 			tabPane.setSelectedIndex(3);
-			tabPane.setEnabledAt(0,false);
-			tabPane.setEnabledAt(1,false);
-			tabPane.setEnabledAt(2,false);
+			tabPane.setEnabledAt(0, false);
+			tabPane.setEnabledAt(1, false);
+			tabPane.setEnabledAt(2, false);
 			tabPane.setEnabledAt(4, false);
 
 		}
 
 		/**
-		 * Method must be implemented from ActionListener interface  
+		 * Method must be implemented from ActionListener interface 
+		 * @param e key 
 		 */
 		public void keyReleased(KeyEvent e) {
+			System.out.println("Tdfgdgdfdgf");
 		}
+
 		/**
-		 * Method must be implemented from ActionListener interface  
+		 * Method must be implemented from ActionListener interface 
+		 * @param e key 
 		 */
 		public void keyTyped(KeyEvent e) {
-			//System.out.println("typeeeddd");
+			System.out.println("typeeeddd");
 		}
 
 	}
+
 	/**
 	 * Randomly generate a event after player move
 	 * @param num
 	 */
-	public void randomEventOccured(int num)
-	{
+	public void randomEventOccured(int num){ // $codepro.audit.disable cyclomaticComplexity
 		//Random random = new Random();
 		//int calculateRate;
 		// 1 is for trader came and gave you something for free
 		String item = null;
-		if(num == 0)
-		{
-			int whichItem = random.nextInt(5)+1;
+		if(num == 0){
+			int whichItem = random.nextInt(5) + 1;
 			System.out.println(whichItem);
-			if(player.getShip().getCargoCapacity() - player.getShip().getCurrentGoods().getTotal() < whichItem)
-				whichItem = player.getShip().getCargoCapacity() - player.getShip().getCurrentGoods().getTotal();
-			if(player.getShip().getCargoCapacity() - player.getShip().getCurrentGoods().getTotal() == 0)
+			if(player.getShip().getCargoCapacity() -
+					player.getShip().getCurrentGoods().getTotal()
+					< whichItem){
+				whichItem = player.getShip().getCargoCapacity() - 
+				player.getShip().getCurrentGoods().getTotal();
+			}
+			if(player.getShip().getCargoCapacity() - 
+					player.getShip().getCurrentGoods().getTotal() == 0){
 				whichItem = -1;
+			}
 		//	if(player.getShip().getCargoCapacity() >= player.getShip().getCurrentGoods().getTotal() + whichItem){
-				switch(whichItem){
+				switch(whichItem){ // $codepro.audit.disable missingDefaultInSwitch
 				case 0:
 					player.getShip().getCurrentGoods().setFirearms(whichItem);
 					item = "firearms";
@@ -418,21 +460,23 @@ public class UIMain implements Serializable {
 				
 				//if(player.getShip().getCurrentGoods().)
 				//calculateRate = random.nextInt(5);
-				if(whichItem != -1)
-				JOptionPane.showMessageDialog (null, "A trader came and gave you " + whichItem + " " + item, "Trader", JOptionPane.INFORMATION_MESSAGE);
+				if(whichItem != -1){
+				JOptionPane.showMessageDialog (null, "A trader came and gave you "
+				+ whichItem + " " + item, "Trader", JOptionPane.INFORMATION_MESSAGE);
+				}
 
 			}
-		
 
-
-		else if(num == 1)
-		{
+		else if(num == 1){
 			int hit  = random.nextInt(14);
 			player.getShip().setHull(player.getShip().getHull() - hit);
-			JOptionPane.showMessageDialog (null, "A pirate came and attacked your ship causing " + hit  + " damage leaving your hull to: " + player.getShip().getHull() , "Pirate", JOptionPane.INFORMATION_MESSAGE);
-			if(player.getShip().isDead())
-			{
-				int reply = JOptionPane.showConfirmDialog(null, "Unfortunatly your ships hull was destroyed, play again?", "SHIP BLEW UP!", JOptionPane.YES_NO_OPTION);
+			JOptionPane.showMessageDialog (null, "A pirate came and attacked your ship causing "
+			+ hit  + " damage leaving your hull to: " + player.getShip().getHull(),
+			"Pirate", JOptionPane.INFORMATION_MESSAGE);
+			if(player.getShip().isDead()){
+				int reply = JOptionPane.showConfirmDialog(null, 
+						"Unfortunatly your ships hull was destroyed, play again?",
+						"SHIP BLEW UP!", JOptionPane.YES_NO_OPTION);
 				if (reply == JOptionPane.YES_OPTION) {
 					//JOptionPane.showConfirmDialog(null, new UIMain(), "", 0);
 					UIMain newGame= new UIMain();
@@ -444,7 +488,8 @@ public class UIMain implements Serializable {
 				}
 			}
 		}
-	}	
+	}
+
 	/**
 	 * save the game
 	 * @param i slot number
@@ -453,11 +498,9 @@ public class UIMain implements Serializable {
 		
 		Planet[][] plist=universe.getPlanetWithLocation();
 		StarDockInfo[][] slist=universe.getStarDocksWithLocation();
-		
-		
-		
+
 			 try { 
-				FileOutputStream fos = new FileOutputStream("game"+i+".ser"); 
+				FileOutputStream fos = new FileOutputStream("game" + i + ".ser"); 
 				ObjectOutputStream out = new ObjectOutputStream(fos);  
 				out.writeObject(player);
 				out.writeObject(plist);
@@ -466,14 +509,13 @@ public class UIMain implements Serializable {
 				fos.flush();
 				out.close(); 
 				fos.close();
-	
-				
+
 				}
-			catch (IOException e) { System.out.println(e); } 
+			catch (IOException e){ 
+				System.out.println(e);
+				} 
 			} 
-			
-		
-	
+
 	/**
 	 * load the game
 	 * @param i slot number
@@ -484,20 +526,19 @@ public class UIMain implements Serializable {
 			try {
 				FileInputStream fis = new FileInputStream("game"+i+".ser");
 				ObjectInputStream in = new ObjectInputStream(fis);
-				player  =(Player)in.readObject();
-				Planet[][] plist  =(Planet[][])in.readObject();
-				StarDockInfo[][] slist  =(StarDockInfo[][])in.readObject();
+				player  =(Player) in.readObject();
+				Planet[][] plist  =(Planet[][]) in.readObject();
+				StarDockInfo[][] slist  =(StarDockInfo[][]) in.readObject();
 				in.close(); 
 				fis.close();
-				
-				
-				player.getShip().afterLoad();				
+
+				player.getShip().afterLoad();
 				universe.setPS(plist, slist);
 				universe.afterLoad();
 				skills = new Skills(player);
 				skillsGUI = new SkillsInterface(skills);
 				
-				map=new MapPanel(universe,player);
+				map=new MapPanel(universe, player);
 				map.setKeyListener(new KeyController());
 				inventory=new Inventory(player);
 				return true;
@@ -510,12 +551,13 @@ public class UIMain implements Serializable {
 			
 		
 	}
+
 	/**
 	 * Action listener for save button in UIMaim
 	 * @author Guang Lu
 	 *
 	 */
-	private class SaveListener implements ActionListener{
+	private class SaveListener implements ActionListener{ // $codepro.audit.disable com.instantiations.assist.eclipse.analysis.audit.rule.effectivejava.favorStaticMemberClassesOverNonStatic
 		/**
 		 * implemented method
 		 * @param e ActionEvent
@@ -525,30 +567,44 @@ public class UIMain implements Serializable {
 			slp.setButtonListener(new SaveInfo());
 		}
 	}
+
 	/**
 	 * Action Listener for load button in UIMain
 	 * @author Guang Lu
 	 *
 	 */
-	private class LoadListener implements ActionListener{
+	private class LoadListener implements ActionListener{ // $codepro.audit.disable com.instantiations.assist.eclipse.analysis.audit.rule.effectivejava.favorStaticMemberClassesOverNonStatic
 		/**
 		 * implemented method
 		 * @param e ActionEvent
 		 */
-		public void actionPerformed(ActionEvent e){	
+		public void actionPerformed(ActionEvent e){
 			SaveLoadPanel slp = new SaveLoadPanel(1);
 			slp.setButtonListener(new LoadInfo());
 		}
 	}
+
 	/**
 	 * Action Listener for choosing save slot
 	 * @author Guang Lu
 	 *
 	 */
 	private class SaveInfo implements ActionListener{
-		String s;
-		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-		Calendar cal = Calendar.getInstance();
+		/**
+		 * string
+		 */
+		protected String s;
+
+/**
+ * dateFormat
+ */
+		protected DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+
+/**
+ * calender
+ */
+		protected Calendar cal = Calendar.getInstance();
+
 		/**
 		 * implemented method
 		 * @param e ActionEvent
@@ -577,6 +633,7 @@ public class UIMain implements Serializable {
 				}
 			}
 		}
+
 		/**
 		 * Write the player info out to a text file
 		 * @param i
@@ -599,6 +656,7 @@ public class UIMain implements Serializable {
 			pw.close();
 		}
 	}
+
 	/**
 	 * Action Listener for load and choosing load slot
 	 * @author Guang Lu
@@ -610,7 +668,7 @@ public class UIMain implements Serializable {
 		 * @param e ActionEvent
 		 */
 		public void actionPerformed(ActionEvent e) {
-			 frame.setSize(new Dimension(800,800));
+			 frame.setSize(new Dimension(800, 800));
 			 boolean i=false;
 			if(e.getActionCommand().equals("Load1")){
 				i=load(1);
@@ -628,14 +686,14 @@ public class UIMain implements Serializable {
 				tabPane.removeTabAt(0);
 			}
 			
-			tabPane.setComponentAt(0,skillsGUI);
-			tabPane.setTitleAt(0,"Skills");
+			tabPane.setComponentAt(0, skillsGUI);
+			tabPane.setTitleAt(0, "Skills");
 			
 			if(tabPane.getTabCount()>=2){
-				tabPane.setComponentAt(1,inventory);
+				tabPane.setComponentAt(1, inventory);
 				tabPane.setComponentAt(2, map);
 			}else{
-				tabPane.addTab("Inventory",inventory);
+				tabPane.addTab("Inventory", inventory);
 				tabPane.addTab("Map", map);
 			}
 			
@@ -651,6 +709,7 @@ public class UIMain implements Serializable {
 			}
 		}
 	}
+
 	/**
 	 * Action Listener for Continue button
 	 * @author Guang Lu
@@ -659,7 +718,7 @@ public class UIMain implements Serializable {
 	private class ContinueListener implements ActionListener{
 		/**
 		 * implemented method
-		 * @param e ActionEvent
+		 * @param arg0 ActionEvent
 		 */
 		public void actionPerformed(ActionEvent arg0) {
 			 player = new Player("default");

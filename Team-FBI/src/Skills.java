@@ -1,20 +1,27 @@
-// $codepro.audit.disable com.instantiations.assist.eclipse.analysis.audit.rule.effectivejava.alwaysOverridetoString.alwaysOverrideToString
+// $codepro.audit.disable com.instantiations.assist.eclipse.analysis.audit.rule.effectivejava.alwaysOverridetoString.alwaysOverrideToString, com.instantiations.assist.eclipse.analysis.unusedReturnValue
 
 /**
  * Skills class to update the current Players skills
  * @author Haytham Abutair
+ * @version 1
  *
  */
 public class Skills{
+	/**
+	 * player points
+	 */
  private int playerPoints;
- private Player player;
+
+ /**
+  * player
+  */
+ private Player player; // $codepro.audit.disable com.instantiations.assist.eclipse.analysis.unassignedField
  
  /**
   * constructor to allow the player to be passed in
   * @param player Current Player
   */
- public Skills(Player player)
- {
+ public Skills(Player player){
   this.player = player;
   playerPoints=player.getAvailableSkillPoints();
  }
@@ -23,8 +30,7 @@ public class Skills{
   * sets the new pilot Points
   * @param points amount to be added
   */
- public void setPilotPoints(int points)
- {
+ public void setPilotPoints(int points){
 	 player.setPilot(points);
  }
  
@@ -32,8 +38,7 @@ public class Skills{
   * sets the new fighter Points
   * @param points amount to be added
   */
- public void setFighterPoints(int points)
- {
+ public void setFighterPoints(int points){
 	 player.setFighter(points);
  }
  
@@ -41,8 +46,7 @@ public class Skills{
   * sets the new trader Points
   * @param points amount to be added
   */
- public void setTraderPoints(int points)
- {
+ public void setTraderPoints(int points){
 	 player.setTrader(points);
  }
  
@@ -50,8 +54,7 @@ public class Skills{
   * sets the new engineer Points
   * @param points amount to be added
   */
- public void setEngineerPoints(int points)
- {
+ public void setEngineerPoints(int points){
 	 player.setEngineer(points);
  }
  
@@ -59,8 +62,7 @@ public class Skills{
   * retrieves the players current pilot points
   * @return current pilot points
   */
- public int getPilotPoints()
- {
+ public int getPilotPoints(){
 	 return player.getPilot();
  }
  
@@ -68,8 +70,7 @@ public class Skills{
   * retrieves the players current fighter points
   * @return current fighter points
   */
- public int getFighterPoints()
- {
+ public int getFighterPoints(){
 	 return player.getFighter();
  }
  
@@ -77,8 +78,7 @@ public class Skills{
   * retrieves the players current trader points
   * @return current trader points
   */
- public int getTraderPoints()
- {
+ public int getTraderPoints(){
 	 return player.getTrader();
  }
  
@@ -86,8 +86,7 @@ public class Skills{
   * retrieves the players current engineer points
   * @return current engineer points
   */
- public int getEngineerPoints()
- {
+ public int getEngineerPoints(){
 	 return player.getEngineer();
  }
  
@@ -95,8 +94,7 @@ public class Skills{
   * sets players current points
   * @param points points to add on to current points
   */
- public void setCurrPoints(int points)
- {
+ public void setCurrPoints(int points){
   playerPoints = playerPoints + points;
  }
  
@@ -104,10 +102,10 @@ public class Skills{
   * retrieves the players current points
   * @return current points
   */
- public int getCurrPoints()
- {
+ public int getCurrPoints(){
   return playerPoints;
  }
+
  /**
   * retrieves the player
   * @return current player

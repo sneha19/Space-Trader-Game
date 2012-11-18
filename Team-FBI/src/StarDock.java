@@ -371,11 +371,9 @@ public class StarDock extends JPanel  implements Serializable{
 	/**
 	 * Set the btnlistener for the finished button
 	 * @param a a button listener in the UIMain class
-	 * @return whether the set is successful
 	 */
-	public boolean setBtnFinished(ActionListener a){ // $codepro.audit.disable accessorMethodNamingConvention
+	public void setBtnFinished(ActionListener a){ // $codepro.audit.disable accessorMethodNamingConvention
 		btnContinue.addActionListener(a);
-		return true;
 	}
 }
 

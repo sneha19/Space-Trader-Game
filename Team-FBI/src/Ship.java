@@ -16,7 +16,7 @@ import javax.imageio.ImageIO;
 
 /**
  * This is a ship class that holds the critical information of a ship
- * 
+ * @version 1
  * @author Sneha, Guang
  */
 public class Ship implements Serializable{
