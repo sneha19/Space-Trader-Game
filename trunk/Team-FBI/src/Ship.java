@@ -195,7 +195,7 @@ public class Ship implements Serializable{
 	 * @param increase amount to increase
 	 */
 	public void updateCurrentFuel(double increase){
-		if(canAddFuel()){
+		if(canAddMoreFuel()){
 			currentFuel += increase;
 		}
 		else{
