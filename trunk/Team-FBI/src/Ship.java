@@ -165,8 +165,8 @@ public class Ship implements Serializable{
 	 * Setter, set current fuel
 	 * @param decrease the dcresement value
 	 */
-	public boolean canAddMoreFuel(int a){
-		if (fuel + a > fuelCapacity){
+	public boolean canAddMoreFuel(){
+		if (fuel + 1 > fuelCapacity){
 			return false;
 		}
 		
@@ -174,8 +174,8 @@ public class Ship implements Serializable{
 		
 	}
 	
-	public boolean canReduceFuel(int a){
-		if (fuel - a < 0){
+	public boolean canReduceFuel(){
+		if (fuel - 1 < 0){
 			return false;
 		}
 		else return true;
