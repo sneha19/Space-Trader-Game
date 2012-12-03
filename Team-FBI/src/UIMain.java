@@ -220,7 +220,7 @@ public class UIMain implements Serializable {
 		/**
 		 * Set the panel to be focusable 
 		 */
-		public KeyController(){
+		private KeyController(){
 			map.setFocusable(true);
 			// addKeyListener(this);
 		}

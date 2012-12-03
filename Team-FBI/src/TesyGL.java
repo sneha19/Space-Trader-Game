@@ -6,6 +6,7 @@ import org.junit.Test;
 /**
  * JUnit test class to test the calculatorBuy() method
  * in Trade class
+ * @version 1
  * @author Guang Lu
  */
 public class TesyGL {
