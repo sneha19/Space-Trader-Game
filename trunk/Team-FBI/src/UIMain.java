@@ -204,8 +204,7 @@ public class UIMain implements Serializable {
 			tabPane.setEnabledAt(2, true);
 			tabPane.setEnabledAt(3, true);
 			inventory.update();
-			
-			
+			map.updateLables();
 		}
 	}
 
@@ -250,7 +249,7 @@ public class UIMain implements Serializable {
 						else{
 							randomation = random.nextInt(100);
 							if(randomation < 25){
-								letsSeeIfWeGetRandom = random.nextInt(2);
+								letsSeeIfWeGetRandom = random.nextInt(3);
 								randomEventOccured(letsSeeIfWeGetRandom);
 							}
 						}
@@ -271,7 +270,7 @@ public class UIMain implements Serializable {
 						else{
 							randomation = random.nextInt(100);
 							if(randomation < 25){
-								letsSeeIfWeGetRandom = random.nextInt(2);
+								letsSeeIfWeGetRandom = random.nextInt(3);
 								randomEventOccured(letsSeeIfWeGetRandom);
 							}
 						}
@@ -292,7 +291,7 @@ public class UIMain implements Serializable {
 						else{
 							randomation = random.nextInt(100);
 							if(randomation < 25){
-								letsSeeIfWeGetRandom = random.nextInt(2);
+								letsSeeIfWeGetRandom = random.nextInt(3);
 								randomEventOccured(letsSeeIfWeGetRandom);
 							}
 						}
@@ -311,7 +310,7 @@ public class UIMain implements Serializable {
 						else{
 							randomation = random.nextInt(100);
 							if(randomation < 25){
-								letsSeeIfWeGetRandom = random.nextInt(2);
+								letsSeeIfWeGetRandom = random.nextInt(3);
 								randomEventOccured(letsSeeIfWeGetRandom);
 							}
 						}
@@ -488,6 +487,13 @@ public class UIMain implements Serializable {
 				}
 			}
 		}
+		
+		else if(num==2){
+			MiniGame a = new MiniGame(player);
+		}
+		
+		inventory.update();
+		tabPane.setTabComponentAt(1, inventory);
 	}
 
 	/**
